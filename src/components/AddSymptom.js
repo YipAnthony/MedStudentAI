@@ -18,6 +18,8 @@ export default function AddSymptom(props) {
                 selectedSymptoms={props.selectedSymptoms[i]}
                 handleChange={props.handleChange}
                 selectSymptom = {props.selectSymptom}
+                clickSearch = {props.clickSearch}
+                handleSearch = {props.handleSearch}
             />
         )
     }
@@ -30,9 +32,11 @@ export default function AddSymptom(props) {
                 selectedSymptoms={props.selectedSymptoms[0]}
                 handleChange={props.handleChange}
                 selectSymptom = {props.selectSymptom}
+                clickSearch = {props.clickSearch}
+                handleSearch = {props.handleSearch}
             />
             {additionalSymptomsArray}
-            <button id="addSymptom" className="btn btn-md btn-primary shadow-none" onClick={props.handleChange}>Add Symptom</button>
+            {/* <button id="addSymptom" className="btn btn-md btn-primary shadow-none" onClick={props.handleChange}>Add Symptom</button> */}
         </div>
     )
 }

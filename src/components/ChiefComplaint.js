@@ -15,13 +15,13 @@ export default function Symptoms(props) {
                 placeholder={"Search"}
                 autoComplete="off"
                 value={props.ChiefComplaintInput} 
-                data-toggle="dropdown" aria-haspopup="true"
+                // data-toggle="dropdown" aria-haspopup="true"
             ></input>
-            <div id="dropdownSearch" className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {/* <div id="dropdownSearch" className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <div id="dropdownItems" className="container">
                     <SymptomsList ChiefComplaintInput={props.ChiefComplaintInput} selectSymptom={props.selectSymptom}/>
                 </div>
-            </div>
+            </div> */}
          </div>
     )
 }
