@@ -9,6 +9,7 @@ export default function Age(props) {
                 id = "selectedAge"
                 type="text" 
                 onChange={props.handleChange} 
+                autoComplete="off"
                 placeholder={"Patient Age"}
                 value={props.selectedAge} 
             ></input>

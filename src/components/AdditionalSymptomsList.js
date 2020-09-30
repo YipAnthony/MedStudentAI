@@ -8,15 +8,16 @@ export default function SymptomList(props) {
     let fuzzy = FuzzySet(symptomsList)
     // console.log(fuzzy.get("abdominalmass"))
 
-
     symptomsList = symptomsList.filter(element => {
-        let search = props.ChiefComplaintInput.toLowerCase();
+        let search = props.selectedSymptomsInput.toLowerCase();
         element = element.toLowerCase();
         return element.includes(search);
     })
+    
+    
   
-    if(props.ChiefComplaintInput.length > 3 && symptomsList.length ===0 ) {
-        fuzzy = fuzzy.get(props.ChiefComplaintInput, null, 0.1)
+    if(props.selectedSymptomsInput.length > 3 && symptomsList.length ===0 ) {
+        fuzzy = fuzzy.get(props.selectedSymptomsInput, null, 0.1)
         if (fuzzy != null) {
             fuzzy = fuzzy.map(element => element[1])
             symptomsList = fuzzy
@@ -27,7 +28,7 @@ export default function SymptomList(props) {
         <div>
             {symptomsList.map((element) => {
             return (
-                <span id="chiefcomplainSS" className="dropdown-item" key={element} onClick={props.selectSymptom}>
+                <span id="additionalSymptomSS" data-array = {props.arrayNumber} className="dropdown-item" key={element} onClick={props.selectSymptom}>
                     {element}
                 </span>)
             })}

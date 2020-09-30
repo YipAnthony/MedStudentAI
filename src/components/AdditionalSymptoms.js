@@ -1,25 +1,26 @@
 import React from 'react'
-import SymptomsList from './SymptomList'
+import AdditionalSymptomsList from './AdditionalSymptomsList'
 
 export default function Symptoms(props) {
 
 
     return (
         <div className="dropdown">
-            Chief Complaint:
+            Additional Symptoms:
             <input 
                 className="form-control" 
                 type="text" 
-                id="patientCC" 
+                data-array = {props.arrayNumber}
+                id="patientAdditionalSymptom" 
                 onChange={props.handleChange} 
                 placeholder={"Search"}
                 autoComplete="off"
-                value={props.ChiefComplaintInput} 
+                value={props.selectedSymptomsInput} 
                 data-toggle="dropdown" aria-haspopup="true"
             ></input>
             <div id="dropdownSearch" className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <div id="dropdownItems" className="container">
-                    <SymptomsList ChiefComplaintInput={props.ChiefComplaintInput} selectSymptom={props.selectSymptom}/>
+                    <AdditionalSymptomsList arrayNumber = {props.arrayNumber} selectedSymptomsInput={props.selectedSymptomsInput} selectSymptom = {props.selectSymptom}/>
                 </div>
             </div>
          </div>
