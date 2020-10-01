@@ -5,6 +5,7 @@ import DisplaySearchResults from './DisplaySearchResults'
 import PatientSymptoms from './PatientSymptoms'
 import DisplayCCSearchResults from './DisplayCCSearchResults'
 
+
 export default function LeftContainer() {
 
     let [selectedAge, setSelectedAge] = useState("")

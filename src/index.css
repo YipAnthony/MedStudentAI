@@ -13,9 +13,8 @@ code {
 }
 
 
-.dropdown-menu #dropdownItems{
-  height:200px;
-  width: 500px;
+#labSearchResults{
+  width: max(500px);
   overflow-y:auto;
   overflow-x: auto;
 }
