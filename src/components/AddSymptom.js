@@ -15,7 +15,7 @@ export default function AddSymptom(props) {
                 arrayNumber = {i}
                 key = {i}
                 selectedSymptomsInput={props.selectedSymptomsInput[i]}
-                selectedSymptoms={props.selectedSymptoms[i]}
+                // selectedSymptoms={props.selectedSymptoms[i]}
                 handleChange={props.handleChange}
                 selectSymptom = {props.selectSymptom}
                 clickSearch = {props.clickSearch}
@@ -29,7 +29,7 @@ export default function AddSymptom(props) {
             <AdditionalSymptoms 
                 arrayNumber = "0"
                 selectedSymptomsInput={props.selectedSymptomsInput[0]}
-                selectedSymptoms={props.selectedSymptoms[0]}
+                // selectedSymptoms={props.selectedSymptoms[0]}
                 handleChange={props.handleChange}
                 selectSymptom = {props.selectSymptom}
                 clickSearch = {props.clickSearch}

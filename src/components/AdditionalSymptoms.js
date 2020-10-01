@@ -1,12 +1,10 @@
-import React, {useState} from 'react'
-import AdditionalSymptomsList from './AdditionalSymptomsList'
+import React from 'react'
 
 export default function Symptoms(props) {
 
     return (
-        <div className="dropdown">
-            Additional Symptoms:
-            {/* <div className="d-flex"> */}
+        <div className="dropdown d-flex mt-3">
+            
                 <textarea 
                     className="form-control shadow-none" 
                     type="textarea" 
@@ -14,23 +12,15 @@ export default function Symptoms(props) {
                     data-array = {props.arrayNumber}
                     id="patientAdditionalSymptom" 
                     onChange={props.handleChange} 
-                    placeholder={"Search"}
+                    placeholder={"Additional Symptoms: e.g. patient endorses chest pain for 1 week, worsened with exercise, and difficulty breathing" }
                     autoComplete="off"
                     value={props.selectedSymptomsInput} 
                 ></textarea>
-                {/* <div id="dropdownSearch" className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div id="dropdownItems" className="container">
-                        <AdditionalSymptomsList arrayNumber = {props.arrayNumber} selectedSymptomsInput={clickSearch} selectSymptom = {props.selectSymptom}/>
-                    </div>
-                </div> */}
                 <button 
                     className="btn btn-sm btn-primary shadow-none"
                     data-array = {props.arrayNumber}
                     onClick={props.handleSearch}
                 >Search</button>
-            {/* </div> */}
-
-            
          </div>
     )
 }

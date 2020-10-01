@@ -3,8 +3,7 @@ import React from 'react'
 export default function Gender(props) {
    
     return (
-        <div>
-            Gender: 
+        <div className="d-flex">
             <button 
                 id="inputGender" 
                 className={props.selectedGender === "Male" ? "btn btn-outline-primary btn-sm m-1 active shadow-none": "btn btn-outline-primary btn-sm m-1"}

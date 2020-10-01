@@ -5,26 +5,44 @@ import Gender from './Gender'
 import AddSymptom from './AddSymptom'
 import DisplaySearchResults from './DisplaySearchResults'
 import PatientSymptoms from './PatientSymptoms'
+import DisplayCCSearchResults from './DisplayCCSearchResults'
 
 export default function LeftContainer() {
 
-    let [ChiefComplaintInput, setChiefComplaintInput] = useState("")
-    let [selectedCC, setSelectedCC] = useState("")
     let [selectedAge, setSelectedAge] = useState("")
     let [selectedGender, setSelectedGender] = useState("")
 
+    let [ChiefComplaintInput, setChiefComplaintInput] = useState("")
+    let [searchResultsCC, setSearchResultsCC] = useState([{"name":"Chest Pain"}])
+    let [selectedCC, setSelectedCC] = useState("")
+     
     let [selectedSymptomsInput, setSelectedSymptomsInput] = useState(["",])
-    let [selectedSymptoms, setSelectedSymptoms] = useState(["",])
-
-    // let [numberOfSymptoms, setNumberOfSymptoms] = useState(0)
-
-    let[searchResults, setSearchResults] = useState([{"name":"blahblah"}])
+    let [searchResults, setSearchResults] = useState([{"name":"Dyspnea"}, {"name":"Chest pain worse on exertion"}, {"name":"Left arm numbness"}])
     let [patientSymptoms, setPatientSymptoms] = useState([])
+
+    function handleChangeCC(e) {
+        let targetIndex = e.target.getAttribute('data-array')
+        let selected = searchResultsCC[targetIndex]
+        setSelectedCC(() => selected)
+        
+        setSearchResultsCC(prev => {
+            let output = [...prev]
+            output = [...output.slice(0,targetIndex), 
+                ...output.slice(targetIndex+1)]
+            
+            return output
+        })
+        
+    }
 
     function handleChange(e){
         let input = e.target.value
         if (e.target.id === "selectedAge") {
             setSelectedAge(()=> input)
+        }
+        else if (e.target.id === "inputGender") {
+            input = e.target.innerHTML
+            setSelectedGender(() => input)
         }
         else if (e.target.id === "patientCC"){
             setChiefComplaintInput(()=> input)
@@ -37,10 +55,6 @@ export default function LeftContainer() {
                 return output;
             })
         }
-        else if (e.target.id === "inputGender") {
-            input = e.target.innerHTML
-            setSelectedGender(() => input)
-        }
         else if (e.target.id === "clickAddSymptom") {
             let targetIndex = e.target.getAttribute('data-array')
             let selected = searchResults[targetIndex]
@@ -48,7 +62,6 @@ export default function LeftContainer() {
             setPatientSymptoms(prev => {
                 return [...prev, selected]
             })
-            
             setSearchResults(prev => {
                 let output = [...prev]
                 output = [...output.slice(0,targetIndex), 
@@ -57,41 +70,20 @@ export default function LeftContainer() {
                 return output
             })
         }
-        // else if (e.target.id === "addSymptom") {
-        //     setNumberOfSymptoms(prev => prev + 1)
-        //     setSelectedSymptomsInput(prev => [...prev,""])
-        //     setSelectedSymptoms(prev => [...prev, ""])
-        //     // console.log(selectedSymptomsInput)
-        // }
     }
-
-    // function selectSymptom(e){
-    //     if (e.target.id === "chiefcomplainSS") {
-    //         let inputChiefComplaint = e.target.innerHTML
-    //         setSelectedCC(()=> inputChiefComplaint)
-    //         setChiefComplaintInput(()=> inputChiefComplaint)
-    //     }
-    //     if (e.target.id === "additionalSymptomSS") {
-    //         let inputSymptom = e.target.innerHTML
-    //         let arrayIndex = e.target.getAttribute('data-array')
-    //         setSelectedSymptoms(prev => {
-    //             let output = [...prev];
-    //             output[arrayIndex] = inputSymptom;
-    //             return output;
-    //         })
-    //         setSelectedSymptomsInput(prev => {
-    //             let output = [...prev];
-    //             output[arrayIndex] = inputSymptom;
-    //             return output;
-    //         })
-    //     }
-    // }
-
-
+ 
     function handleSearch(e) {
-        let arrayIndex = e.target.getAttribute('data-array')
-        let input = selectedSymptomsInput[arrayIndex]
-        console.log(input)
+        let arrayIndex; 
+        let input;
+        let chiefComplaint = false
+        if (e.target.id === "searchCCButton") {
+            input = ChiefComplaintInput;
+            chiefComplaint = true;
+        }
+        else {
+            arrayIndex = e.target.getAttribute('data-array')
+            input = selectedSymptomsInput[arrayIndex]
+        }
         let parseJSON = {
             "text": input,
             "context": [
@@ -113,43 +105,56 @@ export default function LeftContainer() {
             body: JSON.stringify(parseJSON),
         })
         .then(response => response.json())
-        .then(data => jsonToSearchResults(data))
-
-       
+        .then(data => {
+            if (!chiefComplaint) jsonToSearchResults(data)
+            else jsonToSearchResultsCC(data)
+        })
     }
 
     function jsonToSearchResults (input) {
         let resultsArray = input["mentions"]
         setSearchResults(()=> resultsArray)
-        
+    }
+    function jsonToSearchResultsCC (input) {
+        let resultsArray = input["mentions"]
+        setSearchResultsCC(()=> resultsArray)
     }
 
     return (
         <div className="col-sm border-light">
             <div className="card">
                 <div className="card-header">Symptoms</div>
-                    <Age selectedAge={selectedAge} handleChange={handleChange}/>
-                    <Gender selectedGender={selectedGender} handleChange={handleChange}/>
+                    <div className= 'd-flex m-2'>
+                        <Age selectedAge={selectedAge} handleChange={handleChange}/>
+                        <Gender selectedGender={selectedGender} handleChange={handleChange}/>
+                    </div>
+                    <PatientSymptoms 
+                        patientSymptoms={patientSymptoms}
+                        selectedAge = {selectedAge}
+                        selectedGender = {selectedGender}
+                        selectedCC={selectedCC}
+                    />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 
                         handleChange={handleChange} 
                         // selectSymptom = {selectSymptom}
                         selectedCC = {selectedCC}
+                        handleSearch = {handleSearch}
+                    />
+                    <DisplayCCSearchResults 
+                        searchResultsCC={searchResultsCC}
+                        handleChangeCC={handleChangeCC}    
                     />
                     <AddSymptom
                         selectedSymptomsInput={selectedSymptomsInput}
-                        selectedSymptoms={selectedSymptoms}
+                        // selectedSymptoms={selectedSymptoms}
                         handleChange={handleChange}
-                        // selectSymptom = {selectSymptom}
-                        // numberOfSymptoms = {numberOfSymptoms}
                         handleSearch = {handleSearch}
                     />
                     <DisplaySearchResults 
                         searchResults={searchResults}
                         handleChange={handleChange}    
                     />
-
-                    <PatientSymptoms patientSymptoms={patientSymptoms}/>
             </div>
         </div>
     )
