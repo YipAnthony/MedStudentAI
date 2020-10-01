@@ -1,5 +1,4 @@
 import React from 'react'
-import SymptomsList from './SymptomList'
 
 export default function Symptoms(props) {
 
@@ -14,7 +13,6 @@ export default function Symptoms(props) {
                 placeholder={"Chief complaint"}
                 autoComplete="off"
                 value={props.ChiefComplaintInput} 
-                // data-toggle="dropdown" aria-haspopup="true"
             ></input>
              <button 
                     id = "searchCCButton"

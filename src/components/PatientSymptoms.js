@@ -5,12 +5,25 @@ export default function PatientSymptoms(props) {
     let output = []
     for (let i = 0; i<props.patientSymptoms.length; i++){
         let input = props.patientSymptoms[i]["name"]
+
+        function toggleHidden(e) {
+            let xButton = e.target.nextSibling
+            if (xButton.classList.contains('hidden')) {
+                xButton.classList.remove('hidden')
+            }
+            else {
+                xButton.classList.add('hidden')
+            }
+        }
+
         output.push(
-            <button className="btn btn-success btn-sm m-1" key={i}>
-                {input}
-            </button> 
+            <span key={i} style={{display: "block"}}>
+                <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                    {input}
+                </button> 
+                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
+            </span>
         )
-        console.log(output)
     }
     let selectedCCName = "";
     if (props.selectedCC) {

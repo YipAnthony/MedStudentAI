@@ -119,7 +119,18 @@ export default function LeftContainer() {
         let resultsArray = input["mentions"]
         setSearchResultsCC(()=> resultsArray)
     }
-
+    function deleteSymptom(e){
+        let symptom = e.target
+        let symptomIndex = symptom.getAttribute('data-array')
+        console.log(symptomIndex)
+        setPatientSymptoms(prev => {
+            let output = [
+                ...prev.slice(0,symptomIndex),
+                ...prev.slice(symptomIndex+1)
+            ]
+            return output
+        })
+    }
     return (
         <div className="col-sm border-light">
             <div className="card">
@@ -133,6 +144,7 @@ export default function LeftContainer() {
                         selectedAge = {selectedAge}
                         selectedGender = {selectedGender}
                         selectedCC={selectedCC}
+                        deleteSymptom={deleteSymptom}
                     />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 
