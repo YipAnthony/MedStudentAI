@@ -19,7 +19,7 @@ export default function PatientSymptoms(props) {
         }
 
         patientSymptomArray.push(
-            <span key={i} style={{display: "block"}}>
+            <span key={i} style={{display: "inline"}}>
                 <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
                     {input}
                 </button> 
@@ -41,11 +41,11 @@ export default function PatientSymptoms(props) {
         let input = props.selectedCC.name
         console.log(input)
         selectedCCName.push(
-            <span key={0} style={{display: "block"}}>
-                <button className="btn btn-outline-success btn-md m-1 mr-0 shadow-none" onClick={toggleHidden}>
+            <span key={0} style={{display: "inline"}}>
+                <button className="btn btn-outline-success btn-md p-1 m-1 mr-0 shadow-none" onClick={toggleHidden}>
                     {input}
                 </button> 
-                <button data-array={0} className="btn btn-danger btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteCC}>X</button>
+                <button data-array={0} className="btn btn-danger btn-md p-1 m-1 ml-0 shadow-none hidden" onClick={props.deleteCC}>X</button>
             </span>
         )
         console.log(selectedCCName)
@@ -62,7 +62,6 @@ export default function PatientSymptoms(props) {
                     <Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
                     y/o 
                     <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
-                    {/* {" " + props.selectedGender.toLowerCase()} */}
                     {props.selectedCC !== "" ? " with a chief complaint of":""}
                     {selectedCCName}
                 </h5>

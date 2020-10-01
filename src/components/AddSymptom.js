@@ -1,42 +1,25 @@
 import React from 'react'
-import AdditionalSymptoms from './AdditionalSymptoms'
 
 export default function AddSymptom(props) {
-    
-    let {numberOfSymptoms} = props
-    // console.log(numberOfSymptoms)
-
-    let additionalSymptomsArray = [];
-
-    for (let i = 1; i <= numberOfSymptoms; i++) {
-        // console.log(i)
-        additionalSymptomsArray.push(
-            <AdditionalSymptoms 
-                arrayNumber = {i}
-                key = {i}
-                selectedSymptomsInput={props.selectedSymptomsInput[i]}
-                // selectedSymptoms={props.selectedSymptoms[i]}
-                handleChange={props.handleChange}
-                selectSymptom = {props.selectSymptom}
-                clickSearch = {props.clickSearch}
-                handleSearch = {props.handleSearch}
-            />
-        )
-    }
 
     return (
-        <div>
-            <AdditionalSymptoms 
-                arrayNumber = "0"
-                selectedSymptomsInput={props.selectedSymptomsInput[0]}
-                // selectedSymptoms={props.selectedSymptoms[0]}
-                handleChange={props.handleChange}
-                selectSymptom = {props.selectSymptom}
-                clickSearch = {props.clickSearch}
-                handleSearch = {props.handleSearch}
-            />
-            {additionalSymptomsArray}
-            {/* <button id="addSymptom" className="btn btn-md btn-primary shadow-none" onClick={props.handleChange}>Add Symptom</button> */}
+        <div className="dropdown d-flex mt-3">
+            
+            <textarea 
+                className="form-control shadow-none" 
+                type="textarea" 
+                rows="3"
+                id="patientAdditionalSymptom" 
+                onChange={props.handleChange} 
+                placeholder={"Additional Symptoms: e.g. patient endorses chest pain for 1 week, worsened with exercise, and difficulty breathing" }
+                autoComplete="off"
+                value={props.selectedSymptomsInput} 
+            ></textarea>
+            <button 
+                className="btn btn-sm btn-primary shadow-none"
+                onClick={props.handleSearch}
+            >   Search
+            </button>
         </div>
     )
 }
