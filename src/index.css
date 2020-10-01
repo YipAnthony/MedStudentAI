@@ -27,3 +27,19 @@ code {
 .hidden {
   display: none;
 }
+
+#selectedAge.form-control::-webkit-input-placeholder {
+  color: #367bff
+}
+#selectedAge.form-control:-moz-placeholder {
+  color: #367bff
+}
+#selectedAge.form-control::-moz-placeholder {
+  color: #367bff
+}
+#selectedAge.form-control::placeholder {
+  color: #367bff
+}
+#selectedAge.form-control:-ms-input-placeholder {
+  color: #367bff
+}

@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 import ChiefComplaint from './ChiefComplaint'
-import Age from './Age'
-import Gender from './Gender'
 import AddSymptom from './AddSymptom'
 import DisplaySearchResults from './DisplaySearchResults'
 import PatientSymptoms from './PatientSymptoms'
@@ -10,7 +8,7 @@ import DisplayCCSearchResults from './DisplayCCSearchResults'
 export default function LeftContainer() {
 
     let [selectedAge, setSelectedAge] = useState("")
-    let [selectedGender, setSelectedGender] = useState("")
+    let [selectedGender, setSelectedGender] = useState("male")
 
     let [ChiefComplaintInput, setChiefComplaintInput] = useState("")
     let [searchResultsCC, setSearchResultsCC] = useState([{"name":"Chest Pain"}])
@@ -42,7 +40,10 @@ export default function LeftContainer() {
         }
         else if (e.target.id === "inputGender") {
             input = e.target.innerHTML
-            setSelectedGender(() => input)
+            setSelectedGender(prev => {
+                if (prev === "male") return "female"
+                else return "male"
+            })
         }
         else if (e.target.id === "patientCC"){
             setChiefComplaintInput(()=> input)
@@ -56,18 +57,13 @@ export default function LeftContainer() {
             })
         }
         else if (e.target.id === "clickAddSymptom") {
-            let targetIndex = e.target.getAttribute('data-array')
+            let targetIndex = Number(e.target.getAttribute('data-array'))
             let selected = searchResults[targetIndex]
-            console.log(selected)
             setPatientSymptoms(prev => {
                 return [...prev, selected]
             })
             setSearchResults(prev => {
-                let output = [...prev]
-                output = [...output.slice(0,targetIndex), 
-                    ...output.slice(targetIndex+1)]
-                
-                return output
+                return prev.filter((element, index) => index !== targetIndex)
             })
         }
     }
@@ -121,23 +117,22 @@ export default function LeftContainer() {
     }
     function deleteSymptom(e){
         let symptom = e.target
-        let symptomIndex = symptom.getAttribute('data-array')
-        console.log(symptomIndex)
+        let symptomIndex = Number(symptom.getAttribute('data-array'))
         setPatientSymptoms(prev => {
-            let output = [
-                ...prev.slice(0,symptomIndex),
-                ...prev.slice(symptomIndex+1)
-            ]
-            return output
+            return prev.filter((item, index) =>  index !== symptomIndex)
+            
         })
+    }
+    function deleteCC(){
+        setSelectedCC(()=> "")
     }
     return (
         <div className="col-sm border-light">
             <div className="card">
                 <div className="card-header">Symptoms</div>
                     <div className= 'd-flex m-2'>
-                        <Age selectedAge={selectedAge} handleChange={handleChange}/>
-                        <Gender selectedGender={selectedGender} handleChange={handleChange}/>
+                        {/* <Age selectedAge={selectedAge} handleChange={handleChange}/> */}
+                        {/* <Gender selectedGender={selectedGender} handleChange={handleChange}/> */}
                     </div>
                     <PatientSymptoms 
                         patientSymptoms={patientSymptoms}
@@ -145,6 +140,8 @@ export default function LeftContainer() {
                         selectedGender = {selectedGender}
                         selectedCC={selectedCC}
                         deleteSymptom={deleteSymptom}
+                        deleteCC={deleteCC}
+                        handleChange={handleChange}
                     />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 

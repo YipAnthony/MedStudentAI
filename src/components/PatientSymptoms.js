@@ -1,8 +1,10 @@
 import React from 'react'
+import Age from './Age'
+import Gender from './Gender'
 
 export default function PatientSymptoms(props) {
 
-    let output = []
+    let patientSymptomArray = []
     for (let i = 0; i<props.patientSymptoms.length; i++){
         let input = props.patientSymptoms[i]["name"]
 
@@ -16,7 +18,7 @@ export default function PatientSymptoms(props) {
             }
         }
 
-        output.push(
+        patientSymptomArray.push(
             <span key={i} style={{display: "block"}}>
                 <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
                     {input}
@@ -25,9 +27,28 @@ export default function PatientSymptoms(props) {
             </span>
         )
     }
-    let selectedCCName = "";
+    let selectedCCName = [];
     if (props.selectedCC) {
-        selectedCCName = props.selectedCC.name
+        function toggleHidden(e) {
+            let xButton = e.target.nextSibling
+            if (xButton.classList.contains('hidden')) {
+                xButton.classList.remove('hidden')
+            }
+            else {
+                xButton.classList.add('hidden')
+            }
+        }
+        let input = props.selectedCC.name
+        console.log(input)
+        selectedCCName.push(
+            <span key={0} style={{display: "block"}}>
+                <button className="btn btn-outline-success btn-md m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                    {input}
+                </button> 
+                <button data-array={0} className="btn btn-danger btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteCC}>X</button>
+            </span>
+        )
+        console.log(selectedCCName)
     }
 
     return (
@@ -36,13 +57,18 @@ export default function PatientSymptoms(props) {
                 
             </div>
             <div className="card-body">
-                <h5 className="card-title">
-                Patient is a {props.selectedAge ? props.selectedAge + "y/o":"..."} {props.selectedGender.toLowerCase()}
-                {props.selectedCC !== "" ? " with a chief complaint of " + selectedCCName:""}
+                <h5 className="card-title d-inline">
+                    Patient is a 
+                    <Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
+                    y/o 
+                    <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
+                    {/* {" " + props.selectedGender.toLowerCase()} */}
+                    {props.selectedCC !== "" ? " with a chief complaint of":""}
+                    {selectedCCName}
                 </h5>
                 <p className="card-text">
-                    {output.length > 0 ? "Patient also endorses:":null}
-                    {output}
+                    {patientSymptomArray.length > 0 ? "Patient also endorses:":null}
+                    {patientSymptomArray}
                 </p>
             </div>
 
