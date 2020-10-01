@@ -6,7 +6,7 @@ import PatientSymptoms from './PatientSymptoms'
 import DisplayCCSearchResults from './DisplayCCSearchResults'
 
 
-export default function LeftContainer() {
+export default function LeftContainer(props) {
 
     let [selectedAge, setSelectedAge] = useState("")
     let [selectedGender, setSelectedGender] = useState("male")
@@ -31,7 +31,6 @@ export default function LeftContainer() {
             
             return output
         })
-        
     }
 
     function handleChange(e){
@@ -133,6 +132,15 @@ export default function LeftContainer() {
     function deleteCC(){
         setSelectedCC(()=> "")
     }
+
+    function closeCCSearchResults() {
+        setSearchResultsCC(()=>"")
+    }
+
+    function closeSymptomSearchResults(){
+        setSearchResults(()=>"")
+    }
+
     return (
         <div className="col-sm border-light">
             <div className="card">
@@ -149,6 +157,8 @@ export default function LeftContainer() {
                         deleteSymptom={deleteSymptom}
                         deleteCC={deleteCC}
                         handleChange={handleChange}
+                        patientLabs={props.patientLabs}
+                        deleteLab={props.deleteLab}
                     />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 
@@ -160,6 +170,7 @@ export default function LeftContainer() {
                     <DisplayCCSearchResults 
                         searchResultsCC={searchResultsCC}
                         handleChangeCC={handleChangeCC}    
+                        closeCCSearchResults={closeCCSearchResults}
                     />
                     <AddSymptom
                         selectedSymptomsInput={selectedSymptomsInput}
@@ -169,7 +180,8 @@ export default function LeftContainer() {
                     />
                     <DisplaySearchResults 
                         searchResults={searchResults}
-                        handleChange={handleChange}    
+                        handleChange={handleChange}  
+                        closeSymptomSearchResults={closeSymptomSearchResults}  
                     />
             </div>
         </div>

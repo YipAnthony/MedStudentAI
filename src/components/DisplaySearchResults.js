@@ -16,10 +16,21 @@ export default function DisplaySearchResults(props) {
             />
         )
     }
-
+    let closeButton;
+    console.log(output)
+    if (output.length > 0){
+        closeButton = <button 
+        className="btn btn-sm btn-primary shadow-none"
+        onClick={props.closeSymptomSearchResults}
+        >Close</button>
+    }
+    else closeButton = []
+    
     return (
         <div className="card w-100">
            {output}
+           {closeButton}
         </div>
+
     )
 }

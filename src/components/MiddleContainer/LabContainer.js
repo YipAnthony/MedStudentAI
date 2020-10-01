@@ -10,7 +10,7 @@ for (let i = 0; i < labs.length; i++) {
    }
 }
 
-export default function LabContainer() {
+export default function LabContainer(props) {
     let [filteredLabs, setfilteredLabs] = useState(labs)
     function handleLabCategoryClick(e){
         let button = e.target
@@ -31,7 +31,10 @@ export default function LabContainer() {
     return (
         <div>
             <TopPanelButtons categoryMap={categoryMap} handleLabCategoryClick={handleLabCategoryClick}/>
-            <DisplayLabOptions filteredLabs={filteredLabs}/>
+            <DisplayLabOptions 
+                filteredLabs={filteredLabs} 
+                handleAddLab={props.handleAddLab}    
+                />
         </div>
     )
 }

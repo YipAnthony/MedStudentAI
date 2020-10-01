@@ -27,6 +27,7 @@ export default function PatientSymptoms(props) {
             </span>
         )
     }
+
     let selectedCCName = [];
     if (props.selectedCC) {
         function toggleHidden(e) {
@@ -50,6 +51,32 @@ export default function PatientSymptoms(props) {
         )
         console.log(selectedCCName)
     }
+    let selectedLabs = [];
+    for (let i = 0; i<props.patientLabs.length; i++){
+        let input = props.patientLabs[i]
+
+        function toggleHidden(e) {
+            let xButton = e.target.nextSibling
+            if (xButton.classList.contains('hidden')) {
+                xButton.classList.remove('hidden')
+            }
+            else {
+                xButton.classList.add('hidden')
+            }
+        }
+        
+        console.log(input)
+        selectedLabs.push(
+            <span key={i} style={{display: "inline"}}>
+                <button className="btn btn-outline-success btn-sm p-1 m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                    {input}
+                </button> 
+                {/* add props.delete labs in higher container */}
+                <button data-array={0} className="btn btn-danger btn-sm p-1 m-1 ml-0 shadow-none hidden" onClick={props.deleteLab}>X</button>
+            </span>
+        )
+        console.log(selectedLabs)
+    }
 
     return (
         <div className="card mb-2">
@@ -62,12 +89,16 @@ export default function PatientSymptoms(props) {
                     <Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
                     y/o 
                     <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
-                    {props.selectedCC !== "" ? " with a chief complaint of":""}
+                    {props.selectedCC !== "" ? "with a chief complaint of":""}
                     {selectedCCName}
                 </h5>
                 <p className="card-text">
                     {patientSymptomArray.length > 0 ? "Patient also endorses:":null}
                     {patientSymptomArray}
+                </p>
+                <p className="card-text">
+                    {selectedLabs.length > 0 ? "Relevant labs include:":null}
+                    {selectedLabs}
                 </p>
             </div>
 

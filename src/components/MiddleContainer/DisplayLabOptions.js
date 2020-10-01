@@ -21,7 +21,11 @@ export default function DisplayLabOptions(props) {
             if (fuzzyOutput){
                 fuzzyOutput.forEach((value, index) => {
                     output.push(
-                        <div className="dropdownItems" key={index}>
+                        <div 
+                            className="dropdownItems ml-1" 
+                            key={index}
+                            onClick={props.handleAddLab}
+                        >
                             {value[1]}
                         </div>
                     )
@@ -33,7 +37,10 @@ export default function DisplayLabOptions(props) {
             let output = [];
             names.forEach((value, index) => {
                 output.push(
-                    <div className="dropdownItems" key={index}>
+                    <div className="dropdownItems ml-1"
+                        key={index}
+                        onClick={props.handleAddLab}
+                    >
                         {value}
                     </div>
                 )
@@ -46,6 +53,15 @@ export default function DisplayLabOptions(props) {
     function closeSearch() {
         setOutputLabs(() => [])
     }
+
+    let closeButton;
+    if (outputLabs.length > 0){
+        closeButton = <button 
+        className="btn btn-sm btn-primary shadow-none"
+        onClick={closeSearch}
+        >Close</button>
+    }
+    else closeButton = []
 
     return (
         <div>
@@ -67,10 +83,11 @@ export default function DisplayLabOptions(props) {
                 {outputLabs}
                 
             </div>
-            <button 
+            {/* <button 
                     className="btn btn-sm btn-primary shadow-none"
                     onClick={closeSearch}
-                >Close</button>
+                >Close</button> */}
+        {closeButton}
         </div>
     )
 }
