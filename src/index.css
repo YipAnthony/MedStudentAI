@@ -14,7 +14,7 @@ code {
 
 
 #labSearchResults{
-  width: max(500px);
+  /* width: max(500px); */
   overflow-y:auto;
   overflow-x: auto;
 }
@@ -45,5 +45,15 @@ code {
 
 #labSearchResult:hover {
   background-color: #7e7e7e4d;
+  cursor: pointer;
+}
+
+.toggleTab {
+  -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+     -khtml-user-select: none; 
+       -moz-user-select: none; 
+        -ms-user-select: none; 
+            user-select: none; 
   cursor: pointer;
 }
