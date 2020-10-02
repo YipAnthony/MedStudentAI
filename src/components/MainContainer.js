@@ -33,9 +33,20 @@ export default function MainContainer() {
     let [patientLabs, setPatientLabs] = useState([])
 
     function handleAddLab(e){
-        // let target = e.target.innerHTML
-        let targetIndex = Number(e.target.getAttribute('data-index'))
-        let labObject = filteredLabs[targetIndex]
+        let labObject;
+        if(e.target.classList.contains('fuzzy')){
+            let name = e.target.innerHTML
+            labObject = filteredLabs.filter(element => {
+                return element['name'] === name;
+            })
+            labObject = labObject[0]
+            console.log(labObject)
+        }
+        else {
+            let targetIndex = Number(e.target.getAttribute('data-index'))
+            labObject = filteredLabs[targetIndex]
+        }
+        
         setPatientLabs(prev => [...prev, labObject])
     }
 

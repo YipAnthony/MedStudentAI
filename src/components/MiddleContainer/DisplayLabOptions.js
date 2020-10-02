@@ -22,7 +22,9 @@ export default function DisplayLabOptions(props) {
                 fuzzyOutput.forEach((value, index) => {
                     output.push(
                         <div 
-                            className="dropdownItems ml-1" 
+                            id="labSearchResult" 
+                            data-index={index}
+                            className="dropdownItems ml-1 fuzzy" 
                             key={index}
                             onClick={props.handleAddLab}
                         >
