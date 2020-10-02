@@ -8,11 +8,8 @@ export default function MainContainer() {
 
     return (
         <div className="row h-100">
-            <LeftContainer
-            />
-            <MiddleContainer
-                
-            />
+            <LeftContainer/>
+            <MiddleContainer/>
             <RightContainer/>
         </div>
     )

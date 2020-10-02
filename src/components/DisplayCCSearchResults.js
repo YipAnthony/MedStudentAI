@@ -17,11 +17,16 @@ export default function DisplayCCSearchResults(props) {
         )
     }
 
+    function handleClick() {
+        props.closeCCSearchResults();
+        props.toggle();
+    }
+
     let closeButton;
     if (output.length > 0){
         closeButton = <button 
         className="btn btn-sm btn-primary shadow-none"
-        onClick={props.closeCCSearchResults}
+        onClick={handleClick}
         >Close</button>
     }
     else closeButton = []

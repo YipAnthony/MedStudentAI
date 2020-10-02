@@ -2,17 +2,16 @@ import React, {useState, useEffect} from 'react'
 import '../../fuzzyset'
 import FuzzySet from '../../fuzzyset'
 
-export default function DisplayLabOptions(props) {
-    
+export default function DisplayRiskFactorOptions(props) {
     let [searchInput, setSearchInput] = useState("")
-    let [outputLabs, setOutputLabs] = useState([])
+    let [outputRiskFactors, setOutputRiskFactors] = useState([])
 
     function handleChange(e) {
         let input = e.target.value
         setSearchInput(() => input)
     }
     useEffect(() => {
-        let names = props.filteredLabs.map(element => element["name"])
+        let names = props.filteredRiskFactors.map(element => element["name"])
         let fuzzy = FuzzySet(names)
         let search = searchInput
         if (search !== ""){
@@ -24,16 +23,16 @@ export default function DisplayLabOptions(props) {
                         <div 
                             id="labSearchResult" 
                             data-index={index}
-                            className="dropdownItems ml-1 fuzzy" 
+                            className="dropdownItems ml-1 fuzzy border-top border-bottom" 
                             key={index}
-                            onClick={props.handleAddLab}
+                            onClick={props.handleAddRiskFactor}
                         >
                             {value[1]}
                         </div>
                     )
                 })
             } 
-            setOutputLabs(() => output)
+            setOutputRiskFactors(() => output)
         }
         else {
             let output = [];
@@ -42,25 +41,26 @@ export default function DisplayLabOptions(props) {
                     <div 
                         id="labSearchResult" 
                         data-index={index}
-                        className="dropdownItems ml-1"
+                        className="dropdownItems ml-1 border-top border-bottom" 
                         key={index}
-                        onClick={props.handleAddLab}
+                        onClick={props.handleAddRiskFactor}
                     >
                         {value}
                     </div>
                 )
             })
-            setOutputLabs(() => output)
+            setOutputRiskFactors(() => output)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[searchInput, props.filteredLabs])
+    },[searchInput, props.filteredRiskFactors])
     
     function closeSearch() {
-        setOutputLabs(() => [])
+        setOutputRiskFactors(() => [])
+        props.toggle();
     }
 
     let closeButton;
-    if (outputLabs.length > 0){
+    if (outputRiskFactors.length > 0){
         closeButton = <button 
         className="btn btn-sm btn-primary shadow-none"
         onClick={closeSearch}
@@ -84,8 +84,8 @@ export default function DisplayLabOptions(props) {
                     onClick={handleSearch}
                 >Search</button> */}
             </div>
-            <div id="labSearchResults" className="card" style={outputLabs.length === 0 ? {height:"0"}:{height: "max(200px)"}}> 
-                {outputLabs}
+            <div id="labSearchResults" className="card" style={outputRiskFactors.length === 0 ? {height:"0"}:{height: "max(200px)"}}> 
+                {outputRiskFactors}
                 
             </div>
             {/* <button 

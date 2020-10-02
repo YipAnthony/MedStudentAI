@@ -10,7 +10,7 @@ export default function AddSymptom(props) {
         setShowSymptom(prev => !prev)
     }
     return (
-        <div className="card">
+        <div className="card mb-2">
             <h6 
                 className='card-header toggleTab'
                 onClick={toggle}
@@ -20,7 +20,7 @@ export default function AddSymptom(props) {
             </h6>
             {showSymptom &&
                 <div className="card-body">
-                    <div className="dropdown d-flex mt-3">
+                    <div className="dropdown d-flex ">
                         <textarea 
                             className="form-control shadow-none" 
                             type="textarea" 
@@ -39,6 +39,7 @@ export default function AddSymptom(props) {
                     </div>
                     <DisplaySearchResults 
                         searchResults={props.searchResults}
+                        toggle={toggle}
                         handleChange={props.handleChange}  
                         closeSymptomSearchResults={props.closeSymptomSearchResults}  
                     />

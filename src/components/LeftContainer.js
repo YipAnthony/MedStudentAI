@@ -2,12 +2,13 @@ import React, {useState} from 'react'
 import ChiefComplaint from './ChiefComplaint'
 import AddSymptom from './AddSymptom'
 import PatientSymptoms from './PatientSymptoms'
-import LabContainer from './MiddleContainer/LabContainer'
+import LabContainer from './LabContainer/LabContainer'
+import RiskFactorContainer from './RiskFactors/RiskFactorContainer'
 
 import labs from '../lists/labs'
+import riskFactors from '../lists/riskFactors'
 
-export default function LeftContainer(props) {
-
+export default function LeftContainer() {
     let [selectedAge, setSelectedAge] = useState("")
     let [selectedGender, setSelectedGender] = useState("male")
 
@@ -19,6 +20,11 @@ export default function LeftContainer(props) {
     let [searchResults, setSearchResults] = useState([])
     let [patientSymptoms, setPatientSymptoms] = useState([])
 
+    let [filteredLabs, setfilteredLabs] = useState(labs)
+    let [patientLabs, setPatientLabs] = useState([])
+
+    let [filteredRiskFactors, setRiskFactors] = useState(riskFactors)
+    let [patientRiskFactors, setPatientRiskFactors] = useState([])
 
     function handleChangeCC(e) {
         let targetIndex = e.target.getAttribute('data-array')
@@ -80,7 +86,6 @@ export default function LeftContainer(props) {
         else {
             // arrayIndex = e.target.getAttribute('data-array')
             input = selectedSymptomsInput
-            console.log(input)
             // // FAKE DATA FOR NOW
             let jsonSymptoms = [{"id":"s_50","name":"Chest pain","common_name":"Chest pain","orth":"chest pain","choice_id":"present","type":"symptom","positions":[0,1],"head_position":1},{"id":"s_21","name":"Headache","common_name":"Headache","orth":"headache","choice_id":"present","type":"symptom","positions":[3],"head_position":3},{"id":"s_156","name":"Nausea","common_name":"Feeling sick","orth":"nausea","choice_id":"present","type":"symptom","positions":[5],"head_position":5},{"id":"s_305","name":"Vomiting","common_name":"Vomiting","orth":"vomiting","choice_id":"present","type":"symptom","positions":[7],"head_position":7},{"id":"s_1328","name":"Color vision deficiency","common_name":"Color vision deficiency","orth":"changes vision","choice_id":"present","type":"symptom","positions":[10,9],"head_position":10},{"id":"s_1543","name":"Loss of consciousness","common_name":"Loss of consciousness","orth":"loss of consciousness","choice_id":"present","type":"symptom","positions":[12,13,14],"head_position":12},{"id":"s_88","name":"Dyspnea","common_name":"Shortness of breath","orth":"difficulty breathing","choice_id":"present","type":"symptom","positions":[16,17],"head_position":16}]
             setSearchResults(()=> jsonSymptoms)
@@ -148,8 +153,7 @@ export default function LeftContainer(props) {
         categoryMap.set(labs[i]["category"], 1)
        }
     }
-    
-    let [filteredLabs, setfilteredLabs] = useState(labs)
+
     function handleLabCategoryClick(e){
         let button = e.target
         for (let i = 0; i < button.parentNode.children.length; i++){
@@ -166,8 +170,6 @@ export default function LeftContainer(props) {
         }
     }
 
-    let [patientLabs, setPatientLabs] = useState([])
-
     function handleAddLab(e){
         let labObject;
         if(e.target.classList.contains('fuzzy')){
@@ -176,22 +178,136 @@ export default function LeftContainer(props) {
                 return element['name'] === name;
             })
             labObject = labObject[0]
-            console.log(labObject)
         }
         else {
             let targetIndex = Number(e.target.getAttribute('data-index'))
             labObject = filteredLabs[targetIndex]
         }
-        
         setPatientLabs(prev => [...prev, labObject])
     }
 
     function deleteLab(e){
         let lab = e.target
-        // console.log(lab)
         let labIndex = Number(lab.getAttribute('data-array'))
         setPatientLabs(prev => {
             return prev.filter((item, index) =>  index !== labIndex)
+        })
+    }
+
+    function handleRiskFactorCategoryClick(e){
+        
+        let button = e.target
+        for (let i = 0; i < button.parentNode.children.length; i++){
+            if (button.parentNode.childNodes[i].classList.contains('active')) {
+                button.parentNode.childNodes[i].classList.remove('active')
+            }
+        }
+
+        let selectedButton = e.target.innerHTML
+        if (selectedButton === "All") setRiskFactors(() => riskFactors)
+        else if (selectedButton === "BMI") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /bmi/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Trauma/Injury") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /injury|trauma|wound/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Travel") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /travel/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Cardiac") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /cardiac|aortic|aorta|stroke|vascular|cardio|coronary|cholest|myocard|hypertension/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Pulmonary") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /asthma|pulmonary|ACE-inhibitor|smoking/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Malignancy") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /BMI above 30|smoking|alcohol|neopla/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Drugs/Alcohol/Smoking") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /opioid|alcohol|drug|smoking|tobac|cannabis|withdraw|sedative|pill|mushroom/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Medications") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /anticoagulant|NSAID|corticosteroid|ace-inhibitor|paracetamol|salicylate/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Familial") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /family/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        else if (selectedButton === "Psychological") {
+            let filtered = riskFactors.filter(element => {
+                let test = element['name'].toLowerCase()
+                let regex = /psychol|depres|suic/
+                return regex.test(test)
+            })
+            setRiskFactors(() => filtered)
+        }
+        
+    }
+    function handleAddRiskFactor(e){
+        let labObject;
+        if(e.target.classList.contains('fuzzy')){
+            let name = e.target.innerHTML
+            labObject = filteredRiskFactors.filter(element => {
+                return element['name'] === name;
+            })
+            labObject = labObject[0]
+        }
+        else {
+            let targetIndex = Number(e.target.getAttribute('data-index'))
+            labObject = filteredRiskFactors[targetIndex]
+        }
+        
+        setPatientRiskFactors(prev => [...prev, labObject])
+    }
+    function deleteRiskFactor(e){
+        let riskFactor = e.target
+        let riskFactorIndex = Number(riskFactor.getAttribute('data-array'))
+        setPatientRiskFactors(prev => {
+            return prev.filter((item, index) =>  index !== riskFactorIndex)
         })
     }
 
@@ -209,6 +325,8 @@ export default function LeftContainer(props) {
                         handleChange={handleChange}
                         patientLabs={patientLabs}
                         deleteLab={deleteLab}
+                        patientRiskFactors={patientRiskFactors}
+                        deleteRiskFactor={deleteRiskFactor}
                     />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 
@@ -234,7 +352,12 @@ export default function LeftContainer(props) {
                         handleLabCategoryClick={handleLabCategoryClick}
                         categoryMap={categoryMap}
                     />
-            </div>
+                    <RiskFactorContainer
+                        handleAddRiskFactor={handleAddRiskFactor}
+                        filteredRiskFactors={filteredRiskFactors}
+                        handleRiskFactorCategoryClick={handleRiskFactorCategoryClick}
+                    />
+            </div> 
         </div>
     )
 }

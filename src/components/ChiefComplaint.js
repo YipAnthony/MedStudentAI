@@ -11,7 +11,7 @@ export default function Symptoms(props) {
     }
 
     return (
-        <div className="card">
+        <div className="card mb-2">
             <h6 
                 className='card-header toggleTab'
                 onClick={toggle}
@@ -41,6 +41,7 @@ export default function Symptoms(props) {
                     <DisplayCCSearchResults 
                         searchResultsCC={props.searchResultsCC}
                         handleChangeCC={props.handleChangeCC}    
+                        toggle={toggle}
                         closeCCSearchResults={props.closeCCSearchResults}
                     />
                 </div>

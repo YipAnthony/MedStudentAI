@@ -28,6 +28,35 @@ export default function PatientSymptoms(props) {
         console.log(selectedCCName)
     }
 
+    let patientRiskFactorArray = []
+    for (let i = 0; i<props.patientRiskFactors.length; i++){
+        let input = props.patientRiskFactors[i]["name"]
+
+        function toggleHidden(e) {
+            let xButton = e.target.nextSibling
+            if (xButton.classList.contains('hidden')) {
+                xButton.classList.remove('hidden')
+            }
+            else {
+                xButton.classList.add('hidden')
+            }
+        }
+
+        patientRiskFactorArray.push(
+            <span key={i} style={{display: "inline"}}>
+                <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                    {input}
+                </button> 
+                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteRiskFactor}>X</button>
+            </span>
+        )
+    }
+
+
+
+
+
+
     let patientSymptomArray = []
     for (let i = 0; i<props.patientSymptoms.length; i++){
         let input = props.patientSymptoms[i]["name"]
@@ -100,7 +129,6 @@ export default function PatientSymptoms(props) {
                     {input}
                 </button> 
                 {labResultType}
-                {/* add props.delete labs in higher container */}
                 <button data-array={0} className="btn btn-danger btn-sm p-1 m-1 ml-0 shadow-none hidden" onClick={props.deleteLab}>X</button>
             </span>
         )
@@ -113,20 +141,25 @@ export default function PatientSymptoms(props) {
             </h3> */}
             <div className="card">
                 <h5 className="card-title d-inline p-2">
-                    Patient is a 
+                    Patient is a
                     <Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
                     y/o 
                     <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
                     {props.selectedCC !== "" ? "with a chief complaint of":""}
                     {selectedCCName}
                 </h5>
-                <p className="card-text">
+                <p className="card-text p-2">
                     {patientSymptomArray.length > 0 ? "Patient also endorses:":null}
                     {patientSymptomArray}
                 </p>
-                <p className="card-text">
+                <p className="card-text p-2">
                     {selectedLabs.length > 0 ? "Relevant labs include:":null}
                     {selectedLabs}
+                </p>
+
+                <p className="card-text p-2">
+                    {patientRiskFactorArray.length > 0 ? "Risk factors include:":null}
+                    {patientRiskFactorArray}
                 </p>
             </div>
 

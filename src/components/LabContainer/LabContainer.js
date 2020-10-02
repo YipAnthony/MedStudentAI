@@ -13,7 +13,7 @@ export default function LabContainer(props) {
 
     return (
         <div>
-        <div className="card">
+        <div className="card mb-2">
             <h6
                 className='card-header toggleTab'
                 onClick={toggle}
@@ -26,6 +26,7 @@ export default function LabContainer(props) {
             <TopPanelButtons categoryMap={props.categoryMap} handleLabCategoryClick={props.handleLabCategoryClick}/>
             <DisplayLabOptions 
                 filteredLabs={props.filteredLabs} 
+                toggle={toggle}
                 handleAddLab={props.handleAddLab}    
                 />
                 </div>
