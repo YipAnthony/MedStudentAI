@@ -37,7 +37,10 @@ export default function DisplayLabOptions(props) {
             let output = [];
             names.forEach((value, index) => {
                 output.push(
-                    <div className="dropdownItems ml-1"
+                    <div 
+                        id="labSearchResult" 
+                        data-index={index}
+                        className="dropdownItems ml-1"
                         key={index}
                         onClick={props.handleAddLab}
                     >

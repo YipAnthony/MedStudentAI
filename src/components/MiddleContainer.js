@@ -6,6 +6,9 @@ export default function MiddleContainer(props) {
         <div className="col-sm order-2">
             <LabContainer
                 handleAddLab={props.handleAddLab}
+                filteredLabs={props.filteredLabs}
+                handleLabCategoryClick={props.handleLabCategoryClick}
+                categoryMap={props.categoryMap}
             />
         </div>
     )

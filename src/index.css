@@ -42,3 +42,8 @@ code {
 #selectedAge.form-control:-ms-input-placeholder {
   color: #367bff
 }
+
+#labSearchResult:hover {
+  background-color: #7e7e7e4d;
+  cursor: pointer;
+}

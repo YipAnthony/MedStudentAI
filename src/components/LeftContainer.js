@@ -19,6 +19,10 @@ export default function LeftContainer(props) {
     let [searchResults, setSearchResults] = useState([])
     let [patientSymptoms, setPatientSymptoms] = useState([])
 
+    // let[copyPatientLabs, setCopyPatientLabs] = useState([])
+    // let input = props.patientLabs
+    // setCopyPatientLabs(()=> input)
+
     function handleChangeCC(e) {
         let targetIndex = e.target.getAttribute('data-array')
         let selected = searchResultsCC[targetIndex]

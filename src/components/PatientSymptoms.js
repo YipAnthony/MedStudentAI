@@ -53,7 +53,7 @@ export default function PatientSymptoms(props) {
     }
     let selectedLabs = [];
     for (let i = 0; i<props.patientLabs.length; i++){
-        let input = props.patientLabs[i]
+        let input = props.patientLabs[i]["name"]
 
         function toggleHidden(e) {
             let xButton = e.target.nextSibling
