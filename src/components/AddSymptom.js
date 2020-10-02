@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {toggleUpIcon, toggleDownIcon} from '../icons'
+import DisplaySearchResults from './DisplaySearchResults'
 
 export default function AddSymptom(props) {
 
@@ -10,13 +11,13 @@ export default function AddSymptom(props) {
     }
     return (
         <div className="card">
-            <h5 
+            <h6 
                 className='card-header toggleTab'
                 onClick={toggle}
             >
-                Additional Symptoms
                 {showSymptom ? toggleUpIcon: toggleDownIcon}
-            </h5>
+                <span className="ml-1">Additional Symptoms</span>
+            </h6>
             {showSymptom &&
                 <div className="card-body">
                     <div className="dropdown d-flex mt-3">
@@ -36,6 +37,11 @@ export default function AddSymptom(props) {
                         >   Search
                         </button>
                     </div>
+                    <DisplaySearchResults 
+                        searchResults={props.searchResults}
+                        handleChange={props.handleChange}  
+                        closeSymptomSearchResults={props.closeSymptomSearchResults}  
+                    />
                 </div>
             }
         </div>

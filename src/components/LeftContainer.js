@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import ChiefComplaint from './ChiefComplaint'
 import AddSymptom from './AddSymptom'
-import DisplaySearchResults from './DisplaySearchResults'
 import PatientSymptoms from './PatientSymptoms'
-import DisplayCCSearchResults from './DisplayCCSearchResults'
+import LabContainer from './MiddleContainer/LabContainer'
 
+import labs from '../lists/labs'
 
 export default function LeftContainer(props) {
 
@@ -19,9 +19,6 @@ export default function LeftContainer(props) {
     let [searchResults, setSearchResults] = useState([])
     let [patientSymptoms, setPatientSymptoms] = useState([])
 
-    // let[copyPatientLabs, setCopyPatientLabs] = useState([])
-    // let input = props.patientLabs
-    // setCopyPatientLabs(()=> input)
 
     function handleChangeCC(e) {
         let targetIndex = e.target.getAttribute('data-array')
@@ -145,14 +142,63 @@ export default function LeftContainer(props) {
         setSearchResults(()=>"")
     }
 
+    let categoryMap = new Map();
+    for (let i = 0; i < labs.length; i++) {
+       if (!categoryMap.has(labs[i]["category"])) {
+        categoryMap.set(labs[i]["category"], 1)
+       }
+    }
+    
+    let [filteredLabs, setfilteredLabs] = useState(labs)
+    function handleLabCategoryClick(e){
+        let button = e.target
+        for (let i = 0; i < button.parentNode.children.length; i++){
+            if (button.parentNode.childNodes[i].classList.contains('active')) {
+                button.parentNode.childNodes[i].classList.remove('active')
+            }
+        }
+        button.classList.add('active')
+        let selectedButton = e.target.innerHTML
+        if (selectedButton === "All") setfilteredLabs(() => labs)
+        else {
+            let filtered = labs.filter(element => element["category"] === selectedButton)
+            setfilteredLabs(() => filtered)
+        }
+    }
+
+    let [patientLabs, setPatientLabs] = useState([])
+
+    function handleAddLab(e){
+        let labObject;
+        if(e.target.classList.contains('fuzzy')){
+            let name = e.target.innerHTML
+            labObject = filteredLabs.filter(element => {
+                return element['name'] === name;
+            })
+            labObject = labObject[0]
+            console.log(labObject)
+        }
+        else {
+            let targetIndex = Number(e.target.getAttribute('data-index'))
+            labObject = filteredLabs[targetIndex]
+        }
+        
+        setPatientLabs(prev => [...prev, labObject])
+    }
+
+    function deleteLab(e){
+        let lab = e.target
+        // console.log(lab)
+        let labIndex = Number(lab.getAttribute('data-array'))
+        setPatientLabs(prev => {
+            return prev.filter((item, index) =>  index !== labIndex)
+        })
+    }
+
     return (
         <div className="col-sm border-light">
-            <div className="card">
-                <div className="card-header">Symptoms</div>
-                    <div className= 'd-flex m-2'>
-                        {/* <Age selectedAge={selectedAge} handleChange={handleChange}/> */}
-                        {/* <Gender selectedGender={selectedGender} handleChange={handleChange}/> */}
-                    </div>
+            <div className="card border-0">
+ 
                     <PatientSymptoms 
                         patientSymptoms={patientSymptoms}
                         selectedAge = {selectedAge}
@@ -161,8 +207,8 @@ export default function LeftContainer(props) {
                         deleteSymptom={deleteSymptom}
                         deleteCC={deleteCC}
                         handleChange={handleChange}
-                        patientLabs={props.patientLabs}
-                        deleteLab={props.deleteLab}
+                        patientLabs={patientLabs}
+                        deleteLab={deleteLab}
                     />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 
@@ -170,8 +216,6 @@ export default function LeftContainer(props) {
                         // selectSymptom = {selectSymptom}
                         selectedCC = {selectedCC}
                         handleSearch = {handleSearch}
-                    />
-                    <DisplayCCSearchResults 
                         searchResultsCC={searchResultsCC}
                         handleChangeCC={handleChangeCC}    
                         closeCCSearchResults={closeCCSearchResults}
@@ -181,11 +225,14 @@ export default function LeftContainer(props) {
                         // selectedSymptoms={selectedSymptoms}
                         handleChange={handleChange}
                         handleSearch = {handleSearch}
-                    />
-                    <DisplaySearchResults 
                         searchResults={searchResults}
-                        handleChange={handleChange}  
                         closeSymptomSearchResults={closeSymptomSearchResults}  
+                    />
+                    <LabContainer
+                        handleAddLab={handleAddLab}
+                        filteredLabs={filteredLabs}
+                        handleLabCategoryClick={handleLabCategoryClick}
+                        categoryMap={categoryMap}
                     />
             </div>
         </div>

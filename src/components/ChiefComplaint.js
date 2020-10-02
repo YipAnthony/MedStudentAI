@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {toggleUpIcon, toggleDownIcon} from '../icons'
+import DisplayCCSearchResults from './DisplayCCSearchResults'
 
 export default function Symptoms(props) {
 
@@ -11,13 +12,13 @@ export default function Symptoms(props) {
 
     return (
         <div className="card">
-            <h5 
+            <h6 
                 className='card-header toggleTab'
                 onClick={toggle}
             >
-                Chief complaint
                 {showCC ? toggleUpIcon: toggleDownIcon}
-            </h5>
+                <span className="ml-1">Chief complaint</span>
+            </h6>
             {showCC &&
                 <div className="card-body">
                     <div className="d-flex">
@@ -37,8 +38,15 @@ export default function Symptoms(props) {
                                 onClick={props.handleSearch}
                             >Search</button>
                     </div>
+                    <DisplayCCSearchResults 
+                        searchResultsCC={props.searchResultsCC}
+                        handleChangeCC={props.handleChangeCC}    
+                        closeCCSearchResults={props.closeCCSearchResults}
+                    />
                 </div>
             }
+            
+            
          </div>
     )
 }

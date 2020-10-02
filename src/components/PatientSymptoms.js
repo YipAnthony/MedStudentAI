@@ -107,12 +107,12 @@ export default function PatientSymptoms(props) {
     }
 
     return (
-        <div className="card mb-2">
-            <div className="card-header">
-                
-            </div>
-            <div className="card-body">
-                <h5 className="card-title d-inline">
+        <div className="card mb-2 border-0 mt-2">
+            {/* <h3 className="card-header">
+                Med Student AI
+            </h3> */}
+            <div className="card">
+                <h5 className="card-title d-inline p-2">
                     Patient is a 
                     <Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
                     y/o 
