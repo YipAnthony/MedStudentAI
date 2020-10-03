@@ -6,6 +6,8 @@ export default function DisplayLabOptions(props) {
     
     let [searchInput, setSearchInput] = useState("")
     let [outputLabs, setOutputLabs] = useState([])
+    let [additionalResults, setadditionalResults] = useState([])
+    let [labMatch, setlabMatch] = useState('')
 
     function handleChange(e) {
         let input = e.target.value
@@ -21,14 +23,17 @@ export default function DisplayLabOptions(props) {
             if (fuzzyOutput){
                 fuzzyOutput.forEach((value, index) => {
                     output.push(
-                        <div 
-                            id="labSearchResult" 
-                            data-index={index}
-                            className="dropdownItems ml-1 fuzzy border-top border-bottom" 
-                            key={index}
-                            onClick={props.handleAddLab}
-                        >
-                            {value[1]}
+                        <div key={index}>
+                            <div 
+                                id="labSearchResult" 
+                                data-index={index}
+                                className="dropdownItems ml-1 fuzzy border-top border-bottom" 
+                                key={index}
+                                onClick={expandLabResults}
+                            >
+                                {value[1]}
+                            </div>
+                            {labMatch === value[1]? <div className="d-flex">{additionalResults}</div>:null }
                         </div>
                     )
                 })
@@ -39,26 +44,48 @@ export default function DisplayLabOptions(props) {
             let output = [];
             names.forEach((value, index) => {
                 output.push(
-                    <div 
-                        id="labSearchResult" 
-                        data-index={index}
-                        className="dropdownItems ml-1 border-top border-bottom"
-                        key={index}
-                        onClick={props.handleAddLab}
-                    >
-                        {value}
+                    <div key={index}>
+                        <div 
+                            id="labSearchResult" 
+                            data-index={index}
+                            className="dropdownItems ml-1 border-top border-bottom"
+                            onClick={expandLabResults}
+                        >
+                            {value}
+                        </div>
+                        {labMatch === value? <div className="d-flex">{additionalResults}</div>:null }
+                        
                     </div>
                 )
             })
             setOutputLabs(() => output)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[searchInput, props.filteredLabs])
+    },[searchInput, props.filteredLabs, additionalResults])
     
     function closeSearch() {
         setOutputLabs(() => [])
         props.toggle()
     }
+
+    function expandLabResults(e) {
+        let output = []
+        let lab = props.filteredLabs.filter(element => {
+            return element['name'] === e.target.innerHTML
+        })
+        let result = lab[0]
+        setlabMatch(() => result['name'])
+        for (let i = 0; i < result['results'].length; i++){
+            output.push(
+                <button key={i} className="btn btn-sm btn-outline-danger shadow-none m-1 mb-3" onClick={props.handleAddLab} >
+                    {result['results'][i]['type']}
+                </button>
+            )
+        }
+        setadditionalResults(() => output)
+
+    }
+
 
     let closeButton;
     if (outputLabs.length > 0){

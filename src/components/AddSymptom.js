@@ -31,12 +31,12 @@ export default function AddSymptom(props) {
                             autoComplete="off"
                             value={props.selectedSymptomsInput} 
                         ></textarea>
-                        <button 
-                            className="btn btn-sm btn-primary shadow-none"
+                    </div>
+                    <button 
+                            className="btn btn-sm btn-primary shadow-none float-right"
                             onClick={props.handleSearch}
                         >   Search
                         </button>
-                    </div>
                     <DisplaySearchResults 
                         searchResults={props.searchResults}
                         toggle={toggle}

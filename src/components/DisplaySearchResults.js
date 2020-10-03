@@ -23,7 +23,6 @@ export default function DisplaySearchResults(props) {
     }
 
     let closeButton;
-    console.log(output)
     if (output.length > 0){
         closeButton = <button 
         className="btn btn-sm btn-primary shadow-none"

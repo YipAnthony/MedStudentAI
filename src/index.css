@@ -57,3 +57,8 @@ code {
             user-select: none; 
   cursor: pointer;
 }
+
+#individualSymptomSearchResult {
+  padding-top: 0!important;
+  padding-bottom: 5px!important;
+}

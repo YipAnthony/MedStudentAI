@@ -19,6 +19,7 @@ export default function LeftContainer() {
     let [selectedSymptomsInput, setSelectedSymptomsInput] = useState("")
     let [searchResults, setSearchResults] = useState([])
     let [patientSymptoms, setPatientSymptoms] = useState([])
+    let [patientSymptomsAbsent, setPatientSymptomsAbsent] = useState([])
 
     let [filteredLabs, setfilteredLabs] = useState(labs)
     let [patientLabs, setPatientLabs] = useState([])
@@ -56,15 +57,22 @@ export default function LeftContainer() {
             setChiefComplaintInput(()=> input)
         }
         else if (e.target.id === "patientAdditionalSymptom"){
-            let arrayIndex = e.target.getAttribute('data-array')
-            setSelectedSymptomsInput(prev => input)
+            setSelectedSymptomsInput(() => input)
         }
         else if (e.target.id === "clickAddSymptom") {
             let targetIndex = Number(e.target.getAttribute('data-array'))
             let selected = searchResults[targetIndex]
-            setPatientSymptoms(prev => {
-                return [...prev, selected]
-            })
+            let presentAbsent = e.target.getAttribute('data-present')
+            if (presentAbsent === "present") {
+                setPatientSymptoms(prev => {
+                    return [...prev, selected]
+                })
+            }
+            else if (presentAbsent === "absent") {
+                setPatientSymptomsAbsent(prev => {
+                    return [...prev, selected]
+                })
+            }
             setSearchResults(prev => {
                 return prev.filter((element, index) => index !== targetIndex)
             })
@@ -135,6 +143,14 @@ export default function LeftContainer() {
             
         })
     }
+    function deleteSymptomAbsent(e){
+        let symptom = e.target
+        let symptomIndex = Number(symptom.getAttribute('data-array'))
+        setPatientSymptomsAbsent(prev => {
+            return prev.filter((item, index) =>  index !== symptomIndex)
+            
+        })
+    }
     function deleteCC(){
         setSelectedCC(()=> "")
     }
@@ -171,19 +187,56 @@ export default function LeftContainer() {
     }
 
     function handleAddLab(e){
-        let labObject;
-        if(e.target.classList.contains('fuzzy')){
-            let name = e.target.innerHTML
-            labObject = filteredLabs.filter(element => {
-                return element['name'] === name;
-            })
-            labObject = labObject[0]
+        let labResult = e.target.innerHTML
+        let lab = e.target.parentNode.previousSibling.innerHTML
+        let results = filteredLabs.filter(element => {
+            return element['name'] === lab
+        })[0]['results']
+        console.log(results)
+        let id = results.filter(element => {
+            return element['type'] === labResult
+        })
+        console.log(id[0])
+        let outputObject = {
+            "name": lab,
+            "id": id[0]["id"],
+            "results": [...results],
+            "selectedResult": labResult
         }
-        else {
-            let targetIndex = Number(e.target.getAttribute('data-index'))
-            labObject = filteredLabs[targetIndex]
-        }
-        setPatientLabs(prev => [...prev, labObject])
+
+
+        // let labObject;
+        // if(e.target.classList.contains('fuzzy')){
+        //     let name = e.target.innerHTML
+        //     labObject = filteredLabs.filter(element => {
+        //         return element['name'] === name;
+        //     })
+        //     labObject = labObject[0]
+        // }
+        // else {
+        //     let targetIndex = Number(e.target.getAttribute('data-index'))
+        //     labObject = filteredLabs[targetIndex]
+        // }
+        setPatientLabs(prev => [...prev, outputObject])
+    }
+
+    function selectLabResult(e){
+        let button = e.target
+        let labName = button.parentNode.previousSibling.innerHTML
+        let resultName = button.innerHTML
+        let index = patientLabs.map((element, index) => {
+            let output;
+            if (element['name' === labName]) {
+               output = index 
+            } 
+            return output;
+        })
+        index = Number(index)
+        setPatientLabs(prev => {
+            let output = [...prev]
+            output[index]['selectedResult'] = resultName
+            return output
+        })
     }
 
     function deleteLab(e){
@@ -317,13 +370,16 @@ export default function LeftContainer() {
  
                     <PatientSymptoms 
                         patientSymptoms={patientSymptoms}
+                        patientSymptomsAbsent={patientSymptomsAbsent}
                         selectedAge = {selectedAge}
                         selectedGender = {selectedGender}
                         selectedCC={selectedCC}
                         deleteSymptom={deleteSymptom}
+                        deleteSymptomAbsent={deleteSymptomAbsent}
                         deleteCC={deleteCC}
                         handleChange={handleChange}
                         patientLabs={patientLabs}
+                        selectLabResult={selectLabResult}
                         deleteLab={deleteLab}
                         patientRiskFactors={patientRiskFactors}
                         deleteRiskFactor={deleteRiskFactor}
