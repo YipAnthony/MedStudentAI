@@ -2,6 +2,9 @@ import React, {useEffect} from 'react'
 import Age from './Age'
 import Gender from './Gender'
 
+// for testing
+import diagnosisResponse from '../lists/diagnosisResponse'
+
 export default function PatientSymptoms(props) {
 
     let selectedCCName = [];
@@ -170,6 +173,34 @@ export default function PatientSymptoms(props) {
         }
         let outputJSON = JSON.stringify(output)
         console.log(outputJSON)
+
+        // function jsonOutputToMainContainerState (object) {
+        //     let shouldStop = object["should_stop"]
+        //     console.log(shouldStop)
+        //     let question = object["question"]
+        //     let conditions = object["conditions"]
+        //     props.setShouldStop (() => true)
+        //     props.setPromptQuestions (() => question)
+        //     props.setDdx (() => conditions)
+        // }
+
+        // fetch("https://api.infermedica.com/v2/diagnosis", {
+        //     method: 'POST',
+        //     headers: {
+        //         "App-Id": "0997c2c7",
+        //         "App-Key": "07a4f3f3c41553ca5ea33de3c81114c7",
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: outputJSON,
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        // console.log(data)
+        // props.jsonOutputToMainContainerState(data)
+        // })
+   
+        console.log(diagnosisResponse)
+        props.jsonOutputToMainContainerState(diagnosisResponse)
     }
     
     function chiefComplaintToJSON (ccStateObject) {
@@ -187,7 +218,7 @@ export default function PatientSymptoms(props) {
             outputArray.push(
                 {
                     "id": inputArray[i]["id"],
-                    "choice": "present"
+                    "choice_id": "present"
                 }
             )
         }
@@ -201,7 +232,7 @@ export default function PatientSymptoms(props) {
             outputArray.push(
                 {
                     "id": inputArray[i]["id"],
-                    "choice": "absent"
+                    "choice_id": "absent"
                 }
             )
         }

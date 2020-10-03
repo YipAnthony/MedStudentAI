@@ -8,7 +8,7 @@ import RiskFactorContainer from './RiskFactors/RiskFactorContainer'
 import labs from '../lists/labs'
 import riskFactors from '../lists/riskFactors'
 
-export default function LeftContainer() {
+export default function LeftContainer(props) {
     let [selectedAge, setSelectedAge] = useState("")
     let [selectedGender, setSelectedGender] = useState("male")
 
@@ -192,11 +192,11 @@ export default function LeftContainer() {
         let results = filteredLabs.filter(element => {
             return element['name'] === lab
         })[0]['results']
-        console.log(results)
+        // console.log(results)
         let id = results.filter(element => {
             return element['type'] === labResult
         })
-        console.log(id[0])
+        // console.log(id[0])
         let outputObject = {
             "name": lab,
             "id": id[0]["id"],
@@ -383,6 +383,7 @@ export default function LeftContainer() {
                         deleteLab={deleteLab}
                         patientRiskFactors={patientRiskFactors}
                         deleteRiskFactor={deleteRiskFactor}
+                        jsonOutputToMainContainerState={props.jsonOutputToMainContainerState}
                     />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 
