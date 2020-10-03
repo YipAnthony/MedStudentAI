@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import Age from './Age'
 import Gender from './Gender'
 
@@ -157,17 +157,21 @@ export default function PatientSymptoms(props) {
 
 
     function sendInfoToAPI() {
-        let preJSONObject = {
+        let output = {
             "sex": props.selectedGender,
             "age": props.selectedAge,
             "evidence": [
                 chiefComplaintToJSON(props.selectedCC),
                 ...stateToJSON(props.patientSymptoms),
-                ...stateToJSON(props.patientRiskFactors)
+                ...denySymptomToJSON(props.patientSymptomsAbsent),
+                ...stateToJSON(props.patientRiskFactors),
+                ...labsToJSON(props.patientLabs)
             ]
         }
+        let outputJSON = JSON.stringify(output)
+        console.log(outputJSON)
     }
-
+    
     function chiefComplaintToJSON (ccStateObject) {
         return {
             "id": ccStateObject['id'],
@@ -182,7 +186,7 @@ export default function PatientSymptoms(props) {
         for (let i = 0; i < inputArray.length; i++) {
             outputArray.push(
                 {
-                    "id": inputArray[i]['id'],
+                    "id": inputArray[i]["id"],
                     "choice": "present"
                 }
             )
@@ -190,7 +194,41 @@ export default function PatientSymptoms(props) {
         return outputArray
     }
 
+    function denySymptomToJSON(symptomsStateArray) {
+        let outputArray = []
+        let inputArray = symptomsStateArray
+        for (let i =0; i < inputArray.length; i++) {
+            outputArray.push(
+                {
+                    "id": inputArray[i]["id"],
+                    "choice": "absent"
+                }
+            )
+        }
+        return outputArray
+    }
 
+    function labsToJSON(labsStateArray) {
+        let outputArray = []
+        let inputArray = labsStateArray
+        for (let i = 0; i < inputArray.length; i++) {
+            let result = inputArray[i]["selectedResult"]
+            let id;
+            inputArray[i]["results"].map(element => {
+                if (element["type"] === result) {
+                    id = element["id"]
+                }
+            })
+            
+            outputArray.push(
+                {
+                    "id": id,
+                    "choice_id": "present"
+                }
+            )
+        }
+        return outputArray
+    }
 
 
     return (
@@ -226,7 +264,7 @@ export default function PatientSymptoms(props) {
                 </p>
             </div>
 
-            
+            <button className="btn btn-success btn-lg" onClick={sendInfoToAPI}>Analyze</button>
         </div>
     )
 }
