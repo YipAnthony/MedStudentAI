@@ -43,7 +43,8 @@ code {
   color: #367bff
 }
 
-#labSearchResult:hover {
+#labSearchResult:hover, 
+#additionalQuestionText:hover {
   background-color: #7e7e7e4d;
   cursor: pointer;
 }

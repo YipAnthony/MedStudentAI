@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import ChiefComplaint from './ChiefComplaint'
 import AddSymptom from './AddSymptom'
 import PatientSymptoms from './PatientSymptoms'
@@ -18,6 +18,7 @@ export default function LeftContainer(props) {
      
     let [selectedSymptomsInput, setSelectedSymptomsInput] = useState("")
     let [searchResults, setSearchResults] = useState([])
+
     let [patientSymptoms, setPatientSymptoms] = useState([])
     let [patientSymptomsAbsent, setPatientSymptomsAbsent] = useState([])
 
@@ -26,6 +27,34 @@ export default function LeftContainer(props) {
 
     let [filteredRiskFactors, setRiskFactors] = useState(riskFactors)
     let [patientRiskFactors, setPatientRiskFactors] = useState([])
+
+    useEffect(()=>{
+        let input = props.suggestSymptomsResponse
+        for (let i = 0; i < input.length; i++){
+            if (input[i]['choice_id'] === "present") {
+                setPatientSymptoms(prev => {
+                    return [
+                        ...prev,
+                        {
+                            ...input[i],
+                            "source": "suggest"
+                        }
+                    ]
+                })
+            }
+            else if (input[i]['choice_id'] === "absent") {
+                setPatientSymptomsAbsent(prev => {
+                    return [
+                        ...prev,
+                        {
+                            ...input[i],
+                            "source": "suggest"
+                        }
+                    ]
+                })
+            }
+        }
+    }, [props.suggestSymptomsResponse])
 
     function handleChangeCC(e) {
         let targetIndex = e.target.getAttribute('data-array')
@@ -384,6 +413,7 @@ export default function LeftContainer(props) {
                         patientRiskFactors={patientRiskFactors}
                         deleteRiskFactor={deleteRiskFactor}
                         jsonOutputToMainContainerState={props.jsonOutputToMainContainerState}
+                        updatedResponses={props.updatedResponses}
                     />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 

@@ -4,6 +4,7 @@ import Gender from './Gender'
 
 // for testing
 import diagnosisResponse from '../lists/diagnosisResponse'
+import suggestResponse from '../lists/suggestResponse';
 
 export default function PatientSymptoms(props) {
 
@@ -101,6 +102,30 @@ export default function PatientSymptoms(props) {
         )
     }
 
+    let additionalQuestionResponsesArray = [];
+    for (let i =0; i < props.updatedResponses.length; i++) {
+        let input = props.updatedResponses[i]["name"]
+
+        function toggleHidden(e) {
+            let xButton = e.target.nextSibling
+            if (xButton.classList.contains('hidden')) {
+                xButton.classList.remove('hidden')
+            }
+            else {
+                xButton.classList.add('hidden')
+            }
+        }
+
+        additionalQuestionResponsesArray.push(
+            <span key={i} style={{display: "inline"}}>
+                <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                    {input}
+                </button> 
+                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" >X</button>
+            </span>
+        )
+    }
+
    
     function toggleHidden(e) {
         let buttonContainer = e.target.parentNode.querySelector('#hiddenButtons')
@@ -157,34 +182,29 @@ export default function PatientSymptoms(props) {
         )
     }
 
-
-
-    function sendInfoToAPI() {
+  
+    function sendInfoToAPI(endpoint) {
         let output = {
             "sex": props.selectedGender,
             "age": props.selectedAge,
             "evidence": [
                 chiefComplaintToJSON(props.selectedCC),
-                ...stateToJSON(props.patientSymptoms),
+                ...symptomsToJSON(props.patientSymptoms),
                 ...denySymptomToJSON(props.patientSymptomsAbsent),
-                ...stateToJSON(props.patientRiskFactors),
+                ...risksToJSON(props.patientRiskFactors),
                 ...labsToJSON(props.patientLabs)
             ]
         }
         let outputJSON = JSON.stringify(output)
-        console.log(outputJSON)
 
-        // function jsonOutputToMainContainerState (object) {
-        //     let shouldStop = object["should_stop"]
-        //     console.log(shouldStop)
-        //     let question = object["question"]
-        //     let conditions = object["conditions"]
-        //     props.setShouldStop (() => true)
-        //     props.setPromptQuestions (() => question)
-        //     props.setDdx (() => conditions)
+        // // ACTUAL API POST FUNCTIONS
+        // let api = "https://api.infermedica.com/v2/"
+        // api += endpoint
+        // if(endpoint === "suggest") {
+        //     api += "?max_results=20"
         // }
-
-        // fetch("https://api.infermedica.com/v2/diagnosis", {
+        // console.log(api)
+        // fetch(api, {
         //     method: 'POST',
         //     headers: {
         //         "App-Id": "0997c2c7",
@@ -199,8 +219,11 @@ export default function PatientSymptoms(props) {
         // props.jsonOutputToMainContainerState(data)
         // })
    
-        console.log(diagnosisResponse)
-        props.jsonOutputToMainContainerState(diagnosisResponse)
+        // FAKE DIAGNOSIS RESPONSE FOR TESTING
+        // props.jsonOutputToMainContainerState(diagnosisResponse)
+        // FAKE SUGGEST RESPONSE FOR TESTING
+        console.log(suggestResponse)
+        props.jsonOutputToMainContainerState(suggestResponse)
     }
     
     function chiefComplaintToJSON (ccStateObject) {
@@ -211,14 +234,15 @@ export default function PatientSymptoms(props) {
         }
     }
 
-    function stateToJSON(symptomsStateArray) {
+    function symptomsToJSON(symptomsStateArray) {
         let outputArray = []
         let inputArray = symptomsStateArray
         for (let i = 0; i < inputArray.length; i++) {
             outputArray.push(
                 {
                     "id": inputArray[i]["id"],
-                    "choice_id": "present"
+                    "choice_id": "present",
+                    "source": "initial"
                 }
             )
         }
@@ -232,7 +256,23 @@ export default function PatientSymptoms(props) {
             outputArray.push(
                 {
                     "id": inputArray[i]["id"],
-                    "choice_id": "absent"
+                    "choice_id": "absent",
+                    "source": "initial"
+                }
+            )
+        }
+        return outputArray
+    }
+
+    function risksToJSON(symptomsStateArray) {
+        let outputArray = []
+        let inputArray = symptomsStateArray
+        for (let i = 0; i < inputArray.length; i++) {
+            outputArray.push(
+                {
+                    "id": inputArray[i]["id"],
+                    "choice_id": "present",
+                    "source": "predefined"
                 }
             )
         }
@@ -259,6 +299,11 @@ export default function PatientSymptoms(props) {
             )
         }
         return outputArray
+    }
+
+    // UPDATE THIS. DO NOT INCLUDE "SOURCE" ATTRIBUTE
+    function updatedResponsesToJSON(array){
+        
     }
 
 
@@ -293,9 +338,15 @@ export default function PatientSymptoms(props) {
                     {patientRiskFactorArray.length > 0 ? "Risk factors include:":null}
                     {patientRiskFactorArray}
                 </p>
-            </div>
+                <p className="card-text p-2">
+                    {additionalQuestionResponsesArray.length > 0 ? "Additional information:":null}
+                    {additionalQuestionResponsesArray}
+                </p>
 
-            <button className="btn btn-success btn-lg" onClick={sendInfoToAPI}>Analyze</button>
+            </div>
+            <button className="btn btn-success btn-lg" onClick={() => sendInfoToAPI("suggest")}>Suggest</button>
+            <button className="btn btn-success btn-lg" onClick={() => sendInfoToAPI("diagnosis")}>Analyze</button>
+
         </div>
     )
 }
