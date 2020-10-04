@@ -28,7 +28,8 @@ export default function MainContainer() {
             })
             let output = {
                 "id": id,
-                "name": index[0]["name"]
+                "name": index[0]["name"],
+                "source": "interview"
             }
             setUpdatedRespones(prev => {
                 return [
@@ -39,9 +40,7 @@ export default function MainContainer() {
             setPromptQuestions(() => {})
         }
         else if (questionType === "single") {
-            console.log('hi')
             let id = e.target.getAttribute('data-id')
-            console.log(id)
             let choiceId = e.target.getAttribute('data-choiceid')
             let name = e.target.getAttribute('data-name')
             // let index = symptoms.filter(element => {
@@ -50,9 +49,9 @@ export default function MainContainer() {
             let output = {
                 "id": id,
                 "choice_id": choiceId,
-                "name": name
+                "name": name,
+                "source": "interview"
             }
-            console.log(output)
             setUpdatedRespones(prev => {
                 return [
                     ...prev,
@@ -102,7 +101,14 @@ export default function MainContainer() {
             return output
         })
     }
-
+    function deleteUpdatedResponse (e) {
+        let index = Number(e.target.getAttribute('data-array'))
+        setUpdatedRespones(prev => {
+            let output = [...prev]
+            output.splice(index,1)
+            return output
+        })
+    }
     return (
         <div className="row h-100">
             <LeftContainer
@@ -110,6 +116,7 @@ export default function MainContainer() {
                 shouldStop={shouldStop}
                 updatedResponses={updatedResponses}
                 suggestSymptomsResponse={suggestSymptomsResponse}
+                deleteUpdatedResponse = {deleteUpdatedResponse}
             />
             <MiddleContainer
                 promptQuestions={promptQuestions}

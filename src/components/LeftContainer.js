@@ -414,6 +414,7 @@ export default function LeftContainer(props) {
                         deleteRiskFactor={deleteRiskFactor}
                         jsonOutputToMainContainerState={props.jsonOutputToMainContainerState}
                         updatedResponses={props.updatedResponses}
+                        deleteUpdatedResponse={props.deleteUpdatedResponse}
                     />
                     <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 

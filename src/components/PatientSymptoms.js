@@ -121,7 +121,7 @@ export default function PatientSymptoms(props) {
                 <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
                     {input}
                 </button> 
-                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" >X</button>
+                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteUpdatedResponse} >X</button>
             </span>
         )
     }
@@ -190,13 +190,14 @@ export default function PatientSymptoms(props) {
             "evidence": [
                 chiefComplaintToJSON(props.selectedCC),
                 ...symptomsToJSON(props.patientSymptoms),
-                ...denySymptomToJSON(props.patientSymptomsAbsent),
-                ...risksToJSON(props.patientRiskFactors),
-                ...labsToJSON(props.patientLabs)
+                ...symptomsToJSON(props.patientSymptomsAbsent),
+                ...symptomsToJSON(props.patientRiskFactors),
+                ...labsToJSON(props.patientLabs),
+                ...symptomsToJSON(props.updatedResponses)
             ]
         }
         let outputJSON = JSON.stringify(output)
-
+        console.log(outputJSON)
         // // ACTUAL API POST FUNCTIONS
         // let api = "https://api.infermedica.com/v2/"
         // api += endpoint
@@ -220,10 +221,9 @@ export default function PatientSymptoms(props) {
         // })
    
         // FAKE DIAGNOSIS RESPONSE FOR TESTING
-        // props.jsonOutputToMainContainerState(diagnosisResponse)
+        props.jsonOutputToMainContainerState(diagnosisResponse)
         // FAKE SUGGEST RESPONSE FOR TESTING
-        console.log(suggestResponse)
-        props.jsonOutputToMainContainerState(suggestResponse)
+        // props.jsonOutputToMainContainerState(suggestResponse)
     }
     
     function chiefComplaintToJSON (ccStateObject) {
@@ -238,43 +238,37 @@ export default function PatientSymptoms(props) {
         let outputArray = []
         let inputArray = symptomsStateArray
         for (let i = 0; i < inputArray.length; i++) {
-            outputArray.push(
-                {
-                    "id": inputArray[i]["id"],
-                    "choice_id": "present",
-                    "source": "initial"
+            let source = "initial"; 
+            if (inputArray[i]["source"]) {
+                if (inputArray[i]["source"] === "interview"){
+                    source = "interview"
                 }
-            )
-        }
-        return outputArray
-    }
-
-    function denySymptomToJSON(symptomsStateArray) {
-        let outputArray = []
-        let inputArray = symptomsStateArray
-        for (let i =0; i < inputArray.length; i++) {
-            outputArray.push(
-                {
-                    "id": inputArray[i]["id"],
-                    "choice_id": "absent",
-                    "source": "initial"
-                }
-            )
-        }
-        return outputArray
-    }
-
-    function risksToJSON(symptomsStateArray) {
-        let outputArray = []
-        let inputArray = symptomsStateArray
-        for (let i = 0; i < inputArray.length; i++) {
-            outputArray.push(
-                {
-                    "id": inputArray[i]["id"],
-                    "choice_id": "present",
-                    "source": "predefined"
-                }
-            )
+                else source = "suggest"
+            } 
+            let choice = inputArray[i]["choice_id"]
+            if (inputArray[i]["category"]) {
+                if (inputArray[i]["category"] === "Risk factors") {
+                    source = "predefined"
+                    choice = "present"
+                } 
+            }
+            if (source === "interview") {
+                outputArray.push(
+                    {
+                        "id": inputArray[i]["id"],
+                        "choice_id": choice,
+                    }
+                )
+            }
+            else {
+                outputArray.push(
+                    {
+                        "id": inputArray[i]["id"],
+                        "choice_id": choice,
+                        "source": source
+                    }
+                )
+            }
         }
         return outputArray
     }
@@ -302,9 +296,7 @@ export default function PatientSymptoms(props) {
     }
 
     // UPDATE THIS. DO NOT INCLUDE "SOURCE" ATTRIBUTE
-    function updatedResponsesToJSON(array){
-        
-    }
+ 
 
 
     return (
