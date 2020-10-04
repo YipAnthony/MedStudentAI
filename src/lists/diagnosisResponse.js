@@ -1,29 +1,31 @@
 export default {
-    "question": {
-        "type": "single",
-        "text": "Do you have high cholesterol?",
-        "items": [
-            {
-                "id": "p_10",
-                "name": "High cholesterol",
-                "choices": [
-                    {
-                        "id": "present",
-                        "label": "Yes"
-                    },
-                    {
-                        "id": "absent",
-                        "label": "No"
-                    },
-                    {
-                        "id": "unknown",
-                        "label": "Don't know"
-                    }
-                ]
-            }
-        ],
-        "extras": {}
-    },
+    // // QUESTION TYPE: SINGLE
+    // "question": {
+    //     "type": "single",
+    //     "text": "Do you have high cholesterol?",
+    //     "items": [
+    //         {
+    //             "id": "p_10",
+    //             "name": "High cholesterol",
+    //             "choices": [
+    //                 {
+    //                     "id": "present",
+    //                     "label": "Yes"
+    //                 },
+    //                 {
+    //                     "id": "absent",
+    //                     "label": "No"
+    //                 },
+    //                 {
+    //                     "id": "unknown",
+    //                     "label": "Don't know"
+    //                 }
+    //             ]
+    //         }
+    //     ],
+    //     "extras": {}
+    // },
+    // // QUESTION TYPE: GROUP_SINGLE
     // "question": {
     //     "type": "group_single",
     //     "text": "How long have you been experiencing episodes of shortness of breath?",
@@ -47,6 +49,68 @@ export default {
     //     ],
     //     "extras": {}
     // },
+    // QUESTION TYPE: GROUP-MULTIPLE
+    "question": {
+        "type": "group_multiple",
+        "text": "How would you describe your headache?",
+        "items": [
+          {
+            "id": "s_25",
+            "name": "Pulsing or throbbing",
+            "choices": [
+              {
+                "id": "present",
+                "label": "Yes"
+              },
+              {
+                "id": "absent",
+                "label": "No"
+              },
+              {
+                "id": "unknown",
+                "label": "Don't know"
+              }
+            ]
+          },
+          {
+            "id": "s_604",
+            "name": "Feels like \"stabbing\" or \"drilling\"",
+            "choices": [
+              {
+                "id": "present",
+                "label": "Yes"
+              },
+              {
+                "id": "absent",
+                "label": "No"
+              },
+              {
+                "id": "unknown",
+                "label": "Don't know"
+              }
+            ]
+          },
+          {
+            "id": "s_23",
+            "name": "Feels like pressure around my head",
+            "choices": [
+              {
+                "id": "present",
+                "label": "Yes"
+              },
+              {
+                "id": "absent",
+                "label": "No"
+              },
+              {
+                "id": "unknown",
+                "label": "Don't know"
+              }
+            ]
+          }
+        ],
+        "extras": {}
+      },
     "conditions": [
         {
             "id": "c_140",

@@ -80,20 +80,45 @@ export default function MiddleContainer(props) {
         }
 
         // GROUP-MULTIPLE RESPONSE: one question, multiple responses, can select multiple (like checkbox)
+        if (props.promptQuestions['type'] === "group_multiple") {
+            let choices = props.promptQuestions['items']
+            let checkItems = []
+            for (let i = 0; i < choices.length; i++) {
+                checkItems.push(
+                    <div className="m-0 mt-2" key={i}>
+                        <label>
+                            <input 
+                                type="checkbox" 
+                                className="mr-1"
+                                data-id={props.promptQuestions["items"][i]["id"]}
+                            />
+                            {props.promptQuestions["items"][i]["name"]}
+                        </label>
+                    </div>
+                )
+            }
+            questionArray.push(
+                <form onSubmit={props.handleMultipleQuestionResponse} key={0}>
+                    <div 
+                        className="card-text" 
+                        onClick={handleClick}
+                    >
+                        {props.promptQuestions["text"]}
+                    </div>
+                    <div className="card-text">
+                        {checkItems}
+                    </div>
+                    <button 
+                        // type="button" 
+                        className="btn btn-md btn-success mt-2"
+                        // onClick={props.handleMultipleQuestionResponse}
+                    >Submit</button>
 
-
-        // for (let i = 0; i < props.promptQuestions["items"].length; i++){
-        //     questionArray.push(
-        //         <div 
-        //             key={i} 
-        //             className="card-text" 
-        //             onClick={handleClick}
-        //             data-index={props.promptQuestions["items"][i]["id"]}
-        //         >
-        //             {props.promptQuestions["items"][i]["name"]}
-        //         </div>
-        //     )
-        // }
+                </form>
+                
+            )
+        }
+        
     }
 
     return (

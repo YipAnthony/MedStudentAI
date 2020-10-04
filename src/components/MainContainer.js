@@ -23,11 +23,13 @@ export default function MainContainer() {
         let questionType = e.target.getAttribute('data-questiontype')
         if (questionType === "groupSingle") {
             let id = e.target.getAttribute('data-id')
+            let choiceId = e.target.getAttribute('data-choiceid')
             let index = symptoms.filter(element => {
                 return element["id"] === id
             })
             let output = {
                 "id": id,
+                "choice_id": "present",
                 "name": index[0]["name"],
                 "source": "interview"
             }
@@ -61,6 +63,30 @@ export default function MainContainer() {
             setPromptQuestions(() => {})
         }
 
+    }
+
+    function handleMultipleQuestionResponse(e) {
+        e.preventDefault()
+        console.log(e.target)
+        let selections = e.target.querySelectorAll('input')
+        selections.forEach(selection => {
+            let id = selection.getAttribute('data-id')
+            let checkedStatus = "absent";
+            if (selection.checked) checkedStatus = "present"
+            let name = symptoms.filter(element => element["id"] === id)[0]["name"]
+            setUpdatedRespones(prev => { 
+                return [
+                    ...prev,
+                    {
+                    "id": id,
+                    "choice_id": checkedStatus,
+                    "name": name,
+                    "source": "interview"
+                    }
+                ]
+            })
+            setPromptQuestions(() => {})
+        })
     }
 
     function jsonOutputToMainContainerState(object) {
@@ -123,6 +149,7 @@ export default function MainContainer() {
                 handleQuestionResponse={handleQuestionResponse}
                 suggestSymptoms={suggestSymptoms}
                 handleSuggestionResult={handleSuggestionResult}
+            handleMultipleQuestionResponse={handleMultipleQuestionResponse}
             />
             <RightContainer
                 ddx={ddx}

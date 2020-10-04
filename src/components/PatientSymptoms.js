@@ -101,30 +101,54 @@ export default function PatientSymptoms(props) {
             </span>
         )
     }
+    
+    let patientUnknownArray =[]
 
-    let additionalQuestionResponsesArray = [];
-    for (let i =0; i < props.updatedResponses.length; i++) {
-        let input = props.updatedResponses[i]["name"]
-
-        function toggleHidden(e) {
-            let xButton = e.target.nextSibling
-            if (xButton.classList.contains('hidden')) {
-                xButton.classList.remove('hidden')
+        for (let i =0; i < props.updatedResponses.length; i++) {
+            let input = props.updatedResponses[i]["name"]
+            console.log(input)
+            function toggleHidden(e) {
+                let xButton = e.target.nextSibling
+                if (xButton.classList.contains('hidden')) {
+                    xButton.classList.remove('hidden')
+                }
+                else {
+                    xButton.classList.add('hidden')
+                }
             }
-            else {
-                xButton.classList.add('hidden')
+            let choice = props.updatedResponses[i]["choice_id"]
+            if (choice === "present") {
+                patientSymptomArray.push(
+                    <span key={1/i} style={{display: "inline"}}>
+                        <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                            {input}
+                        </button> 
+                        <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
+                    </span>
+                )
+            }
+            else if (choice === "absent") {
+                patientSymptomAbsentArray.push(
+                    <span key={1/i} style={{display: "inline"}}>
+                        <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                            {input}
+                        </button> 
+                        <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
+                    </span>
+                )
+            }
+            else if (choice === "unknown") {
+                patientUnknownArray.push(
+                    <span key={1/i} style={{display: "inline"}}>
+                        <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                            {input}
+                        </button> 
+                        <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
+                    </span>
+                )
             }
         }
-
-        additionalQuestionResponsesArray.push(
-            <span key={i} style={{display: "inline"}}>
-                <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
-                    {input}
-                </button> 
-                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteUpdatedResponse} >X</button>
-            </span>
-        )
-    }
+  
 
    
     function toggleHidden(e) {
@@ -219,7 +243,7 @@ export default function PatientSymptoms(props) {
         // console.log(data)
         // props.jsonOutputToMainContainerState(data)
         // })
-   
+        console.log(diagnosisResponse)
         // FAKE DIAGNOSIS RESPONSE FOR TESTING
         props.jsonOutputToMainContainerState(diagnosisResponse)
         // FAKE SUGGEST RESPONSE FOR TESTING
@@ -331,8 +355,8 @@ export default function PatientSymptoms(props) {
                     {patientRiskFactorArray}
                 </p>
                 <p className="card-text p-2">
-                    {additionalQuestionResponsesArray.length > 0 ? "Additional information:":null}
-                    {additionalQuestionResponsesArray}
+                    {patientUnknownArray.length > 0 ? "Patient is unsure:":null}
+                    {patientUnknownArray}
                 </p>
 
             </div>

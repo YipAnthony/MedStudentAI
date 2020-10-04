@@ -15,7 +15,7 @@ Difficulties I encountered included:
 * Starting to incorporate useEffect to run functions only when specific states change. Not fully comfortable with the concept of memory leaks during unmounts. 
 
 Random Observations: 
-* Becoming very comfortable with array/object manipulation (setState, restructuring state values for API requests/responses) 
-* Beginning to have a firm understanding of the useState react hook, still need to work on useEffect 
+* Becoming very comfortable with array/object manipulation (setState, restructuring state values for API requests/responses, looping through array lists to generate individual components) 
+* Beginning to have a firm understanding of the useState hook, still need to work on useEffect 
 * Bootstrap has been great in helping to expediate the design process. While I plan to customize the UI once I'm finished with the code, it's nice having Bootstrap-styled components for now to get a general sense of the layout without spending time on CSS. 
 * Starting to appreciate the complexity of well made search bars. I incorporated fuzzy search to help in structuring lab search results, but there's definitely lots of limitations to this text search method. 
