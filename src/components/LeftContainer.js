@@ -223,11 +223,9 @@ export default function LeftContainer(props) {
         let results = filteredLabs.filter(element => {
             return element['name'] === lab
         })[0]['results']
-        // console.log(results)
         let id = results.filter(element => {
             return element['type'] === labResult
         })
-        // console.log(id[0])
         let outputObject = {
             "name": lab,
             "id": id[0]["id"],
@@ -235,20 +233,21 @@ export default function LeftContainer(props) {
             "selectedResult": labResult
         }
 
-
-        // let labObject;
-        // if(e.target.classList.contains('fuzzy')){
-        //     let name = e.target.innerHTML
-        //     labObject = filteredLabs.filter(element => {
-        //         return element['name'] === name;
-        //     })
-        //     labObject = labObject[0]
-        // }
-        // else {
-        //     let targetIndex = Number(e.target.getAttribute('data-index'))
-        //     labObject = filteredLabs[targetIndex]
-        // }
-        setPatientLabs(prev => [...prev, outputObject])
+        setPatientLabs(prev => {
+            let arrayIndex = false;
+            prev.map((element, index) => {
+                if (element["name"] === lab) {
+                    arrayIndex = index
+                }
+                return (arrayIndex)
+            })
+            if (arrayIndex !== false) {
+                let output = [...prev]
+                output.splice(arrayIndex, 1, outputObject)
+                return output
+            }
+            else return [...prev, outputObject]
+        })
     }
 
     function selectLabResult(e){
@@ -384,8 +383,23 @@ export default function LeftContainer(props) {
             let targetIndex = Number(e.target.getAttribute('data-index'))
             labObject = filteredRiskFactors[targetIndex]
         }
-        
-        setPatientRiskFactors(prev => [...prev, labObject])
+        let name = labObject["name"]
+        setPatientRiskFactors(prev => {
+            let arrayIndex = false;
+            prev.map((value, index) => {
+                if (value["name"] === name) {
+                     arrayIndex = index;
+                     return arrayIndex
+                }
+            })
+            if (arrayIndex !== false) {
+
+                let output = [...prev]
+                output.splice(arrayIndex, 1, labObject)
+                return output
+            }
+            return [...prev, labObject]
+        })
     }
     function deleteRiskFactor(e){
         let riskFactor = e.target

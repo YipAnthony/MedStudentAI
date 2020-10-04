@@ -13,7 +13,8 @@ code {
 }
 
 
-#labSearchResults{
+#labSearchResults, 
+#additionalSymptomsSearchResults{
   /* width: max(500px); */
   overflow-y:auto;
   overflow-x: auto;
@@ -24,7 +25,7 @@ code {
 }
 
 .hidden {
-  display: none;
+  display: none!important;
 }
 
 #selectedAge.form-control::-webkit-input-placeholder {

@@ -33,7 +33,14 @@ export default function DisplaySearchResults(props) {
     
     return (
         <div className="card w-100">
-           {output}
+            <div 
+                className="card"
+                id="additionalSymptomsSearchResults"
+                style={output.length === 0 ? {height:"0"}:{height: "max(200px)"}}
+            >
+            {output}
+            </div>
+           
            {closeButton}
         </div>
 
