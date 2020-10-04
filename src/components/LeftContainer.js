@@ -73,6 +73,8 @@ export default function LeftContainer(props) {
     function handleChange(e){
         let input = e.target.value
         if (e.target.id === "selectedAge") {
+            let testRegex = /^[1][0-1][0-9]$|^[1-9][0-9]$|^[0-9]$|^$/
+            if (!testRegex.test(input)) return
             setSelectedAge(()=> input)
         }
         else if (e.target.id === "inputGender") {
