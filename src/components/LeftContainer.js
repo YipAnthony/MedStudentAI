@@ -9,6 +9,13 @@ import labs from '../lists/labs'
 import riskFactors from '../lists/riskFactors'
 
 export default function LeftContainer(props) {
+
+    let common = /bmi|hypertension|cholest|cigaret|abdominal injury|skeletal trauma|recent physical|acceleration-decel|back injury|recent head|chest injury|limb injury|pregnancy|postmenopause|diabete|depress/
+    let filtered = riskFactors.filter(element => {
+        let test = element['name'].toLowerCase()
+        return common.test(test)
+    })
+
     let [selectedAge, setSelectedAge] = useState("")
     let [selectedGender, setSelectedGender] = useState("male")
 
@@ -25,7 +32,7 @@ export default function LeftContainer(props) {
     let [filteredLabs, setfilteredLabs] = useState(labs)
     let [patientLabs, setPatientLabs] = useState([])
 
-    let [filteredRiskFactors, setRiskFactors] = useState(riskFactors)
+    let [filteredRiskFactors, setRiskFactors] = useState(filtered)
     let [patientRiskFactors, setPatientRiskFactors] = useState([])
 
     useEffect(()=>{
@@ -284,92 +291,44 @@ export default function LeftContainer(props) {
             if (button.parentNode.childNodes[i].classList.contains('active')) {
                 button.parentNode.childNodes[i].classList.remove('active')
             }
+            else button.classList.add('active')
         }
 
         let selectedButton = e.target.innerHTML
-        if (selectedButton === "All") setRiskFactors(() => riskFactors)
-        else if (selectedButton === "BMI") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /bmi/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
+        let regex;
+        if (selectedButton === "All") {
+            regex = /.*/
+        } 
+        // setRiskFactors(() => riskFactors)
+        else if (selectedButton === "Common") {
+            regex = /bmi|hypertension|cholest|cigaret|abdominal injury|skeletal trauma|recent physical|acceleration-decel|back injury|recent head|chest injury|limb injury|pregnancy|postmenopause|diabete|depress/
         }
         else if (selectedButton === "Trauma/Injury") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /injury|trauma|wound/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
+            regex = /injury|trauma|wound/
         }
         else if (selectedButton === "Travel") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /travel/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
+            regex = /travel/
         }
         else if (selectedButton === "Cardiac") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /cardiac|aortic|aorta|stroke|vascular|cardio|coronary|cholest|myocard|hypertension/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
+            regex = /cardiac|aortic|aorta|stroke|vascular|cardio|coronary|cholest|myocard|hypertension/
         }
         else if (selectedButton === "Pulmonary") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /asthma|pulmonary|ACE-inhibitor|smoking/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
-        }
-        else if (selectedButton === "Malignancy") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /BMI above 30|smoking|alcohol|neopla/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
+            regex = /asthma|pulmonary|ACE-inhibitor|smoking/
         }
         else if (selectedButton === "Drugs/Alcohol/Smoking") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /opioid|alcohol|drug|smoking|tobac|cannabis|withdraw|sedative|pill|mushroom/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
+            regex = /opioid|alcohol|drug|smoking|tobac|cannabis|withdraw|sedative|pill|mushroom/
         }
         else if (selectedButton === "Medications") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /anticoagulant|NSAID|corticosteroid|ace-inhibitor|paracetamol|salicylate/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
+            regex = /anticoagulant|NSAID|corticosteroid|ace-inhibitor|paracetamol|salicylate/
         }
-        else if (selectedButton === "Familial") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /family/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
-        }
-        else if (selectedButton === "Psychological") {
-            let filtered = riskFactors.filter(element => {
-                let test = element['name'].toLowerCase()
-                let regex = /psychol|depres|suic/
-                return regex.test(test)
-            })
-            setRiskFactors(() => filtered)
-        }
+        let filtered = riskFactors.filter(element => {
+            let test = element['name'].toLowerCase()
+            return regex.test(test)
+        })
+        setRiskFactors(() => filtered)
         
     }
+
     function handleAddRiskFactor(e){
         let labObject;
         if(e.target.classList.contains('fuzzy')){
@@ -410,8 +369,8 @@ export default function LeftContainer(props) {
     }
 
     return (
-        <div className="col-sm border-light">
-            <div className="card border-0">
+        <div id="patientNoteContainer" className="col-md-7 mr-0">
+            <div id="patientMainNote" className="card border-0">
  
                     <PatientSymptoms 
                         patientSymptoms={patientSymptoms}

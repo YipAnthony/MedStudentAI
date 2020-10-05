@@ -3,16 +3,13 @@ import React from 'react'
 export default function RiskFactorTopPanelButtons(props) {
     let categoriesInput = 
         [
-            'BMI',
             'Cardiac',
             'Pulmonary',
             'Trauma/Injury',
             'Medications',
-            'Familial',
-            'Psychological',
-            'Malignancy',
             'Travel',
-            'Drugs/Alcohol/Smoking'
+            'Drugs/Alcohol/Smoking',
+            'All'
         ]
     let categories = []
     categoriesInput.map((value, index) => {
@@ -28,10 +25,10 @@ export default function RiskFactorTopPanelButtons(props) {
     return (
         <div className="mb-2">
             <button 
-                key={"all"} 
+                key={"Common"} 
                 className="btn btn-outline-primary active btn-sm m-1 shadow-none" 
                 onClick={props.handleRiskFactorCategoryClick}
-            >All</button>
+            >Common</button>
             {categories}
         </div>
     )

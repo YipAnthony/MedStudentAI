@@ -122,7 +122,7 @@ export default function MiddleContainer(props) {
     }
 
     return (
-        <div className="col-sm order-2">
+        <div className="col-md-4 m-auto ml-0">
             <h5 className="card card-body mt-2">Additional Questions:</h5>
               
                 
@@ -130,7 +130,7 @@ export default function MiddleContainer(props) {
             <Suggestion 
                 suggestSymptoms={props.suggestSymptoms}
                 handleSuggestionResult={props.handleSuggestionResult}
-                />
+            />
             
         </div>
         

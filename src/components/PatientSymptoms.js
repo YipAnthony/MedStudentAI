@@ -22,7 +22,7 @@ export default function PatientSymptoms(props) {
         let input = props.selectedCC.name
         selectedCCName.push(
             <span key={0} style={{display: "inline"}}>
-                <button className="btn btn-outline-success btn-md p-1 m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                <button className="btn btn-light btn-lg p-0 m-1 mr-0 p shadow-none" onClick={toggleHidden}>
                     {input}
                 </button> 
                 <button data-array={0} className="btn btn-danger btn-md p-1 m-1 ml-0 shadow-none hidden" onClick={props.deleteCC}>X</button>
@@ -45,12 +45,14 @@ export default function PatientSymptoms(props) {
         }
 
         patientRiskFactorArray.push(
-            <span key={i} style={{display: "inline"}}>
-                <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+            <li key={i} className="listItem">
+            <div style={{display: "inline"}}>
+                <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
                     {input}
                 </button> 
                 <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteRiskFactor}>X</button>
-            </span>
+            </div>
+            </li>
         )
     }
 
@@ -69,12 +71,15 @@ export default function PatientSymptoms(props) {
         }
 
         patientSymptomArray.push(
-            <span key={i} style={{display: "inline"}}>
-                <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
-                    {input}
-                </button> 
-                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
-            </span>
+            <li key={i} className="listItem">
+                <div style={{display: "inline"}}>
+                    <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                        {input}
+                    </button> 
+                    <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
+                </div>
+                <br/>
+            </li>
         )
     }
 
@@ -93,12 +98,15 @@ export default function PatientSymptoms(props) {
         }
 
         patientSymptomAbsentArray.push(
-            <span key={i} style={{display: "inline"}}>
-                <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
-                    {input}
-                </button> 
-                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
-            </span>
+            <li key={i} className="listItem">
+                <div style={{display: "inline"}}>
+                    <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                        {input}
+                    </button> 
+                    <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
+                </div>
+                <br/>
+            </li>
         )
     }
     
@@ -149,8 +157,6 @@ export default function PatientSymptoms(props) {
             }
         }
   
-
-   
     function toggleHidden(e) {
         let buttonContainer = e.target.parentNode.querySelector('#hiddenButtons')
         if (buttonContainer.classList.contains('hidden')) {
@@ -186,23 +192,27 @@ export default function PatientSymptoms(props) {
             let id = props.patientLabs[i]["results"][j]["id"]
             let stateLabResult  = props.patientLabs[i]['selectedResult'] 
             labResultType.push(
-                <button key={id} className={testActive(labResult, stateLabResult)} onClick={props.selectLabResult}>
-                    {labResult}
-                </button> 
+                <div key={id} >
+                    <button className={testActive(labResult, stateLabResult)} onClick={props.selectLabResult}>
+                        {labResult}
+                    </button> 
+                </div>
             )
         }
 
         selectedLabs.push(
-            <span key={i} style={{display: "inline"}}>
-                <button className="btn btn-outline-success btn-sm p-1 m-1 mr-0 shadow-none" onClick={toggleHidden}>
-                    {input}
-                </button> 
-                <span id="hiddenButtons" data-selectedresult={props.patientLabs[i]['selectedResult']} className="hidden">
-                    {labResultType}
-                    <button data-array={0} className="btn btn-danger btn-sm p-1 m-1 ml-1 mt-0 shadow-none" onClick={props.deleteLab}>X</button>
-                </span>
-                
-            </span>
+            <li key={i} className="listItem">
+                <div style={{display: "inline"}}>
+                    <button className="btn btn-light btn-sm p-0 m-0 mr-0 shadow-none" onClick={toggleHidden}>
+                        {input}
+                    </button> 
+                    <span id="hiddenButtons" data-selectedresult={props.patientLabs[i]['selectedResult']} className="hidden">
+                        {labResultType}
+                        <button data-array={0} className="btn btn-danger btn-sm p-1 m-1 ml-1 mt-0 shadow-none" onClick={props.deleteLab}>X</button>
+                    </span>
+                </div>
+                <br/>
+            </li>
         )
     }
 
@@ -318,42 +328,59 @@ export default function PatientSymptoms(props) {
         }
         return outputArray
     }
-
+    
     // UPDATE THIS. DO NOT INCLUDE "SOURCE" ATTRIBUTE
  
 
 
     return (
-        <div className="card mb-2 border-0 mt-2">
+        <div className="mb-2 border-0 mt-2">
             {/* <h3 className="card-header">
                 Med Student AI
             </h3> */}
-            <div className="card">
-                <h5 className="card-title d-inline p-2">
+            <div className="border-0 p-3 pl-5 pr-5">
+                <h4 className="title d-inline border-0">
                     Patient is a
                     <Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
                     y/o 
                     <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
-                    {props.selectedCC !== "" ? "with a chief complaint of":""}
+                    
+                </h4>
+                <h5>
+                    {props.selectedCC !== "" ? "Chief complaint: ":""}
                     {selectedCCName}
                 </h5>
-                <p className="card-text p-2">
-                    {patientSymptomArray.length > 0 ? "Patient endorses:":null}
-                    {patientSymptomArray}
-                </p>
-                <p className="card-text p-2">
-                    {patientSymptomAbsentArray.length > 0 ? "Patient denies:":null}
-                    {patientSymptomAbsentArray}
-                </p>
-                <p className="card-text p-2">
-                    {selectedLabs.length > 0 ? "Relevant labs include:":null}
-                    {selectedLabs}
-                </p>
-
-                <p className="card-text p-2">
-                    {patientRiskFactorArray.length > 0 ? "Risk factors include:":null}
-                    {patientRiskFactorArray}
-                </p>
+                
+                    <p className="text p-0 m-0">
+                        <span className="category">{patientSymptomArray.length > 0 | patientSymptomAbsentArray.length > 0 ? "Additional Symptoms":null}</span>
+                    </p>
+                    {patientSymptomArray.length > 0 | patientSymptomAbsentArray.length > 0 ? <hr className="m-0"/>:null}
+                <div className="row">
+                    <div className="col-sm card-text p-0 pl-3 pt-2 text-left">
+                        {patientSymptomArray.length > 0 ? "Present:":null}
+                        {patientSymptomArray.length > 0 ? <br/>:null}
+                        <ul className="text-left list-group">{patientSymptomArray}</ul>
+                    </div>
+                    <div className="col-sm card-text p-0 pl-3 pt-2 text-left">
+                        {patientSymptomAbsentArray.length > 0 ? "Absent:":null}
+                        {patientSymptomAbsentArray.length > 0 ? <br/>:null}
+                        <div className="text-left">{patientSymptomAbsentArray}</div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="card-text p-0 pl-3 pt-2 text-left">
+                        <span className="category">{selectedLabs.length > 0 ? "Labs":null}</span>
+                        {selectedLabs.length > 0 ? <hr className="m-0"/>:null}
+                        <ul className="text-left list-group">{selectedLabs}</ul>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="card-text p-0 pl-3 pt-2 text-left">
+                        <span className="category">{patientRiskFactorArray.length > 0 ? "Risk factors":null}</span>
+                        {patientRiskFactorArray.length > 0 ? <hr className="m-0"/>:null}
+                        <ul className="text-left list-group">{patientRiskFactorArray}</ul>
+                    </div>
+                </div>
                 <p className="card-text p-2">
                     {patientUnknownArray.length > 0 ? "Patient is unsure:":null}
                     {patientUnknownArray}

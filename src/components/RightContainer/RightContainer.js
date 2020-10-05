@@ -16,7 +16,7 @@ export default function RightContainer(props) {
     }
 
     return (
-        <div className="col-sm order-3">
+        <div  className="col-sm order-3 hidden">
             <h5 className="card card-body mt-2">Differential Diagnosis:</h5>
             <div className="card-text p-3" >{differentialArray}</div>
         </div>

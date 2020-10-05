@@ -6,7 +6,7 @@ export default function Gender(props) {
        
             <button 
                 id="inputGender" 
-                className={"btn btn-outline-primary btn-md m-1 shadow-none d-inline"}
+                className={"btn btn-lg m-1 shadow-none d-inline"}
                 onClick={props.handleChange}>
                     {props.selectedGender === "male" ? "male":"female"}
             </button>
