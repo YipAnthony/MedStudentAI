@@ -114,7 +114,6 @@ export default function PatientSymptoms(props) {
 
         for (let i =0; i < props.updatedResponses.length; i++) {
             let input = props.updatedResponses[i]["name"]
-            console.log(input)
             function toggleHidden(e) {
                 let xButton = e.target.nextSibling
                 if (xButton.classList.contains('hidden')) {
@@ -127,32 +126,38 @@ export default function PatientSymptoms(props) {
             let choice = props.updatedResponses[i]["choice_id"]
             if (choice === "present") {
                 patientSymptomArray.push(
-                    <span key={1/i} style={{display: "inline"}}>
-                        <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                    <li key={.1*1/i} className="listItem">
+                    <div key={.1*1/i} style={{display: "inline"}}>
+                        <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
                             {input}
                         </button> 
                         <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
-                    </span>
+                    </div>
+                    </li>
                 )
             }
             else if (choice === "absent") {
                 patientSymptomAbsentArray.push(
-                    <span key={1/i} style={{display: "inline"}}>
-                        <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                    <li key={1/i} className="listItem">
+                    <div key={1/i} style={{display: "inline"}}>
+                        <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
                             {input}
                         </button> 
                         <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
-                    </span>
+                    </div>
+                    </li>
                 )
             }
             else if (choice === "unknown") {
                 patientUnknownArray.push(
-                    <span key={1/i} style={{display: "inline"}}>
-                        <button className="btn btn-success btn-sm m-1 mr-0 shadow-none" onClick={toggleHidden}>
+                    <li key={i} className="listItem">
+                    <div key={1/i} style={{display: "inline"}}>
+                        <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
                             {input}
                         </button> 
                         <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
-                    </span>
+                    </div>
+                    </li>
                 )
             }
         }
@@ -328,7 +333,7 @@ export default function PatientSymptoms(props) {
         }
         return outputArray
     }
-    
+
     // UPDATE THIS. DO NOT INCLUDE "SOURCE" ATTRIBUTE
  
 
@@ -347,6 +352,8 @@ export default function PatientSymptoms(props) {
                     
                 </h4>
                 <h5>
+                    <strong>Chief Complaint:</strong>
+                    <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img>
                     {props.selectedCC !== "" ? "Chief complaint: ":""}
                     {selectedCCName}
                 </h5>

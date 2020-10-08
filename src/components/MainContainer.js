@@ -23,7 +23,7 @@ export default function MainContainer() {
         let questionType = e.target.getAttribute('data-questiontype')
         if (questionType === "groupSingle") {
             let id = e.target.getAttribute('data-id')
-            let choiceId = e.target.getAttribute('data-choiceid')
+            // let choiceId = e.target.getAttribute('data-choiceid')
             let index = symptoms.filter(element => {
                 return element["id"] === id
             })

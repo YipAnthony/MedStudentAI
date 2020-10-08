@@ -368,8 +368,25 @@ export default function LeftContainer(props) {
         })
     }
 
+    function clickCCSearch(e) {
+        let ccSearchContainer = document.querySelector('#ccSearchContainer')
+        if(ccSearchContainer.classList.contains('hidden')){
+            ccSearchContainer.classList.remove('hidden')
+        }
+    }
+
     return (
         <div id="patientNoteContainer" className="col-md-7 mr-0">
+            <ChiefComplaint
+                        ChiefComplaintInput={ChiefComplaintInput} 
+                        handleChange={handleChange} 
+                        // selectSymptom = {selectSymptom}
+                        selectedCC = {selectedCC}
+                        handleSearch = {handleSearch}
+                        searchResultsCC={searchResultsCC}
+                        handleChangeCC={handleChangeCC}    
+                        closeCCSearchResults={closeCCSearchResults}
+                    />
             <div id="patientMainNote" className="card border-0">
  
                     <PatientSymptoms 
@@ -390,16 +407,7 @@ export default function LeftContainer(props) {
                         jsonOutputToMainContainerState={props.jsonOutputToMainContainerState}
                         updatedResponses={props.updatedResponses}
                         deleteUpdatedResponse={props.deleteUpdatedResponse}
-                    />
-                    <ChiefComplaint
-                        ChiefComplaintInput={ChiefComplaintInput} 
-                        handleChange={handleChange} 
-                        // selectSymptom = {selectSymptom}
-                        selectedCC = {selectedCC}
-                        handleSearch = {handleSearch}
-                        searchResultsCC={searchResultsCC}
-                        handleChangeCC={handleChangeCC}    
-                        closeCCSearchResults={closeCCSearchResults}
+                        clickCCSearch={clickCCSearch}
                     />
                     <AddSymptom
                         selectedSymptomsInput={selectedSymptomsInput}
