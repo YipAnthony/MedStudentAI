@@ -14,13 +14,14 @@ export default function Symptoms(props) {
         <div id="ccSearchContainer" className="card mb-2 hidden">
             <div id="ccSearchContainerTop">
                 <h6 
-                    className='card-header toggleTab'
+                    className='card-header'
                     onClick={toggle}
                 >
-                    {showCC ? toggleUpIcon: toggleDownIcon}
+                   
                     <span className="ml-1">Chief complaint</span>
+                    <span className="float-right toggleTab" onClick={props.closeCCSearchResults}>X</span>
                 </h6>
-                {showCC &&
+                {
                     <div className="card-body">
                         <div className="d-flex">
                             <input 

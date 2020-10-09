@@ -195,6 +195,8 @@ export default function LeftContainer(props) {
 
     function closeCCSearchResults() {
         setSearchResultsCC(()=>"")
+        let container = document.querySelector('#ccSearchContainer')
+        container.classList.add('hidden')
     }
 
     function closeSymptomSearchResults(){
