@@ -352,16 +352,20 @@ export default function PatientSymptoms(props) {
                     
                 </h4>
                 <h5>
+
                     <strong>Chief Complaint:</strong>
-                    <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img>
-                    {props.selectedCC !== "" ? "Chief complaint: ":""}
+                    {/* {props.selectedCC !== "" ? "Chief complaint: ":""} */}
                     {selectedCCName}
+                    <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img>
+
                 </h5>
                 
                     <p className="text p-0 m-0">
-                        <span className="category">{patientSymptomArray.length > 0 | patientSymptomAbsentArray.length > 0 ? "Additional Symptoms":null}</span>
+                        <span className="category">Additional Symptoms</span>
+                        <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickSymptomSearch}></img>
+
                     </p>
-                    {patientSymptomArray.length > 0 | patientSymptomAbsentArray.length > 0 ? <hr className="m-0"/>:null}
+                    <hr className="m-0"/>
                 <div className="row">
                     <div className="col-sm card-text p-0 pl-3 pt-2 text-left">
                         {patientSymptomArray.length > 0 ? "Present:":null}

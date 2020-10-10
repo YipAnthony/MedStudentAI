@@ -201,6 +201,8 @@ export default function LeftContainer(props) {
 
     function closeSymptomSearchResults(){
         setSearchResults(()=>"")
+        let container = document.querySelector('#symptomsSearchContainer')
+        container.classList.add('hidden')
     }
 
     let categoryMap = new Map();
@@ -377,6 +379,15 @@ export default function LeftContainer(props) {
         }
     }
 
+    function clickSymptomSearch() {
+        let ccSearchContainer = document.querySelector('#symptomsSearchContainer')
+        if(ccSearchContainer.classList.contains('hidden')){
+            ccSearchContainer.classList.remove('hidden')
+        }
+    }
+
+
+
     return (
         <div id="patientNoteContainer" className="col-md-7 mr-0">
             <ChiefComplaint
@@ -410,6 +421,7 @@ export default function LeftContainer(props) {
                         updatedResponses={props.updatedResponses}
                         deleteUpdatedResponse={props.deleteUpdatedResponse}
                         clickCCSearch={clickCCSearch}
+                        clickSymptomSearch={clickSymptomSearch}
                     />
                     <AddSymptom
                         selectedSymptomsInput={selectedSymptomsInput}

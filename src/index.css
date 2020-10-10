@@ -21,6 +21,8 @@ code {
   /* width: max(500px); */
   overflow-y:auto;
   overflow-x: auto;
+  height: max(17vh) !important;
+  border: none;
 }
 
 .dropdown-item {
@@ -95,7 +97,8 @@ code {
 }
 
 #patientMainNote {
-  border-radius: 40px;
+  border-radius: 10px;
+  height: 90vh;
 }
 
 .notarget {
@@ -113,14 +116,14 @@ code {
 
 #ccSearch {
   opacity: .4;
-  width: 20px;
+  width: 17px;
 }
 #ccSearch:hover {
   opacity: 1;
   cursor: pointer;
 }
 
-#ccSearchContainer {
+#ccSearchContainer, #symptomsSearchContainer {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -128,7 +131,7 @@ code {
   margin: auto;
   background-color: #00000000 ;
 }
-#ccSearchContainerTop {
+#ccSearchContainerTop, #symptomsSearchContainerTop {
   position: absolute;
   width: 50%;
   height: 50%;
@@ -138,13 +141,25 @@ code {
   right: 0;
   top: 0;
   bottom: 0;
-  text-align: center;
+  /* text-align: center; */
   background-color: white;
+  border-radius: 10px;
+  overflow-y: hidden;
 }
-#ccSearchContainerBottom {
+#ccSearchContainerBottom, #symptomsSearchContainerBottom {
   position: absolute;
   width: 100%;
   z-index: 30;
   height: 100%;
   background-color: #00000052!important;
+}
+
+#ccSearchResultOutput {
+  overflow-y: scroll;
+}
+
+#additionalSymptomsSearchResultsContainer {
+  height: 10%;
+  margin-bottom: 50px;
+  border: none;
 }

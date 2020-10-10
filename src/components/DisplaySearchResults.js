@@ -32,7 +32,7 @@ export default function DisplaySearchResults(props) {
     else closeButton = []
     
     return (
-        <div className="card w-100">
+        <div id="additionalSymptomsSearchResultsContainer" className="card w-100">
             <div 
                 className="card"
                 id="additionalSymptomsSearchResults"
