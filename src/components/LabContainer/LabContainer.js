@@ -12,26 +12,28 @@ export default function LabContainer(props) {
     }
 
     return (
-        <div>
-        <div className="card mb-2">
-            <h6
-                className='card-header toggleTab'
-                onClick={toggle}
-            >
-                {showLabs ? toggleUpIcon: toggleDownIcon}
-                <span className="ml-1">Labs</span>
-            </h6>
-            {showLabs &&
-                <div className="card-body">
-            <TopPanelButtons categoryMap={props.categoryMap} handleLabCategoryClick={props.handleLabCategoryClick}/>
-            <DisplayLabOptions 
-                filteredLabs={props.filteredLabs} 
-                toggle={toggle}
-                handleAddLab={props.handleAddLab}    
-                />
-                </div>
-            }
+        <div id="labsMainContainer" className="card mb-2 hidden">
+            <div id="labsSearchContainerTop">
+                <h6
+                    className='card-header'
+                    onClick={toggle}
+                >
+                    <span className="ml-1">Labs</span>
+                    <span className="float-right toggleTab" onClick={props.closeLabsSearchResults}>X</span>
+
+                </h6>
+                    <div className="card-body">
+                <TopPanelButtons categoryMap={props.categoryMap} handleLabCategoryClick={props.handleLabCategoryClick}/>
+                <DisplayLabOptions 
+                    filteredLabs={props.filteredLabs} 
+                    toggle={toggle}
+                    handleAddLab={props.handleAddLab}    
+                    closeLabsSearchResults={props.closeLabsSearchResults}
+                    />
+                    </div>
+                
+            </div>
+            <div id="labsSearchContainerBottom"></div>
          </div>
-        </div>
     )
 }

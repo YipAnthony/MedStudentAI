@@ -386,7 +386,17 @@ export default function LeftContainer(props) {
         }
     }
 
+    function clickLabsSearch() {
+        let container = document.querySelector('#labsMainContainer')
+        if(container.classList.contains('hidden')){
+            container.classList.remove('hidden')
+        }
+    }
 
+    function closeLabsSearchResults() {
+        let container = document.querySelector('#labsMainContainer')
+        container.classList.add('hidden')
+    }
 
     return (
         <div id="patientNoteContainer" className="col-md-7 mr-0">
@@ -422,6 +432,7 @@ export default function LeftContainer(props) {
                         deleteUpdatedResponse={props.deleteUpdatedResponse}
                         clickCCSearch={clickCCSearch}
                         clickSymptomSearch={clickSymptomSearch}
+                        clickLabsSearch={clickLabsSearch}
                     />
                     <AddSymptom
                         selectedSymptomsInput={selectedSymptomsInput}
@@ -436,6 +447,7 @@ export default function LeftContainer(props) {
                         filteredLabs={filteredLabs}
                         handleLabCategoryClick={handleLabCategoryClick}
                         categoryMap={categoryMap}
+                        closeLabsSearchResults={closeLabsSearchResults}
                     />
                     <RiskFactorContainer
                         handleAddRiskFactor={handleAddRiskFactor}

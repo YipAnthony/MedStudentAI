@@ -64,8 +64,8 @@ export default function DisplayLabOptions(props) {
     },[searchInput, props.filteredLabs, additionalResults])
     
     function closeSearch() {
-        setOutputLabs(() => [])
-        props.toggle()
+        // setOutputLabs(() => [])
+        props.closeLabsSearchResults()
     }
 
     function expandLabResults(e) {

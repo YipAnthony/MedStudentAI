@@ -380,8 +380,10 @@ export default function PatientSymptoms(props) {
                 </div>
                 <div className="row">
                     <div className="card-text p-0 pl-3 pt-2 text-left">
-                        <span className="category">{selectedLabs.length > 0 ? "Labs":null}</span>
-                        {selectedLabs.length > 0 ? <hr className="m-0"/>:null}
+                        <span className="category">Labs</span>
+                        <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickLabsSearch}></img>
+
+                        <hr className="m-0"/>
                         <ul className="text-left list-group">{selectedLabs}</ul>
                     </div>
                 </div>

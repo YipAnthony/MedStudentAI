@@ -14,7 +14,7 @@ export default function TopPanelButtons(props) {
     })
 
     return (
-        <div className="mb-2">
+        <div id="labTopButtonsContainer" className="mb-2">
             <button 
                 key={"all"} 
                 className="btn btn-outline-primary active btn-sm m-1 shadow-none" 
