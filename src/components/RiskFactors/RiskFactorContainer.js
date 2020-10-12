@@ -13,14 +13,16 @@ export default function RiskFactorContainer(props) {
     }
 
     return (
-        <div>
-        <div className="card mb-2">
+        <div id="risksMainContainer" className="card mb-2 hidden">
+        <div id="risksSearchContainerTop">
             <h6
-                className='card-header toggleTab'
+                className='card-header'
                 onClick={toggle}
             >
-                {showRiskFactors ? toggleUpIcon: toggleDownIcon}
                 <span className="ml-1">Risk Factors</span>
+                <span className="float-right toggleTab" onClick={props.closeRisksSearchResults}>X</span>
+
+                
             </h6>
             {showRiskFactors &&
                 <div className="card-body">
@@ -33,6 +35,7 @@ export default function RiskFactorContainer(props) {
                 </div>
             }
          </div>
+         <div id="risksSearchContainerBottom"></div>
         </div>
     )
 }

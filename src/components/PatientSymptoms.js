@@ -389,8 +389,10 @@ export default function PatientSymptoms(props) {
                 </div>
                 <div className="row">
                     <div className="card-text p-0 pl-3 pt-2 text-left">
-                        <span className="category">{patientRiskFactorArray.length > 0 ? "Risk factors":null}</span>
-                        {patientRiskFactorArray.length > 0 ? <hr className="m-0"/>:null}
+                        <span className="category">Risk factors</span>
+                        <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickRisksSearch}></img>
+
+                        <hr className="m-0"/>
                         <ul className="text-left list-group">{patientRiskFactorArray}</ul>
                     </div>
                 </div>
