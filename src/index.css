@@ -89,14 +89,14 @@ code {
   background-color: #7e7e7e28;
 }
 
-#patientNoteContainer {
+#patientNoteContainer, #rightDisplay {
   /* width: 50%!important; */
   position: relative;
   margin: auto;
   border-radius: 10px;
 }
 
-#patientMainNote {
+#patientMainNote, #rightDisplay {
   border-radius: 10px;
   height: 90vh;
 }
@@ -170,4 +170,8 @@ code {
 #labTopButtonsContainer {
   height: 10vh !important;
   overflow-y: scroll;
+}
+
+.progress {
+  height: 15px;
 }

@@ -138,25 +138,25 @@ export default function PatientSymptoms(props) {
             }
             else if (choice === "absent") {
                 patientSymptomAbsentArray.push(
-                    <li key={1/i} className="listItem">
-                    <div key={1/i} style={{display: "inline"}}>
-                        <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
-                            {input}
-                        </button> 
-                        <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
-                    </div>
+                    <li key={1/i/10} className="listItem">
+                        <div key={1/i} style={{display: "inline"}}>
+                            <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                                {input}
+                            </button> 
+                            <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
+                        </div>
                     </li>
                 )
             }
             else if (choice === "unknown") {
                 patientUnknownArray.push(
                     <li key={i} className="listItem">
-                    <div key={1/i} style={{display: "inline"}}>
-                        <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
-                            {input}
-                        </button> 
-                        <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
-                    </div>
+                        <div key={1/i} style={{display: "inline"}}>
+                            <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                                {input}
+                            </button> 
+                            <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
+                        </div>
                     </li>
                 )
             }
@@ -260,7 +260,13 @@ export default function PatientSymptoms(props) {
         // })
         console.log(diagnosisResponse)
         // FAKE DIAGNOSIS RESPONSE FOR TESTING
-        props.jsonOutputToMainContainerState(diagnosisResponse)
+        if (endpoint === "suggest"){
+            props.jsonOutputToMainContainerState(suggestResponse)
+        }
+        else if (endpoint === "diagnosis") {
+            props.jsonOutputToMainContainerState(diagnosisResponse)
+        }
+        
         // FAKE SUGGEST RESPONSE FOR TESTING
         // props.jsonOutputToMainContainerState(suggestResponse)
     }
@@ -402,9 +408,10 @@ export default function PatientSymptoms(props) {
                 </p>
 
             </div>
-            <button className="btn btn-success btn-lg" onClick={() => sendInfoToAPI("suggest")}>Suggest</button>
-            <button className="btn btn-success btn-lg" onClick={() => sendInfoToAPI("diagnosis")}>Analyze</button>
-
+            <div className="d-flex justify-content-center">
+                <button className="btn btn-success btn-lg m-2" onClick={() => sendInfoToAPI("suggest")}>Suggest</button>
+                <button className="btn btn-success btn-lg m-2" onClick={() => sendInfoToAPI("diagnosis")}>Analyze</button>
+            </div>  
         </div>
     )
 }

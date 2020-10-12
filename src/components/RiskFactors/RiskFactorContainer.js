@@ -6,10 +6,11 @@ import {toggleUpIcon, toggleDownIcon} from '../../icons'
 
 export default function RiskFactorContainer(props) {
 
-    let [showRiskFactors, setShowRiskFactors] = useState(false)
+    let [showRiskFactors, setShowRiskFactors] = useState(true)
 
     function toggle() {
-        setShowRiskFactors(prev => !prev)
+        // setShowRiskFactors(prev => !prev)
+        props.closeRisksSearchResults()
     }
 
     return (
@@ -17,7 +18,7 @@ export default function RiskFactorContainer(props) {
         <div id="risksSearchContainerTop">
             <h6
                 className='card-header'
-                onClick={toggle}
+                // onClick={toggle}
             >
                 <span className="ml-1">Risk Factors</span>
                 <span className="float-right toggleTab" onClick={props.closeRisksSearchResults}>X</span>

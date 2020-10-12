@@ -122,17 +122,23 @@ export default function MiddleContainer(props) {
     }
 
     return (
-        <div className="col-md-4 m-auto ml-0">
-            <h5 className="card card-body mt-2">Additional Questions:</h5>
-              
-                
-            {questionArray.length > 0 ? questionArray: null}
-            <Suggestion 
-                suggestSymptoms={props.suggestSymptoms}
-                handleSuggestionResult={props.handleSuggestionResult}
-            />
-            
+        <div>
+            {questionArray.length > 0 ? 
+           
+            <div className="card col-md m-1 ml-0 mr-0 p-2">
+                <h5 className="card-body">Additional Questions:</h5>
+                {questionArray}
+            </div>
+            : null}
+            {props.suggestSymptoms.length>0 ? 
+            <div className="card col-md m-1 ml-0 mr-0 p-2">
+                <h5 className="card-body">Additional Symptoms:</h5>
+                <Suggestion 
+                    suggestSymptoms={props.suggestSymptoms}
+                    handleSuggestionResult={props.handleSuggestionResult}
+                />
+            </div>
+            : null}
         </div>
-        
     )
 }
