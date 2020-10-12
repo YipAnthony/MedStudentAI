@@ -236,7 +236,7 @@ export default function PatientSymptoms(props) {
             ]
         }
         let outputJSON = JSON.stringify(output)
-        console.log(outputJSON)
+        // console.log(outputJSON)
         // // ACTUAL API POST FUNCTIONS
         // let api = "https://api.infermedica.com/v2/"
         // api += endpoint
@@ -258,7 +258,7 @@ export default function PatientSymptoms(props) {
         // console.log(data)
         // props.jsonOutputToMainContainerState(data)
         // })
-        console.log(diagnosisResponse)
+        // console.log(diagnosisResponse)
         // FAKE DIAGNOSIS RESPONSE FOR TESTING
         if (endpoint === "suggest"){
             props.jsonOutputToMainContainerState(suggestResponse)

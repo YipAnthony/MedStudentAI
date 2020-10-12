@@ -144,18 +144,21 @@ export default function MainContainer() {
                 suggestSymptomsResponse={suggestSymptomsResponse}
                 deleteUpdatedResponse = {deleteUpdatedResponse}
             />
+            {ddx.length > 0 | promptQuestions | suggestSymptoms.length > 0 ? 
+            
             <div id="rightDisplay" className="col-md">
                 <RightContainer
                     ddx={ddx}
                 />
                 <MiddleContainer
                     promptQuestions={promptQuestions}
-                    handleQuestionResponse={handleQuestionResponse}
                     suggestSymptoms={suggestSymptoms}
+                    handleQuestionResponse={handleQuestionResponse}
                     handleSuggestionResult={handleSuggestionResult}
-                handleMultipleQuestionResponse={handleMultipleQuestionResponse}
+                    handleMultipleQuestionResponse={handleMultipleQuestionResponse}
                 />
             </div>
+            : null}
         </div>
     )
 }

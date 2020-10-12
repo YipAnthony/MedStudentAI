@@ -412,7 +412,7 @@ export default function LeftContainer(props) {
     }
 
     return (
-        <div id="patientNoteContainer" className="col-md-7 mr-0">
+        <div id="patientNoteContainer" className="col-md-7">
             <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 
                         handleChange={handleChange} 

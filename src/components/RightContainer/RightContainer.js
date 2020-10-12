@@ -32,9 +32,13 @@ export default function RightContainer(props) {
     }
 
     return (
-        <div  className="card col-sm order-3">
-            <h5 className="card-body mt-2 pb-0 mb-0">Differential Diagnosis:</h5>
-            <div className="card-text p-3" >{differentialArray}</div>
+        <div>
+            {props.ddx.length>0 ? 
+            <div  className="card col-sm order-3">
+                <h5 className="card-body mt-2 pb-0 mb-0">Differential Diagnosis:</h5>
+                <div className="card-text p-3" >{differentialArray}</div>
+            </div> 
+            : null}
         </div>
     )
 }

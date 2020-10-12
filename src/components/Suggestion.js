@@ -10,13 +10,13 @@ export default function Suggestion(props) {
                 <button 
                     data-id={suggestSymptoms[i]["id"]}
                     data-name={suggestSymptoms[i]["name"]}
-                    className="btn btn-sm btn-primary shadow-none"
+                    className="btn btn-sm btn-success shadow-none mr-1"
                     onClick={props.handleSuggestionResult}
                     >Yes</button>
                 <button 
                     data-id={suggestSymptoms[i]["id"]}
                     data-name={suggestSymptoms[i]["name"]}
-                    className="btn btn-sm btn-primary shadow-none"
+                    className="btn btn-sm btn-danger shadow-none"
                     onClick={props.handleSuggestionResult}
                     >No</button>
                 {/* <button className="btn btn-sm btn-primary">Unknown</button> */}
