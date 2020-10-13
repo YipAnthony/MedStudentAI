@@ -236,39 +236,38 @@ export default function PatientSymptoms(props) {
             ]
         }
         let outputJSON = JSON.stringify(output)
-        // console.log(outputJSON)
-        // // ACTUAL API POST FUNCTIONS
-        // let api = "https://api.infermedica.com/v2/"
-        // api += endpoint
-        // if(endpoint === "suggest") {
-        //     api += "?max_results=20"
-        // }
-        // console.log(api)
-        // fetch(api, {
-        //     method: 'POST',
-        //     headers: {
-        //         "App-Id": "0997c2c7",
-        //         "App-Key": "07a4f3f3c41553ca5ea33de3c81114c7",
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: outputJSON,
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        // console.log(data)
-        // props.jsonOutputToMainContainerState(data)
-        // })
-        // console.log(diagnosisResponse)
-        // FAKE DIAGNOSIS RESPONSE FOR TESTING
-        if (endpoint === "suggest"){
-            props.jsonOutputToMainContainerState(suggestResponse)
+        console.log(outputJSON)
+        // ACTUAL API POST FUNCTIONS
+        let api = "https://api.infermedica.com/v2/"
+        api += endpoint
+        if(endpoint === "suggest") {
+            api += "?max_results=20"
         }
-        else if (endpoint === "diagnosis") {
-            props.jsonOutputToMainContainerState(diagnosisResponse)
-        }
+        console.log(api)
+        fetch(api, {
+            method: 'POST',
+            headers: {
+                "App-Id": "0997c2c7",
+                "App-Key": "07a4f3f3c41553ca5ea33de3c81114c7",
+                'Content-Type': 'application/json',
+            },
+            body: outputJSON,
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log(data)
+        props.jsonOutputToMainContainerState(data)
+        })
+        console.log(diagnosisResponse)
         
-        // FAKE SUGGEST RESPONSE FOR TESTING
-        // props.jsonOutputToMainContainerState(suggestResponse)
+        // FAKE DIAGNOSIS RESPONSE FOR TESTING
+        // if (endpoint === "suggest"){
+        //     props.jsonOutputToMainContainerState(suggestResponse)
+        // }
+        // else if (endpoint === "diagnosis") {
+        //     props.jsonOutputToMainContainerState(diagnosisResponse)
+        // }
+        
     }
     
     function chiefComplaintToJSON (ccStateObject) {
@@ -350,28 +349,37 @@ export default function PatientSymptoms(props) {
                 Med Student AI
             </h3> */}
             <div className="border-0 p-3 pl-5 pr-5">
-                <h4 className="title d-inline border-0">
-                    Patient is a
-                    <Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
-                    y/o 
-                    <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
-                    
-                </h4>
-                <h5>
+                <div className="ageGenderGrid">
+                        <div className="ageGender age">AGE</div>
+                        <div className="ageGender">SEX</div>
 
-                    <strong>Chief Complaint:</strong>
+                        <div className="d-flex justify-content-start age ageInput"><Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
+                        </div>
+                        <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
+
+                </div>
+                <h4 className="title d-flex border-0">
+                    <div className="d-flex flex-column">
+                    </div>
+                    <div className="d-flex flex-column">
+                    </div>
+                </h4>
+                <h5 className ={props.selectedCC ? null:"faded"}>
+
+                    <strong >Chief Complaint:</strong>
                     {/* {props.selectedCC !== "" ? "Chief complaint: ":""} */}
                     {selectedCCName}
                     <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img>
 
                 </h5>
-                
+                <div className ={patientSymptomArray.length > 0 | patientSymptomAbsentArray.length > 0 ? null:"faded"}>
                     <p className="text p-0 m-0">
                         <span className="category">Additional Symptoms</span>
                         <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickSymptomSearch}></img>
 
                     </p>
                     <hr className="m-0"/>
+                </div>
                 <div className="row">
                     <div className="col-sm card-text p-0 pl-3 pt-2 text-left">
                         {patientSymptomArray.length > 0 ? "Present:":null}
@@ -385,21 +393,25 @@ export default function PatientSymptoms(props) {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="card-text p-0 pl-3 pt-2 text-left">
+                    <div className ={props.patientLabs.length > 0 ? null:"faded"}>
+                        <div className="card-text p-0 pt-0 text-left">
                         <span className="category">Labs</span>
                         <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickLabsSearch}></img>
-
+                        
                         <hr className="m-0"/>
                         <ul className="text-left list-group">{selectedLabs}</ul>
+                        </div>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="card-text p-0 pl-3 pt-2 text-left">
-                        <span className="category">Risk factors</span>
-                        <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickRisksSearch}></img>
+                    <div className ={props.patientRiskFactors.length > 0 ? null:"faded"}>
+                        <div className="card-text p-0 pt-2 text-left">
+                            <span className="category">Risk factors</span>
+                            <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickRisksSearch}></img>
 
-                        <hr className="m-0"/>
-                        <ul className="text-left list-group">{patientRiskFactorArray}</ul>
+                            <hr className="m-0"/>
+                            <ul className="text-left list-group">{patientRiskFactorArray}</ul>
+                        </div>
                     </div>
                 </div>
                 <p className="card-text p-2">

@@ -126,52 +126,52 @@ export default function LeftContainer(props) {
             chiefComplaint = true;
 
             // FAKE DATA FOR NOW
-            let jsoncc = [{"id":"s_50","name":"Chest pain","common_name":"Chest pain","orth":"chest pain","choice_id":"present","type":"symptom","positions":[0,1],"head_position":1},{"id":"s_21","name":"Headache","common_name":"Headache","orth":"headache","choice_id":"present","type":"symptom","positions":[3],"head_position":3}]
-            setSearchResultsCC(() => jsoncc )
+            // let jsoncc = [{"id":"s_50","name":"Chest pain","common_name":"Chest pain","orth":"chest pain","choice_id":"present","type":"symptom","positions":[0,1],"head_position":1},{"id":"s_21","name":"Headache","common_name":"Headache","orth":"headache","choice_id":"present","type":"symptom","positions":[3],"head_position":3}]
+            // setSearchResultsCC(() => jsoncc )
         }
         else {
             // arrayIndex = e.target.getAttribute('data-array')
             input = selectedSymptomsInput
             // // FAKE DATA FOR NOW
-            let jsonSymptoms = [{"id":"s_50","name":"Chest pain","common_name":"Chest pain","orth":"chest pain","choice_id":"present","type":"symptom","positions":[0,1],"head_position":1},{"id":"s_21","name":"Headache","common_name":"Headache","orth":"headache","choice_id":"present","type":"symptom","positions":[3],"head_position":3},{"id":"s_156","name":"Nausea","common_name":"Feeling sick","orth":"nausea","choice_id":"present","type":"symptom","positions":[5],"head_position":5},{"id":"s_305","name":"Vomiting","common_name":"Vomiting","orth":"vomiting","choice_id":"present","type":"symptom","positions":[7],"head_position":7},{"id":"s_1328","name":"Color vision deficiency","common_name":"Color vision deficiency","orth":"changes vision","choice_id":"present","type":"symptom","positions":[10,9],"head_position":10},{"id":"s_1543","name":"Loss of consciousness","common_name":"Loss of consciousness","orth":"loss of consciousness","choice_id":"present","type":"symptom","positions":[12,13,14],"head_position":12},{"id":"s_88","name":"Dyspnea","common_name":"Shortness of breath","orth":"difficulty breathing","choice_id":"present","type":"symptom","positions":[16,17],"head_position":16}]
-            setSearchResults(()=> jsonSymptoms)
+            // let jsonSymptoms = [{"id":"s_50","name":"Chest pain","common_name":"Chest pain","orth":"chest pain","choice_id":"present","type":"symptom","positions":[0,1],"head_position":1},{"id":"s_21","name":"Headache","common_name":"Headache","orth":"headache","choice_id":"present","type":"symptom","positions":[3],"head_position":3},{"id":"s_156","name":"Nausea","common_name":"Feeling sick","orth":"nausea","choice_id":"present","type":"symptom","positions":[5],"head_position":5},{"id":"s_305","name":"Vomiting","common_name":"Vomiting","orth":"vomiting","choice_id":"present","type":"symptom","positions":[7],"head_position":7},{"id":"s_1328","name":"Color vision deficiency","common_name":"Color vision deficiency","orth":"changes vision","choice_id":"present","type":"symptom","positions":[10,9],"head_position":10},{"id":"s_1543","name":"Loss of consciousness","common_name":"Loss of consciousness","orth":"loss of consciousness","choice_id":"present","type":"symptom","positions":[12,13,14],"head_position":12},{"id":"s_88","name":"Dyspnea","common_name":"Shortness of breath","orth":"difficulty breathing","choice_id":"present","type":"symptom","positions":[16,17],"head_position":16}]
+            // setSearchResults(()=> jsonSymptoms)
         }
         // // DISABLE SEARCH TO LOWER API REQUESTS
-        // let parseJSON = {
-        //     "text": input,
-        //     "context": [
-        //         input
-        //     ],
-        //     "include_tokens": true,
-        //     "correct_spelling": true,
-        //     "concept_types": [
-        //       "symptom"
-        //     ]
-        //   }
-        // fetch("https://api.infermedica.com/v2/parse", {
-        //     method: 'POST',
-        //     headers: {
-        //         "App-Id": "0997c2c7",
-        //         "App-Key": "07a4f3f3c41553ca5ea33de3c81114c7",
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(parseJSON),
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     if (!chiefComplaint) jsonToSearchResults(data)
-        //     else jsonToSearchResultsCC(data)
-        // })
+        let parseJSON = {
+            "text": input,
+            "context": [
+                input
+            ],
+            "include_tokens": true,
+            "correct_spelling": true,
+            "concept_types": [
+              "symptom"
+            ]
+          }
+        fetch("https://api.infermedica.com/v2/parse", {
+            method: 'POST',
+            headers: {
+                "App-Id": "0997c2c7",
+                "App-Key": "07a4f3f3c41553ca5ea33de3c81114c7",
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(parseJSON),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!chiefComplaint) jsonToSearchResults(data)
+            else jsonToSearchResultsCC(data)
+        })
     }
     // // TOGGLED OFF FOR DEVELOPMENT TO LOWER API REQUESTS
-    // function jsonToSearchResults (input) {
-    //     let resultsArray = input["mentions"]
-    //     setSearchResults(()=> resultsArray)
-    // }
-    // function jsonToSearchResultsCC (input) {
-    //     let resultsArray = input["mentions"]
-    //     setSearchResultsCC(()=> resultsArray)
-    // }
+    function jsonToSearchResults (input) {
+        let resultsArray = input["mentions"]
+        setSearchResults(()=> resultsArray)
+    }
+    function jsonToSearchResultsCC (input) {
+        let resultsArray = input["mentions"]
+        setSearchResultsCC(()=> resultsArray)
+    }
 
     function deleteSymptom(e){
         let symptom = e.target

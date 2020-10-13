@@ -5,8 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
+  background-color: #f0f0f0;
+  /* background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%); */
+  color: #4e505a;
 }
 
 code {
@@ -34,13 +35,14 @@ code {
 }
 #selectedAge{
   font-size: 20px;
-  text-decoration: underline;
+  margin-top: 1px;
+  height: 35px;
 }
 
 #inputGender {
   padding: 0 1px 0 1px;
+  border-top: 0;
   border-radius: 0;
-  text-decoration: underline;
 }
 
 #selectedAge.form-control::-webkit-input-placeholder {
@@ -179,4 +181,37 @@ code {
 
 .progress {
   height: 15px;
+}
+
+.faded {
+  opacity: .5;
+}
+
+/* .faded:hover {
+  opacity: 1;
+} */
+
+.ageGender {
+  font-size: 12px;
+  text-align: start;
+  margin-left: 15px;
+  position: relative;
+  top: 10px;
+  font-weight: bold;
+}
+
+.ageGenderGrid {
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 1fr 1fr;
+  width: 150px;
+  height: 60px;
+}
+
+.age {
+  border-right: solid 1px black;
+}
+
+.ageInput {
+  margin-left: 7px;
 }
