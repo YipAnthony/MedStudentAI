@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import Suggestion from '../Suggestion';
+import {questionIcon, closeIcon} from '../../icons'
 
 
 
 export default function MiddleContainer(props) {
+
 
 
     function handleClick (e) {
@@ -11,6 +13,8 @@ export default function MiddleContainer(props) {
     }
     // display question w/ responses 
     let questionArray = [];
+    let [rationaleOutput, setRationaleOutput] = useState("")
+
     if (props.promptQuestions){
         // SINGLE RESPONSE: YES/NO/UNKNOWN
         if (props.promptQuestions['type'] === "single") {
@@ -38,7 +42,12 @@ export default function MiddleContainer(props) {
                         onClick={handleClick}
                     >
                         {props.promptQuestions["text"]}
+                        <span className="questionIcon" onClick={rationaleAPI}>{questionIcon}</span>
                     </div>
+                    <div id="rationaleOutputElement" className= "hidden card">
+                        <div className="float-right questionIcon" onClick={closeRationale}>{closeIcon}</div>
+                        <div className="card-body">{rationaleOutput}</div>
+                     </div>
                     <div className="card-text">
                         {buttons}
                     </div>
@@ -71,7 +80,12 @@ export default function MiddleContainer(props) {
                         onClick={handleClick}
                     >
                         {props.promptQuestions["text"]}
+                        <span className="questionIcon" onClick={rationaleAPI}>{questionIcon}</span>
                     </div>
+                    <div id="rationaleOutputElement" className= "hidden card">
+                        <div className="float-right questionIcon" onClick={closeRationale}>{closeIcon}</div>
+                        <div className="card-body">{rationaleOutput}</div>
+                     </div>
                     <div className="card-text">
                         {buttons}
                     </div>
@@ -104,6 +118,11 @@ export default function MiddleContainer(props) {
                         onClick={handleClick}
                     >
                         {props.promptQuestions["text"]}
+                        <span className="questionIcon" onClick={rationaleAPI}>{questionIcon}</span>
+                    </div>
+                    <div id="rationaleOutputElement" className= "hidden card">
+                        <div className="float-right questionIcon" onClick={closeRationale}>{closeIcon}</div>
+                        <div className="card-body">{rationaleOutput}</div>
                     </div>
                     <div className="card-text">
                         {checkItems}
@@ -120,7 +139,6 @@ export default function MiddleContainer(props) {
         }
         
     }
-    let [rationale, setRationale] = useState({})
     let [conditionParams, setconditionParams] = useState([])
     let [observationParams, setobservationParams] = useState([])
     let [type, setType] = useState("")
@@ -138,13 +156,14 @@ export default function MiddleContainer(props) {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            let output = data
             setconditionParams (() => data['condition_params'])
             setobservationParams (() => data["observation_params"])
             setType (() => data["type"])
-            console.log(rationale)
+            let element = document.querySelector('#rationaleOutputElement')
+            element.classList.remove('hidden')
         })
     }
+
 
     
     useEffect (() => {
@@ -152,40 +171,44 @@ export default function MiddleContainer(props) {
         let conditionParamNameList = "";
         if (conditionParams.length === 0 & observationParams.length === 0) return
         conditionParams.forEach(element => {
-            conditionParamNameList += `${element['name']}`
+            conditionParamNameList += `"${element['name']}"`
         })
         let observationParamNameList = "";
         observationParams.forEach(element => {
-            observationParamNameList += `${element['name']}`
+            observationParamNameList += `"${element['name']}"`
         })
         console.log('set useEffect variables')
         if (type === "r0") {
-            alert (`A negative response to this question reduces the
+            setRationaleOutput (() => `A negative response to this question reduces the
             probability of ${conditionParamNameList}and other conditions.`)
         }
         else if (type === "r1") {
-            alert (`This question is asked because ${observationParamNameList}might
+             setRationaleOutput(() => `This question is asked because ${observationParamNameList}might
              be associated with one or more considered conditions.`)
         }
         else if (type === "r2") {
-            alert (`A negative response to this question reduces 
+            setRationaleOutput (() => `A negative response to this question reduces 
             probability of ${conditionParamNameList}and other conditions.`)
         }
         else if (type === "r3") {
-            alert (`This question helps rule in or 
+            setRationaleOutput (() => `This question helps rule in or 
             out conditions such as ${conditionParamNameList}.`)
         }
         else if (type === "r4") {
-            alert (`This question helps determine whether ${observationParamNameList} 
+            setRationaleOutput (() =>  `This question helps determine whether ${observationParamNameList} 
             might be one of the causes of your symptoms.`)
         }
         else if (type === "r5") {
-            alert (`This question screens for any recent injury.`)
+            setRationaleOutput (() => `This question screens for any recent injury.`)
         }
         else if (type === "r6") {
-            alert (`This question helps further characterize the ${observationParamNameList}.`)
+            setRationaleOutput (() => `This question helps further characterize the ${observationParamNameList}.`)
         }
-    }, [type])
+    }, [conditionParams, observationParams, type])
+
+    function closeRationale(e) {
+        e.target.parentNode.parentNode.classList.add('hidden')
+    }
 
     return (
         <div>
@@ -193,8 +216,11 @@ export default function MiddleContainer(props) {
            
             <div className="card col-md m-1 ml-0 mr-0 p-2 roundedCorners">
                 <h5 className="card-body">Additional Questions:</h5>
-                
-                {questionArray}<span className="btn btn-sm btn-primary" onClick={rationaleAPI}>Explain</span>
+                {/* <span className="btn btn-sm btn-primary" onClick={rationaleAPI}>Explain</span> */}
+               
+                {questionArray}
+                 
+               
             </div>
             : null}
             {props.suggestSymptoms.length>0 ? 

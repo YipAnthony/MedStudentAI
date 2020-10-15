@@ -242,10 +242,7 @@ export default function PatientSymptoms(props) {
             alert ("Chief complaint is required")
             return;
         }
-        if ((props.patientSymptoms.length + props.patientSymptomsAbsent.length) < 2) {
-            alert ("Add at least two additional symptoms")
-            return;
-        }
+       
         let outputJSON = JSON.stringify(output)
         console.log(outputJSON)
         // ACTUAL API POST FUNCTIONS
@@ -415,7 +412,7 @@ export default function PatientSymptoms(props) {
                         <ul className="text-left list-group presentSymptoms">{patientSymptomAbsentArray}</ul>
                     </div>
                 </div>
-                {patientSymptomAbsentArray.length > 2 | patientSymptomArray.length >2 ? 
+                {patientSymptomAbsentArray.length >= 0 | patientSymptomArray.length >= 0 ? 
                 <button className="btn btn-success btn-sm m-2" onClick={() => sendInfoToAPI("suggest")}>Suggest Symptoms</button>:
                 null}
                 <div className="row">

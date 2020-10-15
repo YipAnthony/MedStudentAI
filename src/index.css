@@ -285,3 +285,8 @@ code {
   font-size: 14px;
   padding: 0;
 }
+
+.questionIcon {
+  width: 15px;
+  margin-left: 5px;
+}
