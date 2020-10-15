@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Suggestion from '../Suggestion';
 
 
@@ -120,9 +120,12 @@ export default function MiddleContainer(props) {
         }
         
     }
+    let [rationale, setRationale] = useState({})
+    let [conditionParams, setconditionParams] = useState([])
+    let [observationParams, setobservationParams] = useState([])
+    let [type, setType] = useState("")
 
     function rationaleAPI() {
-        
         fetch("https://api.infermedica.com/v2/rationale", {
             method: 'POST',
             headers: {
@@ -134,9 +137,55 @@ export default function MiddleContainer(props) {
         })
         .then(response => response.json())
         .then(data => {
-        console.log(data)
+            console.log(data)
+            let output = data
+            setconditionParams (() => data['condition_params'])
+            setobservationParams (() => data["observation_params"])
+            setType (() => data["type"])
+            console.log(rationale)
         })
     }
+
+    
+    useEffect (() => {
+        console.log('inside useEffect hook')
+        let conditionParamNameList = "";
+        if (conditionParams.length === 0 & observationParams.length === 0) return
+        conditionParams.forEach(element => {
+            conditionParamNameList += `${element['name']}`
+        })
+        let observationParamNameList = "";
+        observationParams.forEach(element => {
+            observationParamNameList += `${element['name']}`
+        })
+        console.log('set useEffect variables')
+        if (type === "r0") {
+            alert (`A negative response to this question reduces the
+            probability of ${conditionParamNameList}and other conditions.`)
+        }
+        else if (type === "r1") {
+            alert (`This question is asked because ${observationParamNameList}might
+             be associated with one or more considered conditions.`)
+        }
+        else if (type === "r2") {
+            alert (`A negative response to this question reduces 
+            probability of ${conditionParamNameList}and other conditions.`)
+        }
+        else if (type === "r3") {
+            alert (`This question helps rule in or 
+            out conditions such as ${conditionParamNameList}.`)
+        }
+        else if (type === "r4") {
+            alert (`This question helps determine whether ${observationParamNameList} 
+            might be one of the causes of your symptoms.`)
+        }
+        else if (type === "r5") {
+            alert (`This question screens for any recent injury.`)
+        }
+        else if (type === "r6") {
+            alert (`This question helps further characterize the ${observationParamNameList}.`)
+        }
+    }, [type])
 
     return (
         <div>
@@ -145,7 +194,7 @@ export default function MiddleContainer(props) {
             <div className="card col-md m-1 ml-0 mr-0 p-2 roundedCorners">
                 <h5 className="card-body">Additional Questions:</h5>
                 
-                {questionArray}<span className="btn btn-sm" onClick={rationaleAPI}>Explain</span>
+                {questionArray}<span className="btn btn-sm btn-primary" onClick={rationaleAPI}>Explain</span>
             </div>
             : null}
             {props.suggestSymptoms.length>0 ? 
