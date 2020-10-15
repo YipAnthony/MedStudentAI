@@ -8,10 +8,10 @@ export default function RightContainer(props) {
             let percentage = Number(props.ddx[i]["probability"]) * 100
             percentage = Math.round(percentage)
             let color;
-            if (percentage > 25) {
+            if (percentage > 50) {
                 color = "bg-success"
             }
-            else if (percentage > 15) {
+            else if (percentage > 25) {
                 color = "bg-warning"
             }
             else color = "bg-danger"
@@ -24,7 +24,10 @@ export default function RightContainer(props) {
                             role = "progressbar" 
                             style = {{width:percentage+"%"}}
                             variant={color} 
-                            aria-valuenow={percentage}>{percentage}%</div>
+                            // aria-valuenow={percentage}
+                            >
+                            {/* {percentage}% */}
+                        </div>
                     </div>
                 </h6>
             )
@@ -34,7 +37,7 @@ export default function RightContainer(props) {
     return (
         <div>
             {props.ddx.length>0 ? 
-            <div  className="card col-sm order-3">
+            <div  className="card col-sm order-3 roundedCorners">
                 <h5 className="card-body mt-2 pb-0 mb-0">Differential Diagnosis:</h5>
                 <div className="card-text p-3" >{differentialArray}</div>
             </div> 

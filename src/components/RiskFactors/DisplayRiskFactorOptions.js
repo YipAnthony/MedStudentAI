@@ -84,7 +84,7 @@ export default function DisplayRiskFactorOptions(props) {
                     onClick={handleSearch}
                 >Search</button> */}
             </div>
-            <div id="labSearchResults" className="card" style={outputRiskFactors.length === 0 ? {height:"0"}:{height: "max(200px)"}}> 
+            <div id="labSearchResults" className="card" style={outputRiskFactors.length === 0 ? {height:"0"}:{maxHeight: "10%"}}> 
                 {outputRiskFactors}
                 
             </div>

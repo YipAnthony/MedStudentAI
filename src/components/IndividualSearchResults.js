@@ -19,7 +19,9 @@ export default function IndividualSearchResults(props) {
             </div>
             <div id="searchResultButtons" className="card-body d-flex pt-0 pb-1 justify-content hidden">
                 <button id="clickAddSymptom" data-array={props.arrayNumber} data-present="present" className="btn btn-primary btn-sm mr-1 shadow-none " onClick={props.handleChange}>Present</button>
+                {props.chiefComplaint === "yes" ? null:
                 <button id="clickAddSymptom" data-array={props.arrayNumber} data-present="absent" className="btn btn-primary btn-sm mr-1 shadow-none " onClick={props.handleChange}>Absent</button>
+                }
             </div>
         </div>
     )

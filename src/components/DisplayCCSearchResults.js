@@ -13,6 +13,7 @@ export default function DisplayCCSearchResults(props) {
                 searchResults = {searchResultsCC[i]}
                 symptomName = {searchResultsCC[i]["name"]}
                 handleChange={props.handleChangeCC}
+                chiefComplaint={"yes"}
             />
         )
     }

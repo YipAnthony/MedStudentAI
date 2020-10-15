@@ -22,7 +22,7 @@ export default function PatientSymptoms(props) {
         let input = props.selectedCC.name
         selectedCCName.push(
             <span key={0} style={{display: "inline"}}>
-                <button className="btn btn-light btn-lg p-0 m-1 mr-0 p shadow-none" onClick={toggleHidden}>
+                <button className="btn btn-light btn-lg p-0 m-1 mr-0 p shadow-none color" onClick={toggleHidden}>
                     {input}
                 </button> 
                 <button data-array={0} className="btn btn-danger btn-md p-1 m-1 ml-0 shadow-none hidden" onClick={props.deleteCC}>X</button>
@@ -47,9 +47,9 @@ export default function PatientSymptoms(props) {
         patientRiskFactorArray.push(
             <li key={i} className="listItem">
             <div style={{display: "inline"}}>
-                <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                     {input}
-                </button> 
+                </span> 
                 <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteRiskFactor}>X</button>
             </div>
             </li>
@@ -73,12 +73,11 @@ export default function PatientSymptoms(props) {
         patientSymptomArray.push(
             <li key={i} className="listItem">
                 <div style={{display: "inline"}}>
-                    <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                    <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                         {input}
-                    </button> 
+                    </span> 
                     <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
                 </div>
-                <br/>
             </li>
         )
     }
@@ -100,12 +99,11 @@ export default function PatientSymptoms(props) {
         patientSymptomAbsentArray.push(
             <li key={i} className="listItem">
                 <div style={{display: "inline"}}>
-                    <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                    <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                         {input}
-                    </button> 
+                    </span> 
                     <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
                 </div>
-                <br/>
             </li>
         )
     }
@@ -128,9 +126,9 @@ export default function PatientSymptoms(props) {
                 patientSymptomArray.push(
                     <li key={.1*1/i} className="listItem">
                     <div key={.1*1/i} style={{display: "inline"}}>
-                        <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                        <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                             {input}
-                        </button> 
+                        </span> 
                         <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
                     </div>
                     </li>
@@ -140,9 +138,9 @@ export default function PatientSymptoms(props) {
                 patientSymptomAbsentArray.push(
                     <li key={1/i/10} className="listItem">
                         <div key={1/i} style={{display: "inline"}}>
-                            <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                            <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                                 {input}
-                            </button> 
+                            </span> 
                             <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
                         </div>
                     </li>
@@ -152,9 +150,9 @@ export default function PatientSymptoms(props) {
                 patientUnknownArray.push(
                     <li key={i} className="listItem">
                         <div key={1/i} style={{display: "inline"}}>
-                            <button className="btn btn-light btn-sm m-0 mr-0 p-0 shadow-none" onClick={toggleHidden}>
+                            <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                                 {input}
-                            </button> 
+                            </span> 
                             <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
                         </div>
                     </li>
@@ -197,11 +195,11 @@ export default function PatientSymptoms(props) {
             let id = props.patientLabs[i]["results"][j]["id"]
             let stateLabResult  = props.patientLabs[i]['selectedResult'] 
             labResultType.push(
-                <div key={id} >
+                <span key={id} >
                     <button className={testActive(labResult, stateLabResult)} onClick={props.selectLabResult}>
                         {labResult}
                     </button> 
-                </div>
+                </span>
             )
         }
 
@@ -211,6 +209,7 @@ export default function PatientSymptoms(props) {
                     <button className="btn btn-light btn-sm p-0 m-0 mr-0 shadow-none" onClick={toggleHidden}>
                         {input}
                     </button> 
+                    <br/>
                     <span id="hiddenButtons" data-selectedresult={props.patientLabs[i]['selectedResult']} className="hidden">
                         {labResultType}
                         <button data-array={0} className="btn btn-danger btn-sm p-1 m-1 ml-1 mt-0 shadow-none" onClick={props.deleteLab}>X</button>
@@ -235,6 +234,18 @@ export default function PatientSymptoms(props) {
                 ...symptomsToJSON(props.updatedResponses)
             ]
         }
+        if (props.selectedAge === "") {
+            alert ("Patient age is required")
+            return;
+        }
+        if (props.selectedCC === "") {
+            alert ("Chief complaint is required")
+            return;
+        }
+        if ((props.patientSymptoms.length + props.patientSymptomsAbsent.length) < 2) {
+            alert ("Add at least two additional symptoms")
+            return;
+        }
         let outputJSON = JSON.stringify(output)
         console.log(outputJSON)
         // ACTUAL API POST FUNCTIONS
@@ -244,6 +255,7 @@ export default function PatientSymptoms(props) {
             api += "?max_results=20"
         }
         console.log(api)
+        props.jsonPOSTAPIObject(outputJSON)
         fetch(api, {
             method: 'POST',
             headers: {
@@ -341,6 +353,13 @@ export default function PatientSymptoms(props) {
 
     // UPDATE THIS. DO NOT INCLUDE "SOURCE" ATTRIBUTE
  
+    useEffect(() => {
+        if (props.clickedSuggestedQuestion) {
+                sendInfoToAPI("diagnosis")
+                props.setSuggestQuestionToFalse()
+        }
+        else return
+    }, [props.clickedSuggestedQuestion])
 
 
     return (
@@ -349,27 +368,31 @@ export default function PatientSymptoms(props) {
                 Med Student AI
             </h3> */}
             <div className="border-0 p-3 pl-5 pr-5">
+                <h4 className="title d-flex border-0">
+                    Patient report:
+                </h4>
                 <div className="ageGenderGrid">
                         <div className="ageGender age">AGE</div>
-                        <div className="ageGender">SEX</div>
+                        <div className="ageGender age">SEX</div>
+                        <div className="ageGender">CHIEF COMPLAINT</div>
 
                         <div className="d-flex justify-content-start age ageInput"><Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
                         </div>
-                        <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
-
+                        <div className="d-flex justify-content-start age ageInput sex">
+                            <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
+                        </div>
+                        <div className="d-flex justify-content-start ageInput ccInput color">
+                            {selectedCCName}
+                            <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img>
+                        </div>
                 </div>
-                <h4 className="title d-flex border-0">
-                    <div className="d-flex flex-column">
-                    </div>
-                    <div className="d-flex flex-column">
-                    </div>
-                </h4>
+                <br/>
                 <h5 className ={props.selectedCC ? null:"faded"}>
 
-                    <strong >Chief Complaint:</strong>
+                    {/* <strong >Chief Complaint:</strong> */}
                     {/* {props.selectedCC !== "" ? "Chief complaint: ":""} */}
-                    {selectedCCName}
-                    <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img>
+                    {/* {selectedCCName} */}
+                    {/* <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img> */}
 
                 </h5>
                 <div className ={patientSymptomArray.length > 0 | patientSymptomAbsentArray.length > 0 ? null:"faded"}>
@@ -381,31 +404,23 @@ export default function PatientSymptoms(props) {
                     <hr className="m-0"/>
                 </div>
                 <div className="row">
-                    <div className="col-sm card-text p-0 pl-3 pt-2 text-left">
+                    <div className="col-sm card-text p-0 pl-3 pt-2 text-left ">
                         {patientSymptomArray.length > 0 ? "Present:":null}
                         {patientSymptomArray.length > 0 ? <br/>:null}
-                        <ul className="text-left list-group">{patientSymptomArray}</ul>
+                        <ul className="text-left list-group presentSymptoms">{patientSymptomArray}</ul>
                     </div>
-                    <div className="col-sm card-text p-0 pl-3 pt-2 text-left">
+                    <div className="col-sm card-text p-0 pl-3 pt-2 text-left  ">
                         {patientSymptomAbsentArray.length > 0 ? "Absent:":null}
                         {patientSymptomAbsentArray.length > 0 ? <br/>:null}
-                        <div className="text-left">{patientSymptomAbsentArray}</div>
+                        <ul className="text-left list-group presentSymptoms">{patientSymptomAbsentArray}</ul>
                     </div>
                 </div>
-                <div className="row">
-                    <div className ={props.patientLabs.length > 0 ? null:"faded"}>
-                        <div className="card-text p-0 pt-0 text-left">
-                        <span className="category">Labs</span>
-                        <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickLabsSearch}></img>
-                        
-                        <hr className="m-0"/>
-                        <ul className="text-left list-group">{selectedLabs}</ul>
-                        </div>
-                    </div>
-                </div>
+                {patientSymptomAbsentArray.length > 2 | patientSymptomArray.length >2 ? 
+                <button className="btn btn-success btn-sm m-2" onClick={() => sendInfoToAPI("suggest")}>Suggest Symptoms</button>:
+                null}
                 <div className="row">
                     <div className ={props.patientRiskFactors.length > 0 ? null:"faded"}>
-                        <div className="card-text p-0 pt-2 text-left">
+                        <div className="card-text p-0 pt-0 text-left">
                             <span className="category">Risk factors</span>
                             <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickRisksSearch}></img>
 
@@ -414,16 +429,30 @@ export default function PatientSymptoms(props) {
                         </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className ={props.patientLabs.length > 0 ? null:"faded"}>
+                        <div className="card-text p-0 pt-2 text-left">
+                        <span className="category">Labs</span>
+                        <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickLabsSearch}></img>
+                        
+                        <hr className="m-0"/>
+                        <ul className="text-left list-group">{selectedLabs}</ul>
+                        </div>
+                    </div>
+                </div>
+              
                 <p className="card-text p-2">
                     {patientUnknownArray.length > 0 ? "Patient is unsure:":null}
                     {patientUnknownArray}
                 </p>
 
             </div>
-            <div className="d-flex justify-content-center">
-                <button className="btn btn-success btn-lg m-2" onClick={() => sendInfoToAPI("suggest")}>Suggest</button>
-                <button className="btn btn-success btn-lg m-2" onClick={() => sendInfoToAPI("diagnosis")}>Analyze</button>
-            </div>  
+            {props.selectedAge !== "" & (props.patientSymptoms.length + props.patientSymptomsAbsent.length) > 4 & props.selectedCC !== "" ? 
+                <div className="d-flex justify-content-center">
+                    <button className="btn btn-success btn-lg m-2" onClick={() => sendInfoToAPI("diagnosis")}>Generate Differential</button>
+                </div> 
+                : null
+            }  
         </div>
     )
 }

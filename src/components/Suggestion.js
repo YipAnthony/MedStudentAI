@@ -30,7 +30,7 @@ export default function Suggestion(props) {
 
 
     return (
-        <div>
+        <div className="card-body addSymptomsDisplay">
             {outputArray.length > 0 ? outputArray:null}
         </div>
     )

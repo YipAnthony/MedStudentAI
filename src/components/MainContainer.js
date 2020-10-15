@@ -15,6 +15,12 @@ export default function MainContainer() {
     let [suggestSymptomsResponse, setSuggestSymptomsResponse] = useState([])
 
     let [updatedResponses, setUpdatedRespones] = useState([])
+
+    let [jsonObject, setjsonObject] = useState({})
+
+    function jsonPOSTAPIObject (json) {
+        setjsonObject(() => json)
+    }
     
     // function: take JSON ddx conditions and add to main container state        
     // function: take JSON response question obj and add to main container state
@@ -62,6 +68,7 @@ export default function MainContainer() {
             })
             setPromptQuestions(() => {})
         }
+        setClickedSuggestedQuestion(() => true)
 
     }
 
@@ -87,6 +94,7 @@ export default function MainContainer() {
             })
             setPromptQuestions(() => {})
         })
+        setClickedSuggestedQuestion(() => true)
     }
 
     function jsonOutputToMainContainerState(object) {
@@ -99,6 +107,8 @@ export default function MainContainer() {
             setSuggestSymptoms(() => object)
         }
     }
+    
+    let [clickedSuggestedQuestion, setClickedSuggestedQuestion] = useState(false)
 
     function handleSuggestionResult (e) {
         let index = Number(e.target.parentNode.getAttribute('data-index'))
@@ -126,7 +136,13 @@ export default function MainContainer() {
             output.splice(index,1)
             return output
         })
+        
     }
+
+    function setSuggestQuestionToFalse() {
+        setClickedSuggestedQuestion(() => false)
+    }
+
     function deleteUpdatedResponse (e) {
         let index = Number(e.target.getAttribute('data-array'))
         setUpdatedRespones(prev => {
@@ -143,6 +159,9 @@ export default function MainContainer() {
                 updatedResponses={updatedResponses}
                 suggestSymptomsResponse={suggestSymptomsResponse}
                 deleteUpdatedResponse = {deleteUpdatedResponse}
+                clickedSuggestedQuestion = {clickedSuggestedQuestion}
+                setSuggestQuestionToFalse = {setSuggestQuestionToFalse}
+                jsonPOSTAPIObject={jsonPOSTAPIObject}
             />
             {ddx.length > 0 | promptQuestions | suggestSymptoms.length > 0 ? 
             
@@ -156,6 +175,7 @@ export default function MainContainer() {
                     handleQuestionResponse={handleQuestionResponse}
                     handleSuggestionResult={handleSuggestionResult}
                     handleMultipleQuestionResponse={handleMultipleQuestionResponse}
+                    jsonObject={jsonObject}
                 />
             </div>
             : null}

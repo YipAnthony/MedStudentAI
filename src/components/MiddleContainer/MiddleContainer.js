@@ -121,17 +121,35 @@ export default function MiddleContainer(props) {
         
     }
 
+    function rationaleAPI() {
+        
+        fetch("https://api.infermedica.com/v2/rationale", {
+            method: 'POST',
+            headers: {
+                "App-Id": "0997c2c7",
+                "App-Key": "07a4f3f3c41553ca5ea33de3c81114c7",
+                'Content-Type': 'application/json',
+            },
+            body: props.jsonObject,
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log(data)
+        })
+    }
+
     return (
         <div>
             {questionArray.length > 0 ? 
            
-            <div className="card col-md m-1 ml-0 mr-0 p-2">
+            <div className="card col-md m-1 ml-0 mr-0 p-2 roundedCorners">
                 <h5 className="card-body">Additional Questions:</h5>
-                {questionArray}
+                
+                {questionArray}<span className="btn btn-sm" onClick={rationaleAPI}>Explain</span>
             </div>
             : null}
             {props.suggestSymptoms.length>0 ? 
-            <div className="card col-md m-1 ml-0 mr-0 p-2">
+            <div className="card col-md m-1 ml-0 mr-0 p-2 addSymptomsCard roundedCorners">
                 <h5 className="card-body">Additional Symptoms:</h5>
                 <Suggestion 
                     suggestSymptoms={props.suggestSymptoms}

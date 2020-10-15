@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Age(props) {
 
-    let style = "form-control border-0 m-0 p-0 d-inline text-center shadow-none"
+    let style = "form-control border-0 m-0 p-0 d-inline text-center shadow-none color"
 
     return (
        

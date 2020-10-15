@@ -23,7 +23,7 @@ export default function RiskFactorTopPanelButtons(props) {
     })
 
     return (
-        <div className="mb-2">
+        <div className="mb-2 riskFactorButtons">
             <button 
                 key={"Common"} 
                 className="btn btn-outline-primary active btn-sm m-1 shadow-none" 

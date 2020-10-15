@@ -263,7 +263,7 @@ export default function LeftContainer(props) {
 
     function selectLabResult(e){
         let button = e.target
-        let labName = button.parentNode.previousSibling.innerHTML
+        let labName = button.parentNode.innerHTML
         let resultName = button.innerHTML
         let index = patientLabs.map((element, index) => {
             let output;
@@ -413,7 +413,9 @@ export default function LeftContainer(props) {
 
     return (
         <div id="patientNoteContainer" className="col-md-7">
-            <ChiefComplaint
+            
+            <div id="patientMainNote" className="card border-0">
+                    <ChiefComplaint
                         ChiefComplaintInput={ChiefComplaintInput} 
                         handleChange={handleChange} 
                         // selectSymptom = {selectSymptom}
@@ -423,8 +425,6 @@ export default function LeftContainer(props) {
                         handleChangeCC={handleChangeCC}    
                         closeCCSearchResults={closeCCSearchResults}
                     />
-            <div id="patientMainNote" className="card border-0">
- 
                     <PatientSymptoms 
                         patientSymptoms={patientSymptoms}
                         patientSymptomsAbsent={patientSymptomsAbsent}
@@ -447,6 +447,9 @@ export default function LeftContainer(props) {
                         clickSymptomSearch={clickSymptomSearch}
                         clickLabsSearch={clickLabsSearch}
                         clickRisksSearch={clickRisksSearch}
+                        clickedSuggestedQuestion={props.clickedSuggestedQuestion}
+                        setSuggestQuestionToFalse = {props.setSuggestQuestionToFalse}
+                        jsonPOSTAPIObject={props.jsonPOSTAPIObject}
                         
                     />
                     <AddSymptom
@@ -457,6 +460,12 @@ export default function LeftContainer(props) {
                         searchResults={searchResults}
                         closeSymptomSearchResults={closeSymptomSearchResults}  
                     />
+                    <RiskFactorContainer
+                        handleAddRiskFactor={handleAddRiskFactor}
+                        filteredRiskFactors={filteredRiskFactors}
+                        handleRiskFactorCategoryClick={handleRiskFactorCategoryClick}
+                        closeRisksSearchResults={closeRisksSearchResults}
+                    />
                     <LabContainer
                         handleAddLab={handleAddLab}
                         filteredLabs={filteredLabs}
@@ -464,12 +473,7 @@ export default function LeftContainer(props) {
                         categoryMap={categoryMap}
                         closeLabsSearchResults={closeLabsSearchResults}
                     />
-                    <RiskFactorContainer
-                        handleAddRiskFactor={handleAddRiskFactor}
-                        filteredRiskFactors={filteredRiskFactors}
-                        handleRiskFactorCategoryClick={handleRiskFactorCategoryClick}
-                        closeRisksSearchResults={closeRisksSearchResults}
-                    />
+                    
             </div> 
         </div>
     )
