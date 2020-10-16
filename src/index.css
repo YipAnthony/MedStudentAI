@@ -33,9 +33,17 @@ code {
   border: none;
 }
 
+.riskfactorWrapper {
+  position: relative;
+}
+
 .riskFactorButtons {
+  position: relative;
   max-height: 78px !important;
-  overflow-y: auto;
+  max-width: 100%;
+  overflow-x: auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .dropdown-item {
@@ -137,6 +145,7 @@ code {
 .category {
   font-size: 20px;
   font-weight: bold;
+  justify-content: start;
 }
 
 #ccSearch {
@@ -198,7 +207,7 @@ code {
 }
 
 #labTopButtonsContainer {
-  height: 10vh !important;
+  height: 8vh !important;
   overflow-y: scroll;
 }
 
@@ -289,4 +298,40 @@ code {
 .questionIcon {
   width: 15px;
   margin-left: 5px;
+}
+
+.riskFactorIcons {
+  display: grid;
+  height: 50px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 1fr;
+  padding: 3px;
+  margin: 0;
+}
+
+.riskFactorIcons span {
+  font-size: 12px;
+}
+
+.untargetable {
+  pointer-events: none;
+}
+
+.svgIcon {
+  width: 30px;
+}
+
+.centerIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.text {
+  text-align: center;
+}
+
+.highlight {
+  background-color: #7e7e7e6c;
+  border-radius: 4px;
 }

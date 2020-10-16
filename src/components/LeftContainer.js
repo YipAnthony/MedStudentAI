@@ -291,14 +291,17 @@ export default function LeftContainer(props) {
     function handleRiskFactorCategoryClick(e){
         
         let button = e.target
-        for (let i = 0; i < button.parentNode.children.length; i++){
-            if (button.parentNode.childNodes[i].classList.contains('active')) {
-                button.parentNode.childNodes[i].classList.remove('active')
+        for (let i = 0; i < button.parentNode.parentNode.children.length; i++){
+            if (button.parentNode.parentNode.childNodes[i].firstElementChild.classList.contains('highlight')) {
+                button.parentNode.parentNode.childNodes[i].firstElementChild.classList.remove('highlight')
             }
-            else button.classList.add('active')
         }
+        button.classList.add('highlight')
 
-        let selectedButton = e.target.innerHTML
+        let selectedButton = e.target
+        console.log(selectedButton)
+        selectedButton = selectedButton.querySelector('.text')
+        selectedButton = selectedButton.innerHTML
         let regex;
         if (selectedButton === "All") {
             regex = /.*/
@@ -307,7 +310,7 @@ export default function LeftContainer(props) {
         else if (selectedButton === "Common") {
             regex = /bmi|hypertension|cholest|cigaret|abdominal injury|skeletal trauma|recent physical|acceleration-decel|back injury|recent head|chest injury|limb injury|pregnancy|postmenopause|diabete|depress/
         }
-        else if (selectedButton === "Trauma/Injury") {
+        else if (selectedButton === "Trauma") {
             regex = /injury|trauma|wound/
         }
         else if (selectedButton === "Travel") {
@@ -319,7 +322,7 @@ export default function LeftContainer(props) {
         else if (selectedButton === "Pulmonary") {
             regex = /asthma|pulmonary|ACE-inhibitor|smoking/
         }
-        else if (selectedButton === "Drugs/Alcohol/Smoking") {
+        else if (selectedButton === "Substances") {
             regex = /opioid|alcohol|drug|smoking|tobac|cannabis|withdraw|sedative|pill|mushroom/
         }
         else if (selectedButton === "Medications") {

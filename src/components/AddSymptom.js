@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {toggleUpIcon, toggleDownIcon} from '../icons'
+import {closeIcon} from '../icons'
 import DisplaySearchResults from './DisplaySearchResults'
 
 export default function AddSymptom(props) {
@@ -17,7 +17,7 @@ export default function AddSymptom(props) {
                     onClick={toggle}
                 >
                     <span className="ml-1">Additional Symptoms</span>
-                    <span className="float-right toggleTab" onClick={props.closeSymptomSearchResults}>X</span>
+                    <span className="float-right toggleTab" onClick={props.closeSymptomSearchResults}>{closeIcon}</span>
 
                 </h6>
                     <div className="card-body">

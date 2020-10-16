@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import Age from './Age'
 import Gender from './Gender'
+import {trashIcon} from '../icons'
 
 // for testing
 import diagnosisResponse from '../lists/diagnosisResponse'
@@ -25,7 +26,8 @@ export default function PatientSymptoms(props) {
                 <button className="btn btn-light btn-lg p-0 m-1 mr-0 p shadow-none color" onClick={toggleHidden}>
                     {input}
                 </button> 
-                <button data-array={0} className="btn btn-danger btn-md p-1 m-1 ml-0 shadow-none hidden" onClick={props.deleteCC}>X</button>
+                <button data-array={0} className="btn btn-md p-1 m-1 ml-0 shadow-none hidden" onClick={props.deleteCC}>{trashIcon}</button>
+                
             </span>
         )
     }
@@ -50,7 +52,7 @@ export default function PatientSymptoms(props) {
                 <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                     {input}
                 </span> 
-                <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteRiskFactor}>X</button>
+                <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteRiskFactor}>{trashIcon}</button>
             </div>
             </li>
         )
@@ -76,7 +78,7 @@ export default function PatientSymptoms(props) {
                     <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                         {input}
                     </span> 
-                    <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
+                    <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>{trashIcon}</button>
                 </div>
             </li>
         )
@@ -102,7 +104,7 @@ export default function PatientSymptoms(props) {
                     <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                         {input}
                     </span> 
-                    <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
+                    <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>{trashIcon}</button>
                 </div>
             </li>
         )
@@ -129,7 +131,7 @@ export default function PatientSymptoms(props) {
                         <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                             {input}
                         </span> 
-                        <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>X</button>
+                        <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>{trashIcon}</button>
                     </div>
                     </li>
                 )
@@ -141,7 +143,7 @@ export default function PatientSymptoms(props) {
                             <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                                 {input}
                             </span> 
-                            <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
+                            <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>{trashIcon}</button>
                         </div>
                     </li>
                 )
@@ -153,7 +155,7 @@ export default function PatientSymptoms(props) {
                             <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                                 {input}
                             </span> 
-                            <button data-array={i} className="btn btn-danger btn-sm m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>X</button>
+                            <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>{trashIcon}</button>
                         </div>
                     </li>
                 )
@@ -212,7 +214,7 @@ export default function PatientSymptoms(props) {
                     <br/>
                     <span id="hiddenButtons" data-selectedresult={props.patientLabs[i]['selectedResult']} className="hidden">
                         {labResultType}
-                        <button data-array={0} className="btn btn-danger btn-sm p-1 m-1 ml-1 mt-0 shadow-none" onClick={props.deleteLab}>X</button>
+                        <button data-array={0} className="btn btn-md p-1 m-1 ml-1 mt-0 shadow-none" onClick={props.deleteLab}>{trashIcon}</button>
                     </span>
                 </div>
                 <br/>
@@ -393,7 +395,7 @@ export default function PatientSymptoms(props) {
 
                 </h5>
                 <div className ={patientSymptomArray.length > 0 | patientSymptomAbsentArray.length > 0 ? null:"faded"}>
-                    <p className="text p-0 m-0">
+                    <p className="p-0 m-0">
                         <span className="category">Additional Symptoms</span>
                         <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickSymptomSearch}></img>
 

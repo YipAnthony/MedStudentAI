@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import RiskFactorTopPanelButtons from './RiskFactorTopPanelButtons'
 import DisplayRiskFactorOptions from './DisplayRiskFactorOptions'
 
-import {toggleUpIcon, toggleDownIcon} from '../../icons'
+import {closeIcon} from '../../icons'
 
 export default function RiskFactorContainer(props) {
 
@@ -21,12 +21,12 @@ export default function RiskFactorContainer(props) {
                 // onClick={toggle}
             >
                 <span className="ml-1">Risk Factors</span>
-                <span className="float-right toggleTab" onClick={props.closeRisksSearchResults}>X</span>
+                <span className="float-right toggleTab" onClick={props.closeRisksSearchResults}>{closeIcon}</span>
 
                 
             </h6>
             {showRiskFactors &&
-                <div className="card-body">
+                <div className="card-body riskfactorWrapper">
             <RiskFactorTopPanelButtons handleRiskFactorCategoryClick={props.handleRiskFactorCategoryClick}/>
             <DisplayRiskFactorOptions 
                 filteredRiskFactors={props.filteredRiskFactors} 

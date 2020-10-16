@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
-import {toggleUpIcon, toggleDownIcon} from '../icons'
+import {toggleUpIcon, toggleDownIcon, closeIcon} from '../icons'
 import DisplayCCSearchResults from './DisplayCCSearchResults'
+
 
 export default function Symptoms(props) {
 
@@ -19,7 +20,7 @@ export default function Symptoms(props) {
                 >
                    
                     <span className="ml-1">Chief complaint</span>
-                    <span className="float-right toggleTab" onClick={props.closeCCSearchResults}>X</span>
+                    <span className="float-right toggleTab questionIcon" onClick={props.closeCCSearchResults}>{closeIcon}</span>
                 </h6>
                 {
                     <div className="card-body">
