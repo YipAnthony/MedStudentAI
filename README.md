@@ -5,11 +5,14 @@
 Medstudent AI is a web application designed to be a supplemental clinical training tool for first/second year medical students, by incorporating the Infermedica API. This app allows users to input patient information (age, gender, chief complaint, additional presenting symptoms, risk factors, labs) and provides several options including: red flag symptoms to ask, additional clarification questions, and a differential diagnosis. 
 
 ### Instructions: 
-* Start by entering patient age, gender, and chief complaint. From here you will have several options:
- 1) Red Flag Symptoms: Click on the red flag icon to the left of the selected chief complaint. Based on the current patient information, the app will provide a list of "red flag" symptoms for you to verify with the patient. These can be considered high-risk symptoms that you want to rule-out in the initial encounter. 
- 2) Additional symptoms/risk factors: If you are already aware or have asked the patient for additional symptoms/pre-existing risk factors, you can enter them into the note clicking the magnifying glass icon next to "Additional Symptoms" or "Risk Factors". This will bring up a pop-up container where you can search and add symptoms/risk factors. By adding my symptoms/risk factors, you provide more details to the Infermedica API which will return a more accurate differential diagnosis. 
+Start by entering patient age, gender, and chief complaint. From here you will have several options:
+ 1) Red Flag Symptoms: 
+ Click on the red flag icon to the left of the selected chief complaint. Based on the current patient information, the app will provide a list of "red flag" symptoms for you to verify with the patient. These can be considered high-risk symptoms that you want to rule-out in the initial encounter. 
+ 2) Additional symptoms/risk factors: 
+ If you are already aware or have asked the patient for additional symptoms/pre-existing risk factors, you can enter them into the note clicking the magnifying glass icon next to "Additional Symptoms" or "Risk Factors". This will bring up a pop-up container where you can search and add symptoms/risk factors. By adding my symptoms/risk factors, you provide more details to the Infermedica API which will return a more accurate differential diagnosis. 
      Once you have added at least 2 additional symptoms, you will see a button "Suggest Symptoms" appear. Suggest symptoms will prompt additional symptoms for you to ask the patient, similar to the red flag symptoms. 
- 3) Labs: If you are aware of patient labs, you can enter them in by clicking the magnifying glass icon next to "Labs". 
+ 3) Labs: 
+ If you are aware of patient labs, you can enter them in by clicking the magnifying glass icon next to "Labs". 
 ##### Generate Differential: 
   * Once you have entered in patient age, sex, chief complaint, and at least 5 additional symptoms, the "Generate Differential" button will become available. Clicking this will take all the provided information and generate a differential diagnosis as well as follow-up questions to ask the patient. 
 
