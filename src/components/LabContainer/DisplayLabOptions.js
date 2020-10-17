@@ -90,7 +90,7 @@ export default function DisplayLabOptions(props) {
     let closeButton;
     if (outputLabs.length > 0){
         closeButton = <button 
-        className="btn btn-sm btn-primary shadow-none"
+        className="btn btn-sm btn-primary shadow-none closeButtonMargin"
         onClick={closeSearch}
         >Close</button>
     }

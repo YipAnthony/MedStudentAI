@@ -28,12 +28,13 @@ export default function AddSymptom(props) {
                                 rows="5"
                                 id="patientAdditionalSymptom" 
                                 onChange={props.handleChange} 
-                                placeholder={"Can interpret multiple phrases \nExample: 'patient endorses chest pain for 1 week, worsened with exercise, and difficulty breathing'" }
+                                placeholder={'Example: \n"Patient endorses chest pain for 1 week, worsened with exercise, and difficulty breathing"' }
                                 autoComplete="off"
                                 value={props.selectedSymptomsInput} 
                             ></textarea>
                         </div>
                         <button 
+                                id="addSymptomsearch"
                                 className="btn btn-sm btn-primary shadow-none float-right mb-2"
                                 onClick={props.handleSearch}
                             >   Search

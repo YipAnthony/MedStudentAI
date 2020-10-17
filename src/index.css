@@ -278,7 +278,7 @@ code {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  max-height: 5vh !important;
+  max-height: 6vh !important;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -418,7 +418,7 @@ code {
   text-align: center;
 }
 
-.highlight {
+.highlight, .active {
   background-color: var(--secondaryBlue);
   border-radius: 4px;
 }
@@ -481,4 +481,16 @@ code {
 
 #rationaleOutputElement {
   margin: 5px 0 5px 0;
+}
+
+#searchCCButton {
+  margin-left: 5px;
+}
+
+#addSymptomsearch {
+  margin-top: 3px;
+}
+
+.closeButtonMargin {
+  margin-top: 3px;
 }

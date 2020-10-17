@@ -1,27 +1,55 @@
 import React from 'react'
+import {starUnfilledIcon, bloodIcon} from '../../icons'
 
 export default function TopPanelButtons(props) {
 
     let categories = []
-    let labFilters = ["Blood count", "Hormones", "Microbiology", "Biochemistry"]
+    let labFilters = [
+        <span className="riskFactorIcons">
+            <span className='untargetable centerIcon'>{bloodIcon}</span>
+            <span className='untargetable text'>Blood count</span>
+        </span>,
+        <span className="riskFactorIcons">
+            <span className='untargetable centerIcon'>
+                <img className ="svgIcon" src="./hormone.png" alt="Lungs"></img>
+            </span>
+            <span className='untargetable text'>Hormones</span>
+        </span>,
+        <span className="riskFactorIcons">
+            <span className='untargetable centerIcon'>
+                <img className ="svgIcon" src="./germ.svg" alt="Lungs"></img>
+            </span>    
+            <span className='untargetable text'>Microbiology</span>
+        </span>,
+        <span className="riskFactorIcons">
+            <span className='untargetable centerIcon'>
+                <img className ="svgIcon" src="./biochem.svg" alt="Lungs"></img>
+            </span>
+            <span className='untargetable text'>Biochemistry</span>
+        </span>]
     labFilters.forEach((value, key) => {
     // props.categoryMap.forEach((value, key) => {
         categories.push(
-            <button 
+            <span 
                 key={key} 
-                className="btn btn-outline-primary btn-sm m-1 shadow-none" 
+                className="m-1 shadow-none" 
                 onClick={props.handleLabCategoryClick}
-            >{value}</button>
+            >{value}</span>
         )
     })
 
     return (
-        <div id="labTopButtonsContainer" className="mb-2">
-            <button 
+        <div id="labTopButtonsContainer" className="mb-2 riskFactorButtons d-flex">
+            <span 
                 key={"all"} 
-                className="btn btn-outline-primary active btn-sm m-1 shadow-none" 
+                className="m-1 shadow-none" 
                 onClick={props.handleLabCategoryClick}
-            >All</button>
+            >
+                <span className="riskFactorIcons active">
+                    <span className='untargetable centerIcon'>{starUnfilledIcon}</span>
+                    <span className='untargetable text'>All</span>
+                </span>
+            </span>
             {categories}
         </div>
     )

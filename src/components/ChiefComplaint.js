@@ -26,7 +26,7 @@ export default function Symptoms(props) {
                     <div className="card-body">
                         <div className="d-flex">
                             <input 
-                                className="form-control" 
+                                className="form-control shadow-none" 
                                 type="text" 
                                 id="patientCC" 
                                 onChange={props.handleChange} 

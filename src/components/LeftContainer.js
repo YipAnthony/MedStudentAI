@@ -216,13 +216,15 @@ export default function LeftContainer(props) {
 
     function handleLabCategoryClick(e){
         let button = e.target
-        for (let i = 0; i < button.parentNode.children.length; i++){
-            if (button.parentNode.childNodes[i].classList.contains('active')) {
-                button.parentNode.childNodes[i].classList.remove('active')
+        for (let i = 0; i < button.parentNode.parentNode.children.length; i++){
+            if (button.parentNode.parentNode.childNodes[i].firstElementChild.classList.contains('active')) {
+                button.parentNode.parentNode.childNodes[i].firstElementChild.classList.remove('active')
             }
         }
         button.classList.add('active')
-        let selectedButton = e.target.innerHTML
+        let selectedButton = e.target
+        selectedButton = selectedButton.querySelector('.text')
+        selectedButton = selectedButton.innerHTML
         if (selectedButton === "All") setfilteredLabs(() => labs)
         else {
             let filtered = labs.filter(element => element["category"] === selectedButton)
@@ -301,7 +303,6 @@ export default function LeftContainer(props) {
         button.classList.add('highlight')
 
         let selectedButton = e.target
-        console.log(selectedButton)
         selectedButton = selectedButton.querySelector('.text')
         selectedButton = selectedButton.innerHTML
         let regex;

@@ -62,7 +62,7 @@ export default function DisplayRiskFactorOptions(props) {
     let closeButton;
     if (outputRiskFactors.length > 0){
         closeButton = <button 
-        className="btn btn-sm btn-primary shadow-none"
+        className="btn btn-sm btn-primary shadow-none closeButtonMargin"
         onClick={closeSearch}
         >Close</button>
     }
