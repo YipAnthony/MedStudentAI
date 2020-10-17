@@ -171,10 +171,15 @@ code {
   margin: auto;
   border-radius: 10px;
   max-height: 90vh;
+  max-width: 700px !important;
 }
 
 #patientNoteContainer  {
-  margin:auto
+  margin-right: 5px;
+}
+
+#rightDisplay {
+  margin-left: 5px;
 }
 
 .roundedCorners {
