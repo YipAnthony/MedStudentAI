@@ -376,6 +376,8 @@ code {
 }
 .questionIcon:hover {
   cursor: pointer;
+  transform: scale(1.1);
+  transition-duration: .2s;
 }
 
 .riskFactorIcons {
@@ -427,10 +429,56 @@ code {
   justify-content: center;
   color: rgb(211, 0, 0);
   transition-duration: .1s;
+  opacity: .2;
 }
 
 .flagIcon:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
   transition-duration: .1s;
+  opacity: 1;
+}
+
+.ddxExplainTitle {
+  text-align: center;
+  font-size: 22px;
+}
+
+.ddquestionIcon, .rationaleQuestion {
+  position: absolute !important;
+  right: 10px;
+}
+
+.ddxExplainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: auto;
+  padding: 0 30px 10px 30px;
+}
+.ddxExplainGrid div {
+  padding-right: 5px;
+}
+.ddxExplainGrid div ul {
+  padding-left: 5px;
+}
+.ddxExplainGrid div div {
+  text-decoration: underline;
+}
+
+.ddxExplainContainer {
+  position: relative;
+  margin: auto;
+  margin-top: 10px;
+  max-height: 50vh;
+  max-width: 95%;
+  z-index: 50;
+}
+
+.evidenceText {
+  font-size: 14px;
+
+}
+
+#rationaleOutputElement {
+  margin: 5px 0 5px 0;
 }

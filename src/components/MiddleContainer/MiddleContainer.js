@@ -28,7 +28,7 @@ export default function MiddleContainer(props) {
                         data-id={props.promptQuestions["items"][0]["id"]}
                         data-name={props.promptQuestions["items"][0]["name"]}
                         data-choiceid={choices[i]["id"]}
-                        className="btn btn-sm btn-warning ml-1 mr-1"
+                        className="btn btn-sm btn-primary ml-1 mr-1"
                         onClick={props.handleQuestionResponse}
                     >
                         {choices[i]["label"]}
@@ -45,7 +45,7 @@ export default function MiddleContainer(props) {
                         <span className="questionIcon" onClick={rationaleAPI}>{questionIcon}</span>
                     </div>
                     <div id="rationaleOutputElement" className= "hidden card">
-                        <div className="float-right questionIcon" onClick={closeRationale}>{closeIcon}</div>
+                        <div className="float-right questionIcon rationaleQuestion" onClick={closeRationale}>{closeIcon}</div>
                         <div className="card-body">{rationaleOutput}</div>
                      </div>
                     <div className="card-text">
@@ -65,7 +65,7 @@ export default function MiddleContainer(props) {
                         <button 
                             data-questiontype="groupSingle"
                             data-id={choices[i]["id"]}
-                            className="btn btn-sm btn-outline-danger ml-1 mr-1"
+                            className="btn btn-sm btn-outline-primary ml-1 mr-1"
                             onClick={props.handleQuestionResponse}
                         >
                             {choices[i]["name"]}

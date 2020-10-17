@@ -1,15 +1,21 @@
-import React, {useState} from 'react'
-import {questionIcon} from '../../icons'
+import React, {useState, useEffect} from 'react'
+import {questionIcon, closeIcon} from '../../icons'
 
 export default function RightContainer(props) {
 
     let [supportingEvidence, setSupportingEvidence] = useState([])
     let [conflictingEvidence, setConflictingEvidence] = useState([])
+    let [targetDdx, setTargetDdx] = useState("")
+    let [toggleEvidence, setToggleEvidence] = useState(false)
+
+    let ddxExplainElement = document.querySelector(".ddxExplainContainer")
+
 
     function ddxExplain(e) {
         console.log(e.target.getAttribute('data-id'))
         let id = e.target.getAttribute('data-id')
-
+        let name = e.target.getAttribute('data-name')
+        setTargetDdx(() => name)
         let input = JSON.parse(props.jsonObject)
         input = {
             ...input,
@@ -30,9 +36,39 @@ export default function RightContainer(props) {
             console.log(data)
             setSupportingEvidence (() => data["supporting_evidence"])
             setConflictingEvidence(() => data["conflicting_evidence"])
+            setSupportingEvidenceArray(() => [])
+            setConflictingEvidenceArray(() => [])
+            setToggleEvidence(() => true)
+            ddxExplainElement.classList.remove('hidden')
         })
     }
+    let [supportingEvidenceArray, setSupportingEvidenceArray] = useState([])
+    let [conflictingEvidenceArray, setConflictingEvidenceArray] = useState([])
+    useEffect (() => {
+        if (toggleEvidence) {
+            for (let i = 0; i < supportingEvidence.length; i++) {
+                setSupportingEvidenceArray(prev => {
+                    return [
+                        ...prev,
+                            <li key={i} className="evidenceText">{supportingEvidence[i]["name"]}</li>
+                    ]
+                })
+            }
+            for (let i = 0; i < conflictingEvidence.length; i++) {
+                setConflictingEvidenceArray(prev => {
+                    return [
+                        ...prev,
+                        <li key={i+0.1} className="evidenceText">{conflictingEvidence[i]["name"]}</li>
+                    ]
+                })
+            }
+        }
+    }, [supportingEvidence, conflictingEvidence, toggleEvidence])
 
+    function closeDdxExplain () {
+        ddxExplainElement.classList.add('hidden')
+        setToggleEvidence(() => false)
+    }
     let differentialArray = [];
     if (props.ddx){
         for (let i = 0; i < props.ddx.length; i++) {
@@ -48,11 +84,13 @@ export default function RightContainer(props) {
             else color = "bg-danger"
             differentialArray.push(
                 <h6 key={i} className="card-text">
+                    
                     <span>
                         {props.ddx[i]["name"]}
                         {percentage > 50 ? 
                         <span 
                             className="questionIcon" 
+                            data-name={props.ddx[i]["name"]}
                             data-id={props.ddx[i]["id"]} 
                             title="Supporting evidence"
                             onClick={ddxExplain}
@@ -79,9 +117,30 @@ export default function RightContainer(props) {
 
     return (
         <div className="mb-1">
+            
             {props.ddx.length>0 ? 
             <div  className="card col-sm order-3 roundedCorners">
                 <h5 className="card-body mt-2 pb-0 mb-0">Differential Diagnosis:</h5>
+                <div className="ddxExplainContainer card hidden">
+                    <div className="ddxExplainTitle card-title">
+                        {targetDdx}
+                        <span className="float-right toggleTab questionIcon ddquestionIcon" onClick={closeDdxExplain}>{closeIcon}</span>
+                    </div>
+                    <div className="ddxExplainGrid">
+                        <div>
+                            <div>Supporting Evidence</div>
+                            <ul className="list-group">
+                                {supportingEvidenceArray}
+                            </ul>
+                        </div>
+                        <div>
+                            <div>Conflicting Evidence</div>
+                            <ul className="list-group">
+                                {conflictingEvidenceArray}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 <div className="card-text p-3" >{differentialArray}</div>
             </div> 
             : null}

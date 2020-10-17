@@ -402,7 +402,7 @@ export default function PatientSymptoms(props) {
                         <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickSymptomSearch}></img>
                         </span>
                         {patientSymptomAbsentArray.length >= 2 | patientSymptomArray.length >= 2 ? 
-                         <button className="btn btn-secondary btn-sm m-0 float-right shadow-none" onClick={() => sendInfoToAPI("suggest")}>Suggest Symptoms</button>:
+                         <button className="btn btn-outline-secondary btn-sm m-0 float-right shadow-none" onClick={() => sendInfoToAPI("suggest")}>Suggest Symptoms</button>:
                          null}
 
                     </p>
