@@ -77,7 +77,7 @@ export default function DisplayLabOptions(props) {
         setlabMatch(() => result['name'])
         for (let i = 0; i < result['results'].length; i++){
             output.push(
-                <button key={i} className="btn btn-sm btn-outline-danger shadow-none m-1 mb-3" onClick={props.handleAddLab} >
+                <button key={i} className="btn btn-sm btn-outline-dark shadow-none m-1 mb-3" onClick={props.handleAddLab} >
                     {result['results'][i]['type']}
                 </button>
             )
@@ -100,7 +100,7 @@ export default function DisplayLabOptions(props) {
         <div>
             <div className="d-flex">
                 <input 
-                    className="form-control" 
+                    className="form-control shadow-none" 
                     type="text" 
                     onChange={handleChange} 
                     placeholder={"Search Labs"}
@@ -112,7 +112,7 @@ export default function DisplayLabOptions(props) {
                     onClick={handleSearch}
                 >Search</button> */}
             </div>
-            <div id="labSearchResults" className="card" style={outputLabs.length === 0 ? {height:"0"}:{height: "max(200px)"}}> 
+            <div id="labSearchResults" className="card" > 
                 {outputLabs}
                 
             </div>

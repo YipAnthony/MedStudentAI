@@ -3,13 +3,15 @@ import React from 'react'
 export default function TopPanelButtons(props) {
 
     let categories = []
-    props.categoryMap.forEach((value, key) => {
+    let labFilters = ["Blood count", "Hormones", "Microbiology", "Biochemistry"]
+    labFilters.forEach((value, key) => {
+    // props.categoryMap.forEach((value, key) => {
         categories.push(
             <button 
                 key={key} 
                 className="btn btn-outline-primary btn-sm m-1 shadow-none" 
                 onClick={props.handleLabCategoryClick}
-            >{key}</button>
+            >{value}</button>
         )
     })
 

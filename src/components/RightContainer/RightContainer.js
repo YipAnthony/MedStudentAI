@@ -35,7 +35,7 @@ export default function RightContainer(props) {
     }
 
     return (
-        <div>
+        <div className="mb-1">
             {props.ddx.length>0 ? 
             <div  className="card col-sm order-3 roundedCorners">
                 <h5 className="card-body mt-2 pb-0 mb-0">Differential Diagnosis:</h5>

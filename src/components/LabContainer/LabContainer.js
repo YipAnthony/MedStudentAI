@@ -19,7 +19,7 @@ export default function LabContainer(props) {
                     onClick={toggle}
                 >
                     <span className="ml-1">Labs</span>
-                    <span className="float-right toggleTab" onClick={props.closeLabsSearchResults}>{closeIcon}</span>
+                    <span className="float-right toggleTab questionIcon" onClick={props.closeLabsSearchResults}>{closeIcon}</span>
 
                 </h6>
                     <div className="card-body">

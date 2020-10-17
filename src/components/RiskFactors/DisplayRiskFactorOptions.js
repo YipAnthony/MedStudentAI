@@ -72,10 +72,10 @@ export default function DisplayRiskFactorOptions(props) {
         <div>
             <div className="d-flex">
                 <input 
-                    className="form-control" 
+                    className="form-control shadow-none" 
                     type="text" 
                     onChange={handleChange} 
-                    placeholder={"Search Labs"}
+                    placeholder={"Search risk factors"}
                     autoComplete="off"
                     value={searchInput} 
                 ></input>
@@ -84,7 +84,7 @@ export default function DisplayRiskFactorOptions(props) {
                     onClick={handleSearch}
                 >Search</button> */}
             </div>
-            <div id="labSearchResults" className="card" style={outputRiskFactors.length === 0 ? {height:"0"}:{maxHeight: "10%"}}> 
+            <div id="riskSearchResults" className="card" style={outputRiskFactors.length === 0 ? {height:"0"}:{maxHeight: "10%"}}> 
                 {outputRiskFactors}
                 
             </div>

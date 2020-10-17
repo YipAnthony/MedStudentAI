@@ -1,3 +1,8 @@
+:root {
+  --primaryBlue: #6cbfda;
+  --secondaryBlue: #b2cede
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,6 +13,44 @@ body {
   background-color: #f0f0f0;
   /* background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%); */
   color: #4e505a;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primaryBlue) var(--primaryBlue);
+}
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--secondaryBlue);
+  border-radius: 20px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primaryBlue);
+  border-radius: 20px;
+  border: 3px solid var(--primaryBlue);
+}
+
+.btn-primary {
+  background-color: var(--primaryBlue) !important;
+  border-color: var(--primaryBlue) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primaryBlue) !important;
+  border-color: var(--primaryBlue) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primaryBlue) !important;
+  color: white !important;
+}
+
+.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+  color: #fff !important;
+  background-color: var(--primaryBlue);
+  border-color: var(--primaryBlue);
 }
 
 code {
@@ -29,8 +72,16 @@ code {
 #labSearchResults {
   overflow-y:auto;
   overflow-x: auto;
+  max-height: 25vh !important;
+  border: none;
+}
+
+#riskSearchResults {
+  overflow-y:auto;
+  overflow-x: auto;
   max-height: 22vh !important;
   border: none;
+  scrollbar-color: blue white !important;
 }
 
 .riskfactorWrapper {
@@ -86,10 +137,13 @@ code {
   font-size: 20px;
 }
 
-#labSearchResult:hover, 
-#additionalQuestionText:hover {
+#labSearchResult:hover{
   background-color: #7e7e7e4d;
   cursor: pointer;
+}
+
+#additionalQuestionText {
+  border: 0;
 }
 
 .toggleTab {
@@ -129,9 +183,22 @@ code {
   text-align: left;
 }
 
-#patientMainNote, #rightDisplay {
+#patientMainNote {
   border-radius: 10px;
   height: 90vh;
+  box-shadow:0px 1px 8px 0px rgba(0, 0, 0, 0.2),
+    0px 3px 4px 0px rgba(0, 0, 0, 0.14),
+    0px 3px 3px -2px rgba(0, 0, 0, 0.12); 
+}
+
+#rightDisplay {
+  height: 90vh;
+}
+
+#patientNoteContainer {
+  border: 0;
+  border-color: rgba(255, 255, 255, 0) !important;
+ 
 }
 
 .notarget {
@@ -165,6 +232,7 @@ code {
   z-index: 30;
   margin: auto;
   background-color: #00000000 ;
+  border:0
 }
 #ccSearchContainerTop, #symptomsSearchContainerTop, #labsSearchContainerTop,
 #risksSearchContainerTop {
@@ -189,8 +257,8 @@ code {
   width: 100%;
   z-index: 30;
   height: 100%;
-  background-color: #00000052!important;
-  border-radius: 7px;
+  background-color: #6d6d6d6e!important;
+  border-radius: 10px;
   box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2),
     0px 20px 31px 3px rgba(0, 0, 0, 0.14),
     0px 8px 38px 7px rgba(0, 0, 0, 0.12);
@@ -207,8 +275,12 @@ code {
 }
 
 #labTopButtonsContainer {
-  height: 8vh !important;
-  overflow-y: scroll;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-height: 5vh !important;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .progress {
@@ -298,6 +370,12 @@ code {
 .questionIcon {
   width: 15px;
   margin-left: 5px;
+  transition-duration: .2s;
+}
+.questionIcon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition-duration: .2s;
 }
 
 .riskFactorIcons {
@@ -307,10 +385,17 @@ code {
   grid-template-rows: 2fr 1fr;
   padding: 3px;
   margin: 0;
+  color: black;
 }
 
 .riskFactorIcons span {
   font-size: 12px;
+}
+
+.riskFactorIcons:hover{
+  background-color: var(--secondaryBlue);
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .untargetable {
@@ -332,6 +417,20 @@ code {
 }
 
 .highlight {
-  background-color: #7e7e7e6c;
+  background-color: var(--secondaryBlue);
   border-radius: 4px;
+}
+
+.flagIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(211, 0, 0);
+  transition-duration: .1s;
+}
+
+.flagIcon:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition-duration: .1s;
 }

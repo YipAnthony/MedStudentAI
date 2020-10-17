@@ -21,7 +21,7 @@ export default function RiskFactorContainer(props) {
                 // onClick={toggle}
             >
                 <span className="ml-1">Risk Factors</span>
-                <span className="float-right toggleTab" onClick={props.closeRisksSearchResults}>{closeIcon}</span>
+                <span className="float-right toggleTab questionIcon" onClick={props.closeRisksSearchResults}>{closeIcon}</span>
 
                 
             </h6>

@@ -30,3 +30,7 @@ export const starIcon = <svg width="30px" height="30px" viewBox="0 0 16 16" clas
 export const cardiacIcon = <svg width="30px" height="30px" viewBox="0 0 16 16" className="bi bi-suit-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 </svg>
+
+export const flagIcon = <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-flag-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path fillRule="evenodd" d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
+</svg>

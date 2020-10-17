@@ -17,7 +17,7 @@ export default function AddSymptom(props) {
                     onClick={toggle}
                 >
                     <span className="ml-1">Additional Symptoms</span>
-                    <span className="float-right toggleTab" onClick={props.closeSymptomSearchResults}>{closeIcon}</span>
+                    <span className="float-right toggleTab questionIcon" onClick={props.closeSymptomSearchResults}>{closeIcon}</span>
 
                 </h6>
                     <div className="card-body">
