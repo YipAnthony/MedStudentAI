@@ -58,7 +58,12 @@ code {
     monospace;
 }
 
-
+.windowContainer {
+  width: 80%;
+  position: relative;
+  left: 0;
+  right: 0;
+}
 
 
 #additionalSymptomsSearchResults{
@@ -174,9 +179,9 @@ code {
   max-width: 700px !important;
 }
 
-#patientNoteContainer  {
+/* #patientNoteContainer  {
   margin-right: 5px;
-}
+} */
 
 #rightDisplay {
   margin-left: 5px;
@@ -247,7 +252,7 @@ code {
 #ccSearchContainerTop, #symptomsSearchContainerTop, #labsSearchContainerTop,
 #risksSearchContainerTop {
   position: absolute;
-  width: 50vw;
+  width: 100%;
   height: 50vh;
   z-index: 31;
   margin: auto;
@@ -535,7 +540,7 @@ code {
     right: 0;
     bottom: 0;
     left: 0;
-    width: 95vw;
+    width: 100%;
     height: 80vh;
     margin: auto;
   }
