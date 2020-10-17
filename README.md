@@ -6,21 +6,21 @@ Medstudent AI is a web application designed to be a supplemental clinical traini
 
 ### Instructions: 
 * Start by entering patient age, gender, and chief complaint. From here you will have several options:
-** 1) Red Flag Symptoms: Click on the red flag icon to the left of the selected chief complaint. Based on the current patient information, the app will provide a list of "red flag" symptoms for you to verify with the patient. These can be considered high-risk symptoms that you want to rule-out in the initial encounter. 
-** 2) Additional symptoms/risk factors: If you are already aware or have asked the patient for additional symptoms/pre-existing risk factors, you can enter them into the note clicking the magnifying glass icon next to "Additional Symptoms" or "Risk Factors". This will bring up a pop-up container where you can search and add symptoms/risk factors. By adding my symptoms/risk factors, you provide more details to the Infermedica API which will return a more accurate differential diagnosis. 
-*** Once you have added at least 2 additional symptoms, you will see a button "Suggest Symptoms" appear. Suggest symptoms will prompt additional symptoms for you to ask the patient, similar to the red flag symptoms. 
-** 3) Labs: If you are aware of patient labs, you can enter them in by clicking the magnifying glass icon next to "Labs". 
-** Generate Differential: Once you have entered in patient age, sex, chief complaint, and at least 5 additional symptoms, the "Generate Differential" button will become available. Clicking this will take all the provided information and generate a differential diagnosis as well as follow-up questions to ask the patient. 
+ * 1) Red Flag Symptoms: Click on the red flag icon to the left of the selected chief complaint. Based on the current patient information, the app will provide a list of "red flag" symptoms for you to verify with the patient. These can be considered high-risk symptoms that you want to rule-out in the initial encounter. 
+ * 2) Additional symptoms/risk factors: If you are already aware or have asked the patient for additional symptoms/pre-existing risk factors, you can enter them into the note clicking the magnifying glass icon next to "Additional Symptoms" or "Risk Factors". This will bring up a pop-up container where you can search and add symptoms/risk factors. By adding my symptoms/risk factors, you provide more details to the Infermedica API which will return a more accurate differential diagnosis. 
+  * Once you have added at least 2 additional symptoms, you will see a button "Suggest Symptoms" appear. Suggest symptoms will prompt additional symptoms for you to ask the patient, similar to the red flag symptoms. 
+ * 3) Labs: If you are aware of patient labs, you can enter them in by clicking the magnifying glass icon next to "Labs". 
+ * Generate Differential: Once you have entered in patient age, sex, chief complaint, and at least 5 additional symptoms, the "Generate Differential" button will become available. Clicking this will take all the provided information and generate a differential diagnosis as well as follow-up questions to ask the patient. 
 
 * Differential Diagnosis: 
-** The generated differential is ranked based on probability (most likely to least likely). The likelihood of each potential diagnosis is indicated by the associated colored bar (range 0-100%)
-*** Red: (0-25%)
-*** Yellow: (25-50%)
-*** Green: (>50%)
-** Explain: For diagnoses with a probability >50%, a question mark icon will appear. Clicking this icon will provide the rationale for the corresponding diagnosis (e.g., which of the provided evidence is supportive/conflicting)
+ * The generated differential is ranked based on probability (most likely to least likely). The likelihood of each potential diagnosis is indicated by the associated colored bar (range 0-100%)
+  * Red: (0-25%)
+  * Yellow: (25-50%)
+  * Green: (>50%)
+ * Explain: For diagnoses with a probability >50%, a question mark icon will appear. Clicking this icon will provide the rationale for the corresponding diagnosis (e.g., which of the provided evidence is supportive/conflicting)
 
 * Additional Questions: 
-** Generating a differential diagnosis will also prompt a follow-up question which will help to clarifiy your differential. Clicking on the associated question mark icon will provide a rationale for the question (e.g., "This question helps determine whether "Diagnosed asthma" might be one of the causes of your symptoms.")
+ * Generating a differential diagnosis will also prompt a follow-up question which will help to clarifiy your differential. Clicking on the associated question mark icon will provide a rationale for the question (e.g., "This question helps determine whether "Diagnosed asthma" might be one of the causes of your symptoms.")
 
 
 #### Project Log: (9/29/2020 - 10/17/2020)
