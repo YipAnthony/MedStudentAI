@@ -118,7 +118,6 @@ export default function LeftContainer(props) {
     }
  
     function handleSearch(e) {
-        let arrayIndex; 
         let input;
         let chiefComplaint = false
         if (e.target.id === "searchCCButton") {
@@ -355,6 +354,7 @@ export default function LeftContainer(props) {
         let name = labObject["name"]
         setPatientRiskFactors(prev => {
             let arrayIndex = false;
+            // eslint-disable-next-line array-callback-return
             prev.map((value, index) => {
                 if (value["name"] === name) {
                      arrayIndex = index;

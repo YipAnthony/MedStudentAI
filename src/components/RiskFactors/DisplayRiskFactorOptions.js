@@ -57,7 +57,7 @@ export default function DisplayRiskFactorOptions(props) {
             setOutputRiskFactors(() => output)
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[searchInput, props.filteredRiskFactors])
+    },[searchInput, props.filteredRiskFactors, props.resetSearch])
     
     function closeSearch() {
         setOutputRiskFactors(() => [])
@@ -84,19 +84,11 @@ export default function DisplayRiskFactorOptions(props) {
                     autoComplete="off"
                     value={searchInput} 
                 ></input>
-                {/* <button 
-                    className="btn btn-sm btn-primary shadow-none"
-                    onClick={handleSearch}
-                >Search</button> */}
             </div>
             <div id="riskSearchResults" className="card" style={outputRiskFactors.length === 0 ? {height:"0"}:{maxHeight: "10%"}}> 
                 {outputRiskFactors}
                 
             </div>
-            {/* <button 
-                    className="btn btn-sm btn-primary shadow-none"
-                    onClick={closeSearch}
-                >Close</button> */}
         {closeButton}
         </div>
     )

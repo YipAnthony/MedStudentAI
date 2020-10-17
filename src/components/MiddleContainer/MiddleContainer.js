@@ -9,7 +9,6 @@ export default function MiddleContainer(props) {
 
 
     function handleClick (e) {
-        console.log(e.target)
     }
     // display question w/ responses 
     let questionArray = [];
@@ -65,7 +64,7 @@ export default function MiddleContainer(props) {
                         <button 
                             data-questiontype="groupSingle"
                             data-id={choices[i]["id"]}
-                            className="btn btn-sm btn-outline-primary ml-1 mr-1"
+                            className="btn btn-sm btn-primary ml-1 mr-1"
                             onClick={props.handleQuestionResponse}
                         >
                             {choices[i]["name"]}
@@ -155,7 +154,6 @@ export default function MiddleContainer(props) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             setconditionParams (() => data['condition_params'])
             setobservationParams (() => data["observation_params"])
             setType (() => data["type"])
@@ -167,7 +165,6 @@ export default function MiddleContainer(props) {
 
     
     useEffect (() => {
-        console.log('inside useEffect hook')
         let conditionParamNameList = "";
         if (conditionParams.length === 0 & observationParams.length === 0) return
         conditionParams.forEach(element => {
@@ -177,7 +174,6 @@ export default function MiddleContainer(props) {
         observationParams.forEach(element => {
             observationParamNameList += `"${element['name']}"`
         })
-        console.log('set useEffect variables')
         if (type === "r0") {
             setRationaleOutput (() => `A negative response to this question reduces the
             probability of ${conditionParamNameList}and other conditions.`)

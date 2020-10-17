@@ -5,7 +5,6 @@ export default function DisplaySearchResults(props) {
     let {searchResults} = props
     let output = [];
     for (let i = 0; i < props.searchResults.length; i++) {
-        // console.log(i)
         output.push(
             <IndividualSearchResults 
                 arrayNumber = {i}

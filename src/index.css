@@ -170,6 +170,11 @@ code {
   position: relative;
   margin: auto;
   border-radius: 10px;
+  max-height: 90vh;
+}
+
+#patientNoteContainer  {
+  margin:auto
 }
 
 .roundedCorners {
@@ -185,14 +190,14 @@ code {
 
 #patientMainNote {
   border-radius: 10px;
-  height: 90vh;
+  height: 100%;
   box-shadow:0px 1px 8px 0px rgba(0, 0, 0, 0.2),
     0px 3px 4px 0px rgba(0, 0, 0, 0.14),
     0px 3px 3px -2px rgba(0, 0, 0, 0.12); 
 }
 
 #rightDisplay {
-  height: 90vh;
+  max-height: 90vh;
 }
 
 #patientNoteContainer {
@@ -237,8 +242,8 @@ code {
 #ccSearchContainerTop, #symptomsSearchContainerTop, #labsSearchContainerTop,
 #risksSearchContainerTop {
   position: absolute;
-  width: 50%;
-  height: 50%;
+  width: 50vw;
+  height: 50vh;
   z-index: 31;
   margin: auto;
   left: 0;
@@ -249,6 +254,9 @@ code {
   background-color: white;
   border-radius: 10px;
   overflow-y: hidden;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
 }
 #ccSearchContainerBottom, #symptomsSearchContainerBottom, #labsSearchContainerBottom,
 #risksSearchContainerBottom {
@@ -257,12 +265,13 @@ code {
   width: 100%;
   z-index: 30;
   height: 100%;
-  background-color: #6d6d6d6e!important;
+  background-color: #6d6d6d41!important;
   border-radius: 10px;
-  box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2),
+  /* box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.2),
     0px 20px 31px 3px rgba(0, 0, 0, 0.14),
-    0px 8px 38px 7px rgba(0, 0, 0, 0.12);
+    0px 8px 38px 7px rgba(0, 0, 0, 0.12); */
 }
+
 
 #ccSearchResultOutput {
   overflow-y: scroll;
@@ -493,4 +502,109 @@ code {
 
 .closeButtonMargin {
   margin-top: 3px;
+}
+
+.appLogo {
+  height: 10%;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+}
+
+.windowContainer {
+  top: 0;
+  position: absolute;
+}
+
+@media (max-width: 767px) {
+
+  #ccSearchContainerTop, #symptomsSearchContainerTop, #labsSearchContainerTop,
+  #risksSearchContainerTop {
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 95vw;
+    height: 80vh;
+    margin: auto;
+  }
+
+  .ageGender {
+    margin-left: 0;
+    text-align: left;
+    border: none;
+  }
+  .ageInput {
+    border: none;
+    z-index: 5;
+  }
+  .ageGenderGrid {
+    margin-left: 15px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  
+  .input1, .age1 {
+    grid-column: 1/3;
+    grid-row: 1/2;
+  }
+  .input2, .age2 {
+    grid-column: 1/3;
+    grid-row: 2/3;
+  }
+  .input3, .age3 {
+    grid-column: 1/3;
+    grid-row: 3/4;
+  }
+  .input1 {
+    margin-left: 23px;
+    padding-top: 1px;
+  }
+  .input2 {
+    margin-left: 27px;
+    padding-top: 3px;
+  }
+  .input3 {
+    margin-left: 110px;
+  }
+
+  .ageGenderGrid input, .ageGenderGrid button,
+  .ageGenderGrid input::placeholder
+  {
+    /* width: 25px !important; */
+    font-size: 14px !important;
+  }
+
+  .ageGenderGrid .ageInput {
+    height: 30px !important;
+    font-size: 15px !important;
+  }
+
+  #patientNoteContainer {
+    height: auto !important;
+    max-height: none;
+  }
+
+  #labTopButtonsContainer, .riskFactorButtons {
+    max-height: 20% !important;
+  
+  }
+
+  .title {
+    margin: 0;
+  }
+
+  #riskSearchResults, #labSearchResults {
+    max-height: 38vh !important;
+  }
+
+  .minimizedContainer {
+    padding: 20px !important;
+  }
 }

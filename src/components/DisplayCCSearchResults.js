@@ -5,7 +5,6 @@ export default function DisplayCCSearchResults(props) {
     let {searchResultsCC} = props
     let output = [];
     for (let i = 0; i < searchResultsCC.length; i++) {
-        // console.log(i)
         output.push(
             <IndividualSearchResults 
                 arrayNumber = {i}

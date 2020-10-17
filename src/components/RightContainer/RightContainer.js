@@ -12,7 +12,6 @@ export default function RightContainer(props) {
 
 
     function ddxExplain(e) {
-        console.log(e.target.getAttribute('data-id'))
         let id = e.target.getAttribute('data-id')
         let name = e.target.getAttribute('data-name')
         setTargetDdx(() => name)
@@ -33,7 +32,6 @@ export default function RightContainer(props) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             setSupportingEvidence (() => data["supporting_evidence"])
             setConflictingEvidence(() => data["conflicting_evidence"])
             setSupportingEvidenceArray(() => [])

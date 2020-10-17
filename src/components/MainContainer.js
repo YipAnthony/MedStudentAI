@@ -74,7 +74,6 @@ export default function MainContainer() {
 
     function handleMultipleQuestionResponse(e) {
         e.preventDefault()
-        console.log(e.target)
         let selections = e.target.querySelectorAll('input')
         selections.forEach(selection => {
             let id = selection.getAttribute('data-id')
@@ -152,7 +151,7 @@ export default function MainContainer() {
         })
     }
     return (
-        <div className="row h-100">
+        <div className="row h-80">
             <LeftContainer
                 jsonOutputToMainContainerState={jsonOutputToMainContainerState.bind(this)}
                 shouldStop={shouldStop}

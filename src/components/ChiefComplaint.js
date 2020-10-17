@@ -5,6 +5,7 @@ import DisplayCCSearchResults from './DisplayCCSearchResults'
 
 export default function Symptoms(props) {
 
+    // eslint-disable-next-line no-unused-vars
     let [showCC, setShowCC] = useState(false)
 
     function toggle() {

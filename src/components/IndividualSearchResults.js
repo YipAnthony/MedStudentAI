@@ -5,7 +5,6 @@ export default function IndividualSearchResults(props) {
     function toggle(e){
         let buttons = e.target.parentNode.lastElementChild
 
-        console.log(buttons)
         if (buttons.classList.contains('hidden')) {
             buttons.classList.remove('hidden')
         }

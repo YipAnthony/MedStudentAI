@@ -4,6 +4,7 @@ import DisplaySearchResults from './DisplaySearchResults'
 
 export default function AddSymptom(props) {
 
+    // eslint-disable-next-line no-unused-vars
     let [showSymptom, setShowSymptom] = useState(false)
 
     function toggle() {

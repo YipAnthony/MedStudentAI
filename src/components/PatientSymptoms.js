@@ -3,9 +3,9 @@ import Age from './Age'
 import Gender from './Gender'
 import {trashIcon, flagIcon} from '../icons'
 
-// for testing
-import diagnosisResponse from '../lists/diagnosisResponse'
-import suggestResponse from '../lists/suggestResponse';
+// // for testing
+// import diagnosisResponse from '../lists/diagnosisResponse'
+// import suggestResponse from '../lists/suggestResponse';
 
 export default function PatientSymptoms(props) {
 
@@ -211,8 +211,8 @@ export default function PatientSymptoms(props) {
                     <button className="btn btn-light btn-sm p-0 m-0 mr-0 shadow-none" onClick={toggleHidden}>
                         {input}
                     </button> 
-                    <br/>
                     <span id="hiddenButtons" data-selectedresult={props.patientLabs[i]['selectedResult']} className="hidden">
+                        <br/>
                         {labResultType}
                         <button data-array={0} className="btn btn-md p-1 m-1 ml-1 mt-0 shadow-none" onClick={props.deleteLab}>{trashIcon}</button>
                     </span>
@@ -246,14 +246,12 @@ export default function PatientSymptoms(props) {
         }
        
         let outputJSON = JSON.stringify(output)
-        console.log(outputJSON)
         // ACTUAL API POST FUNCTIONS
         let api = "https://api.infermedica.com/v2/"
         api += endpoint
         if(endpoint === "suggest") {
             api += "?max_results=20"
         }
-        console.log(api)
         props.jsonPOSTAPIObject(outputJSON)
         fetch(api, {
             method: 'POST',
@@ -266,10 +264,8 @@ export default function PatientSymptoms(props) {
         })
         .then(response => response.json())
         .then(data => {
-        console.log(data)
         props.jsonOutputToMainContainerState(data)
         })
-        console.log(diagnosisResponse)
         
         // FAKE DIAGNOSIS RESPONSE FOR TESTING
         // if (endpoint === "suggest"){
@@ -334,6 +330,7 @@ export default function PatientSymptoms(props) {
         for (let i = 0; i < inputArray.length; i++) {
             let result = inputArray[i]["selectedResult"]
             let id;
+            // eslint-disable-next-line array-callback-return
             inputArray[i]["results"].map(element => {
                 if (element["type"] === result) {
                     id = element["id"]
@@ -358,6 +355,7 @@ export default function PatientSymptoms(props) {
                 props.setSuggestQuestionToFalse()
         }
         else return
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.clickedSuggestedQuestion])
 
 
@@ -366,21 +364,21 @@ export default function PatientSymptoms(props) {
             {/* <h3 className="card-header">
                 Med Student AI
             </h3> */}
-            <div className="border-0 p-3 pl-5 pr-5">
+            <div className="border-0 p-3 pl-5 pr-5 minimizedContainer">
                 <h4 className="title d-flex border-0">
-                    Patient report:
+                    Patient:
                 </h4>
                 <div className="ageGenderGrid">
-                        <div className="ageGender age">AGE</div>
-                        <div className="ageGender age">SEX</div>
-                        <div className="ageGender">CHIEF COMPLAINT</div>
+                        <div className="ageGender age age1">AGE</div>
+                        <div className="ageGender age age2">SEX</div>
+                        <div className="ageGender age3">CHIEF COMPLAINT</div>
 
-                        <div className="d-flex justify-content-start age ageInput"><Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
+                        <div className="d-flex justify-content-start age ageInput input1"><Age selectedAge={props.selectedAge} handleChange={props.handleChange}/>
                         </div>
-                        <div className="d-flex justify-content-start age ageInput sex">
+                        <div className="d-flex justify-content-start age ageInput sex input2">
                             <Gender selectedGender={props.selectedGender} handleChange={props.handleChange}/>
                         </div>
-                        <div className="d-flex justify-content-start ageInput ccInput color">
+                        <div className="d-flex justify-content-start ageInput ccInput color input3">
                             {selectedCCName.length > 0 ? <span className="flagIcon" title="Suggest reg flag symptoms" onClick={() => sendInfoToAPI("red_flags")}>{flagIcon}</span>:null }
                             {selectedCCName}
                             <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img>
