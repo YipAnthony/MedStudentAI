@@ -379,13 +379,16 @@ export default function LeftContainer(props) {
     }
 
     function clickCCSearch(e) {
+        setChiefComplaintInput(() => "")
         let ccSearchContainer = document.querySelector('#ccSearchContainer')
         if(ccSearchContainer.classList.contains('hidden')){
             ccSearchContainer.classList.remove('hidden')
         }
+
     }
 
     function clickSymptomSearch() {
+        setSelectedSymptomsInput(() => "")
         let ccSearchContainer = document.querySelector('#symptomsSearchContainer')
         if(ccSearchContainer.classList.contains('hidden')){
             ccSearchContainer.classList.remove('hidden')
@@ -406,6 +409,7 @@ export default function LeftContainer(props) {
 
 
     function clickRisksSearch() {
+        
         let container = document.querySelector('#risksMainContainer')
         if(container.classList.contains('hidden')){
             container.classList.remove('hidden')

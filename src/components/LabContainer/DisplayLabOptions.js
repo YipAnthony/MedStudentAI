@@ -9,6 +9,11 @@ export default function DisplayLabOptions(props) {
     let [additionalResults, setadditionalResults] = useState([])
     let [labMatch, setlabMatch] = useState('')
 
+    useEffect(() => {
+        setSearchInput(() => "")
+    },[props.showLabs])
+    
+
     function handleChange(e) {
         let input = e.target.value
         setSearchInput(() => input)
@@ -65,6 +70,7 @@ export default function DisplayLabOptions(props) {
     
     function closeSearch() {
         // setOutputLabs(() => [])
+        setSearchInput(() => "")
         props.closeLabsSearchResults()
     }
 

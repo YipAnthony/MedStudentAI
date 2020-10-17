@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {toggleUpIcon, toggleDownIcon, closeIcon} from '../icons'
+import {closeIcon} from '../icons'
 import DisplayCCSearchResults from './DisplayCCSearchResults'
 
 

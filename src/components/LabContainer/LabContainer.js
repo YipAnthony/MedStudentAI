@@ -11,6 +11,8 @@ export default function LabContainer(props) {
         setShowLabs(prev => !prev)
     }
 
+
+
     return (
         <div id="labsMainContainer" className="card mb-2 hidden">
             <div id="labsSearchContainerTop">
@@ -29,6 +31,7 @@ export default function LabContainer(props) {
                     toggle={toggle}
                     handleAddLab={props.handleAddLab}    
                     closeLabsSearchResults={props.closeLabsSearchResults}
+                    showLabs={showLabs}
                     />
                     </div>
                 

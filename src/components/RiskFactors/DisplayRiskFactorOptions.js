@@ -10,6 +10,11 @@ export default function DisplayRiskFactorOptions(props) {
         let input = e.target.value
         setSearchInput(() => input)
     }
+
+    useEffect(() => {
+        setSearchInput(() => "")
+    }, [props.resetSearch])
+
     useEffect(() => {
         let names = props.filteredRiskFactors.map(element => element["name"])
         let fuzzy = FuzzySet(names)
