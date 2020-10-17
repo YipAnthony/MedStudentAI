@@ -168,6 +168,7 @@ export default function MainContainer() {
             <div id="rightDisplay" className="col-md">
                 <RightContainer
                     ddx={ddx}
+                    jsonObject={jsonObject}
                 />
                 <MiddleContainer
                     promptQuestions={promptQuestions}

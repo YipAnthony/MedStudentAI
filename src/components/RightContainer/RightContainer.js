@@ -1,6 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {questionIcon} from '../../icons'
 
 export default function RightContainer(props) {
+
+    let [supportingEvidence, setSupportingEvidence] = useState([])
+    let [conflictingEvidence, setConflictingEvidence] = useState([])
+
+    function ddxExplain(e) {
+        console.log(e.target.getAttribute('data-id'))
+        let id = e.target.getAttribute('data-id')
+
+        let input = JSON.parse(props.jsonObject)
+        input = {
+            ...input,
+            "target": id
+        }
+        let outputJSON = JSON.stringify(input)
+        fetch("https://api.infermedica.com/v2/explain", {
+            method: 'POST',
+            headers: {
+                "App-Id": "0997c2c7",
+                "App-Key": "07a4f3f3c41553ca5ea33de3c81114c7",
+                'Content-Type': 'application/json',
+            },
+            body: outputJSON,
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setSupportingEvidence (() => data["supporting_evidence"])
+            setConflictingEvidence(() => data["conflicting_evidence"])
+        })
+    }
 
     let differentialArray = [];
     if (props.ddx){
@@ -17,7 +48,19 @@ export default function RightContainer(props) {
             else color = "bg-danger"
             differentialArray.push(
                 <h6 key={i} className="card-text">
-                    {props.ddx[i]["name"]}
+                    <span>
+                        {props.ddx[i]["name"]}
+                        {percentage > 50 ? 
+                        <span 
+                            className="questionIcon" 
+                            data-id={props.ddx[i]["id"]} 
+                            title="Supporting evidence"
+                            onClick={ddxExplain}
+                        >
+                            <span className="untargetable">{questionIcon}</span>
+                        </span> 
+                        : null }
+                    </span>
                     <div className="progress">
                         <div 
                             className={`progress-bar ` + color} 

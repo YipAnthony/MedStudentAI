@@ -371,11 +371,11 @@ code {
   width: 15px;
   margin-left: 5px;
   transition-duration: .2s;
+  position: relative;
+  top: -2px;
 }
 .questionIcon:hover {
   cursor: pointer;
-  transform: scale(1.2);
-  transition-duration: .2s;
 }
 
 .riskFactorIcons {
