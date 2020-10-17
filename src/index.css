@@ -531,6 +531,16 @@ code {
   position: absolute;
 }
 
+@media (max-width: 992px) {
+  .windowContainer {
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+}
+
 @media (max-width: 767px) {
 
   #ccSearchContainerTop, #symptomsSearchContainerTop, #labsSearchContainerTop,
