@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/MedStudentAI/static/css/main.c9cfc826.chunk.css",
+    "main.css": "/MedStudentAI/static/css/main.5867318d.chunk.css",
     "main.js": "/MedStudentAI/static/js/main.a7fb08b3.chunk.js",
     "main.js.map": "/MedStudentAI/static/js/main.a7fb08b3.chunk.js.map",
     "runtime-main.js": "/MedStudentAI/static/js/runtime-main.89cafb08.js",
@@ -8,15 +8,15 @@
     "static/js/2.8020ba0f.chunk.js": "/MedStudentAI/static/js/2.8020ba0f.chunk.js",
     "static/js/2.8020ba0f.chunk.js.map": "/MedStudentAI/static/js/2.8020ba0f.chunk.js.map",
     "index.html": "/MedStudentAI/index.html",
-    "precache-manifest.7b61f8011a15d2573ad32b1b3c01ab75.js": "/MedStudentAI/precache-manifest.7b61f8011a15d2573ad32b1b3c01ab75.js",
+    "precache-manifest.5133dc5286aa123f356d194ead287e07.js": "/MedStudentAI/precache-manifest.5133dc5286aa123f356d194ead287e07.js",
     "service-worker.js": "/MedStudentAI/service-worker.js",
-    "static/css/main.c9cfc826.chunk.css.map": "/MedStudentAI/static/css/main.c9cfc826.chunk.css.map",
+    "static/css/main.5867318d.chunk.css.map": "/MedStudentAI/static/css/main.5867318d.chunk.css.map",
     "static/js/2.8020ba0f.chunk.js.LICENSE.txt": "/MedStudentAI/static/js/2.8020ba0f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.89cafb08.js",
     "static/js/2.8020ba0f.chunk.js",
-    "static/css/main.c9cfc826.chunk.css",
+    "static/css/main.5867318d.chunk.css",
     "static/js/main.a7fb08b3.chunk.js"
   ]
 }
