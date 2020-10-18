@@ -10,31 +10,31 @@ export default function RiskFactorTopPanelButtons(props) {
             </span>,
             <span className="riskFactorIcons">
                 <span className='untargetable centerIcon'>
-                    <img className ="svgIcon" src="./lungs.svg" alt="Lungs"></img>
+                    <img className ="svgIcon" src={process.env.PUBLIC_URL + "/lungs.svg"} alt="Lungs"></img>
                 </span>
                 <span className='untargetable text'>Pulmonary</span>
             </span>,
             <span className="riskFactorIcons">
                 <span className='untargetable centerIcon'>
-                    <img className ="svgIcon" src="./injury.svg" alt="Lungs"></img>
+                    <img className ="svgIcon" src={process.env.PUBLIC_URL + "/injury.svg"} alt="Lungs"></img>
                 </span>
                 <span className='untargetable text'>Trauma</span>
             </span>,
             <span className="riskFactorIcons">
                 <span className='untargetable centerIcon'>
-                    <img className ="svgIcon" src="./medical-pill.svg" alt="Lungs"></img>
+                    <img className ="svgIcon" src={process.env.PUBLIC_URL + "/medical-pill.svg"} alt="Lungs"></img>
                 </span>
                 <span className='untargetable text'>Medications</span>
             </span>,
             <span className="riskFactorIcons">
                 <span className='untargetable centerIcon'>
-                    <img className ="svgIcon" src="./airplane.svg" alt="Lungs"></img>
+                    <img className ="svgIcon" src={process.env.PUBLIC_URL + "/airplane.svg"} alt="Lungs"></img>
                 </span>
                 <span className='untargetable text'>Travel</span>
             </span>,
             <span className="riskFactorIcons">
                 <span className='untargetable centerIcon'>
-                    <img className ="svgIcon" src="./syringe.svg" alt="Lungs"></img>
+                    <img className ="svgIcon" src={process.env.PUBLIC_URL + "/syringe.svg"} alt="Lungs"></img>
                 </span>
                 <span className='untargetable text'>Substances</span>
             </span>,

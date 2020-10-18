@@ -3,6 +3,7 @@ import Age from './Age'
 import Gender from './Gender'
 import {trashIcon, flagIcon} from '../icons'
 
+
 // // for testing
 // import diagnosisResponse from '../lists/diagnosisResponse'
 // import suggestResponse from '../lists/suggestResponse';
@@ -381,7 +382,7 @@ export default function PatientSymptoms(props) {
                         <div className="d-flex justify-content-start ageInput ccInput color input3">
                             {selectedCCName.length > 0 ? <span className="flagIcon" title="Suggest reg flag symptoms" onClick={() => sendInfoToAPI("red_flags")}>{flagIcon}</span>:null }
                             {selectedCCName}
-                            <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img>
+                            <img id="ccSearch" className="ml-1" src={process.env.PUBLIC_URL + "/search.svg"} alt="search button" onClick={props.clickCCSearch}></img>
                         </div>
                 </div>
                 <br/>
@@ -390,14 +391,14 @@ export default function PatientSymptoms(props) {
                     {/* <strong >Chief Complaint:</strong> */}
                     {/* {props.selectedCC !== "" ? "Chief complaint: ":""} */}
                     {/* {selectedCCName} */}
-                    {/* <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickCCSearch}></img> */}
+                    {/* <img id="ccSearch" className="ml-1" src={process.env.PUBLIC_URL + "/search.svg"} alt="search button" onClick={props.clickCCSearch}></img> */}
 
                 </h5>
                 <div className ={patientSymptomArray.length > 0 | patientSymptomAbsentArray.length > 0 ? null:"faded"}>
                     <p className="p-0 m-0">
                         <span className="float-left">
                         <span className="category">Additional Symptoms</span>
-                        <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickSymptomSearch}></img>
+                        <img id="ccSearch" className="ml-1" src={process.env.PUBLIC_URL + "/search.svg"}  alt="search button" onClick={props.clickSymptomSearch}></img>
                         </span>
                         {patientSymptomAbsentArray.length >= 2 | patientSymptomArray.length >= 2 ? 
                          <button className="btn btn-outline-secondary btn-sm m-0 float-right shadow-none" onClick={() => sendInfoToAPI("suggest")}>Suggest Symptoms</button>:
@@ -422,7 +423,7 @@ export default function PatientSymptoms(props) {
                     <div className ={props.patientRiskFactors.length > 0 ? null:"faded"}>
                         <div className="card-text p-0 pt-0 text-left">
                             <span className="category">Risk factors</span>
-                            <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickRisksSearch}></img>
+                            <img id="ccSearch" className="ml-1" src={process.env.PUBLIC_URL + "/search.svg"} alt="search button" onClick={props.clickRisksSearch}></img>
 
                             <hr className="m-0"/>
                             <ul className="text-left list-group">{patientRiskFactorArray}</ul>
@@ -433,7 +434,7 @@ export default function PatientSymptoms(props) {
                     <div className ={props.patientLabs.length > 0 ? null:"faded"}>
                         <div className="card-text p-0 pt-2 text-left">
                         <span className="category">Labs</span>
-                        <img id="ccSearch" className="ml-1" src="./search.svg" alt="search button" onClick={props.clickLabsSearch}></img>
+                        <img id="ccSearch" className="ml-1" src={process.env.PUBLIC_URL + "/search.svg"} alt="search button" onClick={props.clickLabsSearch}></img>
                         
                         <hr className="m-0"/>
                         <ul className="text-left list-group">{selectedLabs}</ul>

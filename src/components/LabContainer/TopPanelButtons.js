@@ -11,19 +11,19 @@ export default function TopPanelButtons(props) {
         </span>,
         <span className="riskFactorIcons">
             <span className='untargetable centerIcon'>
-                <img className ="svgIcon" src="./hormone.png" alt="Lungs"></img>
+                <img className ="svgIcon" src={process.env.PUBLIC_URL + "/hormone.png"} alt="Lungs"></img>
             </span>
             <span className='untargetable text'>Hormones</span>
         </span>,
         <span className="riskFactorIcons">
             <span className='untargetable centerIcon'>
-                <img className ="svgIcon" src="./germ.svg" alt="Lungs"></img>
+                <img className ="svgIcon" src={process.env.PUBLIC_URL + "/germ.svg"} alt="Lungs"></img>
             </span>    
             <span className='untargetable text'>Microbiology</span>
         </span>,
         <span className="riskFactorIcons">
             <span className='untargetable centerIcon'>
-                <img className ="svgIcon" src="./biochem.svg" alt="Lungs"></img>
+                <img className ="svgIcon" src={process.env.PUBLIC_URL + "/biochem.svg"} alt="Lungs"></img>
             </span>
             <span className='untargetable text'>Biochemistry</span>
         </span>]
