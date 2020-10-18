@@ -30,7 +30,7 @@ Start by entering patient age, gender, and chief complaint. From here you will h
 
 #### Project Log: (9/29/2020 - 10/17/2020)
 
-###### 10/17 Update:
+##### 10/17 Update:
 Finished all the API endpoint connections. Still not too happy with the overall app UI, but the app works and I figured it was time to move on. I plan to make a tutorial video, which will also serve as a documentation of the working app once the free API requests run out. This probably would be useful for early medical students, but I personally don't have the funds. 
 
 Difficulties I encountered included: 
@@ -39,7 +39,7 @@ Difficulties I encountered included:
 Random Observations: 
 * I'm becoming more familiar with react hooks and being able to connect React states in separate components. 
 
-###### 10/3 Update:
+##### 10/3 Update:
 This was my first project working with APIs. Working with the Infermedica API seemed like a great way to incorporate my medical background. 
 
 Difficulties I encountered included: 
