@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/MedStudentAI/precache-manifest.5133dc5286aa123f356d194ead287e07.js"
+  "/MedStudentAI/precache-manifest.b1e346f54d00789f8e6d074b2af81d74.js"
 );
 
 self.addEventListener('message', (event) => {
