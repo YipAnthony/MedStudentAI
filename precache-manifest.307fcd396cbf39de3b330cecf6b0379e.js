@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dd1b7671b97edc6cbcacd7c154031110",
+    "revision": "0bc4ff1508f0049075a422add2bb7692",
     "url": "/MedStudentAI/index.html"
   },
   {
