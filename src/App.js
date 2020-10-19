@@ -4,9 +4,8 @@ import MainContainer from './components/MainContainer'
 
 function App() {
   let [alertArray, setAlertArray] = useState([])
-  let [counter, setCounter] = useState(0)
 
-  let counter2 = 0
+  let counter2 = 0.0006
   async function triggerAlert() {
     counter2 += 1
     setAlertArray(prev => [
