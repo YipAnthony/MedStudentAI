@@ -4,28 +4,28 @@ import MainContainer from './components/MainContainer'
 
 function App() {
   let [alertArray, setAlertArray] = useState([])
-
+  let counter = -1
   let counter2 = 0.0006
   async function triggerAlert() {
     counter2 += 1
+    counter =+ 1
     setAlertArray(prev => [
       ...prev,
-      <div key={counter2} id={"alert" + counter2} className="alert alert-primary alertStyle fade" role="alert" >
+      <div key={counter2} id={"alert" + counter} className="alert alert-primary alertStyle fade" role="alert" >
        Added!
       </div>
     ])
     
     setTimeout( () => {
-      let alert = document.querySelector(`#alert${counter2}`)
+      let alert = document.querySelector(`#alert${counter}`)
       alert.classList.remove('fade')
-      alert.classList.add('dropFromTop')
     }, 100)
     setTimeout( () => {
-      let alert = document.querySelector(`#alert${counter2}`)
+      let alert = document.querySelector(`#alert${counter}`)
       alert.classList.add('fade1')
     }, 600)
     setTimeout( () => {
-      let alert = document.querySelector(`#alert${counter2}`)
+      let alert = document.querySelector(`#alert${counter}`)
       alert.classList.add('fade')
     }, 1000)
     setTimeout( () => {
@@ -34,7 +34,7 @@ function App() {
         output = output.slice(1)
         setAlertArray(() => output)
       })
-    }, 2000)
+    }, 1001)
   }
 
   return (
