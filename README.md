@@ -1,5 +1,6 @@
 # Medstudent AI
 
+[Link](https://yipanthony.github.io/MedStudentAI/)
 ![Alt text](./public/aimedstudent.gif?raw=true "Title")
 
 Medstudent AI is a web application designed to be a supplemental clinical training tool for first/second year medical students, by incorporating the Infermedica API. This app allows users to input patient information (age, gender, chief complaint, additional presenting symptoms, risk factors, labs) and provides several options including: red flag symptoms to ask, additional clarification questions, and a differential diagnosis. 
