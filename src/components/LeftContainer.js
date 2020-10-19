@@ -75,6 +75,7 @@ export default function LeftContainer(props) {
             
             return output
         })
+        props.triggerAlert();
     }
 
     function handleChange(e){
@@ -112,9 +113,13 @@ export default function LeftContainer(props) {
                 })
             }
             setSearchResults(prev => {
+                
                 return prev.filter((element, index) => index !== targetIndex)
             })
+            props.triggerAlert();
         }
+        
+        
     }
  
     function handleSearch(e) {
@@ -262,6 +267,7 @@ export default function LeftContainer(props) {
             }
             else return [...prev, outputObject]
         })
+        props.triggerAlert();
     }
 
     function selectLabResult(e){
@@ -369,6 +375,7 @@ export default function LeftContainer(props) {
             }
             return [...prev, labObject]
         })
+        props.triggerAlert()
     }
     function deleteRiskFactor(e){
         let riskFactor = e.target
@@ -434,6 +441,7 @@ export default function LeftContainer(props) {
                         searchResultsCC={searchResultsCC}
                         handleChangeCC={handleChangeCC}    
                         closeCCSearchResults={closeCCSearchResults}
+                        triggerAlert={props.triggerAlert}
                     />
                     <PatientSymptoms 
                         patientSymptoms={patientSymptoms}
@@ -485,6 +493,7 @@ export default function LeftContainer(props) {
                     />
                     
             </div> 
+            
         </div>
     )
 }

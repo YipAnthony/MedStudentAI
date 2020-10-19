@@ -35,7 +35,7 @@ export default function MiddleContainer(props) {
                 )
             }
             questionArray.push(
-                <div key={0} id="additionalQuestionText" className="card p-1" >
+                <div key={0} id="additionalQuestionText" className="card p-1 noBorder" >
                     <div 
                         className="card-text" 
                         onClick={handleClick}
@@ -45,7 +45,7 @@ export default function MiddleContainer(props) {
                     </div>
                     <div id="rationaleOutputElement" className= "hidden card">
                         <div className="float-right questionIcon rationaleQuestion" onClick={closeRationale}>{closeIcon}</div>
-                        <div className="card-body">{rationaleOutput}</div>
+                        <div className="card-body p-2 pr-5">{rationaleOutput}</div>
                      </div>
                     <div className="card-text">
                         {buttons}
@@ -82,8 +82,8 @@ export default function MiddleContainer(props) {
                         <span className="questionIcon" onClick={rationaleAPI}>{questionIcon}</span>
                     </div>
                     <div id="rationaleOutputElement" className= "hidden card">
-                        <div className="float-right questionIcon" onClick={closeRationale}>{closeIcon}</div>
-                        <div className="card-body">{rationaleOutput}</div>
+                        <div className="float-right questionIcon forceRight" onClick={closeRationale}>{closeIcon}</div>
+                        <div className="card-body p-2 pr-5">{rationaleOutput}</div>
                      </div>
                     <div className="card-text">
                         {buttons}
@@ -121,7 +121,7 @@ export default function MiddleContainer(props) {
                     </div>
                     <div id="rationaleOutputElement" className= "hidden card">
                         <div className="float-right questionIcon" onClick={closeRationale}>{closeIcon}</div>
-                        <div className="card-body">{rationaleOutput}</div>
+                        <div className="card-body p-2 pr-5">{rationaleOutput}</div>
                     </div>
                     <div className="card-text">
                         {checkItems}

@@ -65,6 +65,21 @@ code {
   right: 0;
 }
 
+.addSymptomsDisplay, .ddxResults {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.noBorder {
+  border: none;
+}
+
+.forceRight {
+  margin-right: 5px !important;
+  margin-left: unset !important;
+  right: 5px;
+  position: absolute !important;
+}
 
 #additionalSymptomsSearchResults{
   /* width: max(500px); */
@@ -531,6 +546,37 @@ code {
   position: absolute;
 }
 
+.input1 {
+  padding-top: 4px;
+}
+
+.alertStyle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100px;
+  height: 50px;
+  line-height: 100%;
+  text-align: center;
+  z-index: 100;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dropFromTop {
+  transform: scale(.9);
+}
+.fade1 {
+  opacity: .5;
+  transition-duration: .6s;
+}
+.fade {
+  opacity: 0;
+}
+
 @media (max-width: 992px) {
   .windowContainer {
     width: 100%;
@@ -548,7 +594,7 @@ code {
     position: absolute;
     top:0;
     right: 0;
-    bottom: 0;
+    bottom: unset;
     left: 0;
     width: 100%;
     height: 80vh;
@@ -626,5 +672,9 @@ code {
 
   .minimizedContainer {
     padding: 20px !important;
+  }
+
+  #patientNoteContainer, #rightDisplay {
+    margin-bottom: 5px;
   }
 }

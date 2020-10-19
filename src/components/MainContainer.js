@@ -4,7 +4,7 @@ import MiddleContainer from './MiddleContainer/MiddleContainer'
 import RightContainer from './RightContainer/RightContainer'
 import symptoms from "../lists/symptoms"
 
-export default function MainContainer() {
+export default function MainContainer(props) {
 
     let [shouldStop, setShouldStop] = useState("false")
     let [promptQuestions, setPromptQuestions] = useState({})
@@ -69,7 +69,7 @@ export default function MainContainer() {
             setPromptQuestions(() => {})
         }
         setClickedSuggestedQuestion(() => true)
-
+        props.triggerAlert();
     }
 
     function handleMultipleQuestionResponse(e) {
@@ -94,6 +94,7 @@ export default function MainContainer() {
             setPromptQuestions(() => {})
         })
         setClickedSuggestedQuestion(() => true)
+        props.triggerAlert();
     }
 
     function jsonOutputToMainContainerState(object) {
@@ -135,7 +136,7 @@ export default function MainContainer() {
             output.splice(index,1)
             return output
         })
-        
+        props.triggerAlert();
     }
 
     function setSuggestQuestionToFalse() {
@@ -161,6 +162,7 @@ export default function MainContainer() {
                 clickedSuggestedQuestion = {clickedSuggestedQuestion}
                 setSuggestQuestionToFalse = {setSuggestQuestionToFalse}
                 jsonPOSTAPIObject={jsonPOSTAPIObject}
+                triggerAlert = {props.triggerAlert}
             />
             {ddx.length > 0 | promptQuestions | suggestSymptoms.length > 0 ? 
             

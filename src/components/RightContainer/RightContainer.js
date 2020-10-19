@@ -139,7 +139,7 @@ export default function RightContainer(props) {
                         </div>
                     </div>
                 </div>
-                <div className="card-text p-3" >{differentialArray}</div>
+                <div className="ddxResults card-text p-3" >{differentialArray}</div>
             </div> 
             : null}
         </div>

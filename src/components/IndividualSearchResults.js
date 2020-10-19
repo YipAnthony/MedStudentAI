@@ -17,11 +17,12 @@ export default function IndividualSearchResults(props) {
                 <div className="card-text mt-0 mb-0 ml-1 mr-1 notarget">{props.symptomName}</div>
             </div>
             <div id="searchResultButtons" className="card-body d-flex pt-0 pb-1 justify-content hidden">
-                <button id="clickAddSymptom" data-array={props.arrayNumber} data-present="present" className="btn btn-primary btn-sm mr-1 shadow-none " onClick={props.handleChange}>Present</button>
+                <button id="clickAddSymptom" data-array={props.arrayNumber} type="button" data-present="present" className="btn btn-primary btn-sm mr-1 shadow-none " onClick={props.handleChange}>Present</button>
                 {props.chiefComplaint === "yes" ? null:
                 <button id="clickAddSymptom" data-array={props.arrayNumber} data-present="absent" className="btn btn-primary btn-sm mr-1 shadow-none " onClick={props.handleChange}>Absent</button>
                 }
             </div>
+            
         </div>
     )
 }
