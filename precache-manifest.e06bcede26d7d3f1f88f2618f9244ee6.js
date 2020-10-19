@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0bc4ff1508f0049075a422add2bb7692",
+    "revision": "032e4be46d1311fc168bc9639adab2ca",
     "url": "/MedStudentAI/index.html"
   },
   {
-    "revision": "df40d2ace6a67991f06a",
-    "url": "/MedStudentAI/static/css/main.aa3d52c5.chunk.css"
+    "revision": "1d714c740ac2ea866a84",
+    "url": "/MedStudentAI/static/css/main.7d03e0e8.chunk.css"
   },
   {
     "revision": "677addebcd1b5c536507",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/MedStudentAI/static/js/2.e597916a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "df40d2ace6a67991f06a",
-    "url": "/MedStudentAI/static/js/main.83d4b756.chunk.js"
+    "revision": "1d714c740ac2ea866a84",
+    "url": "/MedStudentAI/static/js/main.0b9f1a29.chunk.js"
   },
   {
     "revision": "eb231bd9d7167b5f7c20",
