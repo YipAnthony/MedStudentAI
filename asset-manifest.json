@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/MedStudentAI/static/css/main.a2afdfae.chunk.css",
-    "main.js": "/MedStudentAI/static/js/main.314d5a0c.chunk.js",
-    "main.js.map": "/MedStudentAI/static/js/main.314d5a0c.chunk.js.map",
+    "main.css": "/MedStudentAI/static/css/main.aa3d52c5.chunk.css",
+    "main.js": "/MedStudentAI/static/js/main.83d4b756.chunk.js",
+    "main.js.map": "/MedStudentAI/static/js/main.83d4b756.chunk.js.map",
     "runtime-main.js": "/MedStudentAI/static/js/runtime-main.89cafb08.js",
     "runtime-main.js.map": "/MedStudentAI/static/js/runtime-main.89cafb08.js.map",
     "static/js/2.e597916a.chunk.js": "/MedStudentAI/static/js/2.e597916a.chunk.js",
     "static/js/2.e597916a.chunk.js.map": "/MedStudentAI/static/js/2.e597916a.chunk.js.map",
     "index.html": "/MedStudentAI/index.html",
-    "precache-manifest.4f10ee5514ea362b74610e0012dc9b56.js": "/MedStudentAI/precache-manifest.4f10ee5514ea362b74610e0012dc9b56.js",
+    "precache-manifest.1f82fcf0aa9a8fc8b685485d03c2d8fd.js": "/MedStudentAI/precache-manifest.1f82fcf0aa9a8fc8b685485d03c2d8fd.js",
     "service-worker.js": "/MedStudentAI/service-worker.js",
-    "static/css/main.a2afdfae.chunk.css.map": "/MedStudentAI/static/css/main.a2afdfae.chunk.css.map",
+    "static/css/main.aa3d52c5.chunk.css.map": "/MedStudentAI/static/css/main.aa3d52c5.chunk.css.map",
     "static/js/2.e597916a.chunk.js.LICENSE.txt": "/MedStudentAI/static/js/2.e597916a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.89cafb08.js",
     "static/js/2.e597916a.chunk.js",
-    "static/css/main.a2afdfae.chunk.css",
-    "static/js/main.314d5a0c.chunk.js"
+    "static/css/main.aa3d52c5.chunk.css",
+    "static/js/main.83d4b756.chunk.js"
   ]
 }
