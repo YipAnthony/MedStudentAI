@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/MedStudentAI/static/css/main.7d03e0e8.chunk.css",
-    "main.js": "/MedStudentAI/static/js/main.0b9f1a29.chunk.js",
-    "main.js.map": "/MedStudentAI/static/js/main.0b9f1a29.chunk.js.map",
+    "main.css": "/MedStudentAI/static/css/main.bac098de.chunk.css",
+    "main.js": "/MedStudentAI/static/js/main.b5243e51.chunk.js",
+    "main.js.map": "/MedStudentAI/static/js/main.b5243e51.chunk.js.map",
     "runtime-main.js": "/MedStudentAI/static/js/runtime-main.89cafb08.js",
     "runtime-main.js.map": "/MedStudentAI/static/js/runtime-main.89cafb08.js.map",
-    "static/js/2.e597916a.chunk.js": "/MedStudentAI/static/js/2.e597916a.chunk.js",
-    "static/js/2.e597916a.chunk.js.map": "/MedStudentAI/static/js/2.e597916a.chunk.js.map",
+    "static/js/2.8020ba0f.chunk.js": "/MedStudentAI/static/js/2.8020ba0f.chunk.js",
+    "static/js/2.8020ba0f.chunk.js.map": "/MedStudentAI/static/js/2.8020ba0f.chunk.js.map",
     "index.html": "/MedStudentAI/index.html",
-    "precache-manifest.e06bcede26d7d3f1f88f2618f9244ee6.js": "/MedStudentAI/precache-manifest.e06bcede26d7d3f1f88f2618f9244ee6.js",
+    "precache-manifest.cc35965f6fe5acfb3eada7a2d843dfff.js": "/MedStudentAI/precache-manifest.cc35965f6fe5acfb3eada7a2d843dfff.js",
     "service-worker.js": "/MedStudentAI/service-worker.js",
-    "static/css/main.7d03e0e8.chunk.css.map": "/MedStudentAI/static/css/main.7d03e0e8.chunk.css.map",
-    "static/js/2.e597916a.chunk.js.LICENSE.txt": "/MedStudentAI/static/js/2.e597916a.chunk.js.LICENSE.txt"
+    "static/css/main.bac098de.chunk.css.map": "/MedStudentAI/static/css/main.bac098de.chunk.css.map",
+    "static/js/2.8020ba0f.chunk.js.LICENSE.txt": "/MedStudentAI/static/js/2.8020ba0f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.89cafb08.js",
-    "static/js/2.e597916a.chunk.js",
-    "static/css/main.7d03e0e8.chunk.css",
-    "static/js/main.0b9f1a29.chunk.js"
+    "static/js/2.8020ba0f.chunk.js",
+    "static/css/main.bac098de.chunk.css",
+    "static/js/main.b5243e51.chunk.js"
   ]
 }
