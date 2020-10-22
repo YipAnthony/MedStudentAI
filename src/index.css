@@ -58,6 +58,39 @@ code {
     monospace;
 }
 
+.tutorialContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  z-index: 200;
+}
+
+.insideContainer {
+  width: 600px;
+  /* max-width: 520px; */
+  height: fit-content;
+}
+
+.welcomeText {
+  text-align: left;
+
+}
+
+.videoDimensions {
+  width: 550px;
+  height: calc(550px/1.33);
+}
+
+.enterButton {
+  width: 30%;
+}
+
+
 .windowContainer {
   width: 80%;
   position: relative;
@@ -492,10 +525,10 @@ code {
   padding: 0 30px 10px 30px;
 }
 .ddxExplainGrid div {
-  padding-right: 5px;
+  padding-right: 12px;
 }
 .ddxExplainGrid div ul {
-  padding-left: 5px;
+  padding-left: 15px;
 }
 .ddxExplainGrid div div {
   text-decoration: underline;
@@ -533,6 +566,18 @@ code {
 
 .appLogo {
   height: 10%;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+}
+
+.appLogoWelcome {
+  height: 100px;
   margin: auto;
   margin-top: 2%;
   margin-bottom: 2%;
@@ -600,8 +645,13 @@ code {
     bottom: unset;
     left: 0;
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     margin: auto;
+  }
+
+  .videoDimensions {
+    width: 80vw;
+    height: calc(80vw/1.33);
   }
 
   .ageGender {
@@ -683,6 +733,12 @@ code {
 
   #rightDisplay {
     margin-left: 0 !important;
+  }
+
+  .insideContainer {
+    width: 90%;
+    /* max-width: 520px; */
+    height: fit-content;
   }
 
 }

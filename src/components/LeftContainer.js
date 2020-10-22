@@ -180,7 +180,8 @@ export default function LeftContainer(props) {
     }
 
     function deleteSymptom(e){
-        let symptom = e.target
+        let symptom = e.target.parentNode
+        console.log(symptom)
         let symptomIndex = Number(symptom.getAttribute('data-array'))
         setPatientSymptoms(prev => {
             return prev.filter((item, index) =>  index !== symptomIndex)
@@ -188,7 +189,7 @@ export default function LeftContainer(props) {
         })
     }
     function deleteSymptomAbsent(e){
-        let symptom = e.target
+        let symptom = e.target.parentNode
         let symptomIndex = Number(symptom.getAttribute('data-array'))
         setPatientSymptomsAbsent(prev => {
             return prev.filter((item, index) =>  index !== symptomIndex)
@@ -290,7 +291,7 @@ export default function LeftContainer(props) {
     }
 
     function deleteLab(e){
-        let lab = e.target
+        let lab = e.target.parentNode
         let labIndex = Number(lab.getAttribute('data-array'))
         setPatientLabs(prev => {
             return prev.filter((item, index) =>  index !== labIndex)
@@ -378,7 +379,7 @@ export default function LeftContainer(props) {
         props.triggerAlert()
     }
     function deleteRiskFactor(e){
-        let riskFactor = e.target
+        let riskFactor = e.target.parentNode
         let riskFactorIndex = Number(riskFactor.getAttribute('data-array'))
         setPatientRiskFactors(prev => {
             return prev.filter((item, index) =>  index !== riskFactorIndex)

@@ -211,7 +211,7 @@ export default function MiddleContainer(props) {
             {questionArray.length > 0 ? 
            
             <div className="card col-md m-1 ml-0 mr-0 p-2 roundedCorners">
-                <h5 className="card-body">Additional Questions:</h5>
+                <h5 className="card-body mb-0">Additional Questions:</h5>
                 {/* <span className="btn btn-sm btn-primary" onClick={rationaleAPI}>Explain</span> */}
                
                 {questionArray}

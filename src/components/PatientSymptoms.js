@@ -79,7 +79,7 @@ export default function PatientSymptoms(props) {
                     <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                         {input}
                     </span> 
-                    <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>{trashIcon}</button>
+                    <button data-array={i} className="btn btn-md m-1 ml-0 p-0 shadow-none hidden" onClick={props.deleteSymptom}>{trashIcon}</button>
                 </div>
             </li>
         )
@@ -105,7 +105,7 @@ export default function PatientSymptoms(props) {
                     <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                         {input}
                     </span> 
-                    <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>{trashIcon}</button>
+                    <button data-array={i} className="btn btn-md m-1 ml-0  p-0 shadow-none hidden" onClick={props.deleteSymptomAbsent}>{trashIcon}</button>
                 </div>
             </li>
         )
@@ -127,19 +127,19 @@ export default function PatientSymptoms(props) {
             let choice = props.updatedResponses[i]["choice_id"]
             if (choice === "present") {
                 patientSymptomArray.push(
-                    <li key={.1*1/i} className="listItem">
-                    <div key={.1*1/i} style={{display: "inline"}}>
+                    <li key={i+0.002} className="listItem">
+                    <div style={{display: "inline"}}>
                         <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                             {input}
                         </span> 
-                        <button data-array={i} className="btn btn-md m-1 ml-0 shadow-none hidden" onClick={props.deleteSymptom}>{trashIcon}</button>
+                        <button data-array={i} className="btn btn-md m-1 ml-0  p-0 shadow-none hidden" onClick={props.deleteSymptom}>{trashIcon}</button>
                     </div>
                     </li>
                 )
             }
             else if (choice === "absent") {
                 patientSymptomAbsentArray.push(
-                    <li key={1/i/10} className="listItem">
+                    <li key={i+0.004} className="listItem">
                         <div key={1/i} style={{display: "inline"}}>
                             <span className="m-0 mr-0 p-0 symptomsFont" onClick={toggleHidden}>
                                 {input}
